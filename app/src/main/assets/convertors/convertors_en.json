@@ -1,0 +1,86 @@
+{
+  "Physics": [
+    { "id": "Length", "title": "Length", "painterName": "length_icon", "startUnit": { "id": "Meter", "symbol": "m" } },
+    { "id": "Mass", "title": "Mass", "painterName": "mass_icon", "startUnit": { "id": "Kilogram", "symbol": "kg" } },
+    { "id": "Area", "title": "Area", "painterName": "area_icon", "startUnit": { "id": "Square meter", "symbol": "m²" } },
+    { "id": "Volume", "title": "Volume", "painterName": "volume_icon", "startUnit": { "id": "Liter", "symbol": "L" } },
+    { "id": "Speed", "title": "Speed", "painterName": "speed_icon", "startUnit": { "id": "Meter per second", "symbol": "m/s" } },
+    { "id": "Temperature", "title": "Temperature", "painterName": "temperature_icon", "startUnit": { "id": "Celsius", "symbol": "°C" } },
+    { "id": "Pressure", "title": "Pressure", "painterName": "pressure_icon", "startUnit": { "id": "Pascal", "symbol": "Pa" } },
+    { "id": "Energy", "title": "Energy", "painterName": "energy_icon", "startUnit": { "id": "Joule", "symbol": "J" } },
+    { "id": "Power", "title": "Power", "painterName": "power_icon", "startUnit": { "id": "Watt", "symbol": "W" } },
+    { "id": "Electricity", "title": "Electricity", "painterName": "electricity_icon", "startUnit": { "id": "Volt", "symbol": "V" }, "release": "Experimental" },
+    { "id": "Efficiency", "title": "Efficiency", "painterName": "efficiency_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release":"Unavailable"  },
+    { "id": "Magnetism", "title": "Magnetism", "painterName": "magnetism_icon", "startUnit": { "id": "Tesla", "symbol": "T" }, "release": "Experimental"   },
+    { "id": "Radiation", "title": "Radiation", "painterName": "radiation_icon", "startUnit": { "id": "Gray", "symbol": "Gy" }, "release": "Experimental"  },
+    { "id": "Optics", "title": "Optics", "painterName": "optics_icon", "startUnit": { "id": "Lumen", "symbol": "lm" }, "release": "Unavailable"   },
+    { "id": "Acoustics", "title": "Acoustics", "painterName": "acoustics_icon", "startUnit": { "id": "Decibel", "symbol": "dB" }, "release": "Unavailable" }
+  ],
+  "Finance": [
+    { "id": "Currency", "title": "Currency", "painterName": "currency_icon", "startUnit": { "id": "Українська гривня", "symbol": "UAH" }},
+    { "id": "Discount", "title": "Discount", "painterName": "discount_icon", "startUnit": { "id": "Annual", "symbol": "%" } },
+    { "id": "Loans", "title": "Loans", "painterName": "loans_icon", "startUnit": { "id": "Credit", "symbol": "$" }, "release": "Unavailable"  },
+    { "id": "Taxes", "title": "Taxes", "painterName": "taxes_icon", "startUnit": { "id": "Tax rate", "symbol": "%" }, "release": "Unavailable"   },
+    { "id": "Inflation", "title": "Inflation", "painterName": "inflation_icon", "startUnit": { "id": "CPI", "symbol": "%" }, "release": "Unavailable"   },
+    { "id": "Assets", "title": "Assets & Metals", "painterName": "assets_icon", "startUnit": { "id": "Gold", "symbol": "Au" }, "release": "Unavailable"   },
+    { "id": "Crypto", "title": "Cryptocurrencies", "painterName": "crypto_icon", "startUnit": { "id": "Bitcoin", "symbol": "BTC" }, "release": "Unavailable"  }
+  ],
+  "Time": [
+    { "id": "Duration", "title": "Duration", "painterName": "duration_icon","startUnit": { "id": "Day", "symbol": "day"} },
+    { "id": "Time_zones", "title": "Time zones", "painterName": "timezone_icon", "startUnit": { "id": "UTC", "symbol": "UTC" }, "release": "Unavailable" },
+    { "id": "Time", "title": "Time", "painterName": "time_icon", "startUnit": { "id": "Second", "symbol": "s" } }
+  ],
+  "Computing": [
+    { "id": "Data_size", "title": "Data size", "painterName": "datasize_icon", "startUnit": { "id": "Gigabyte", "symbol": "GB" } },
+    { "id": "Data_rate", "title": "Data rate", "painterName": "datarate_icon", "startUnit": {  "id": "bit per second", "symbol": "bps" } },
+    { "id": "Resolution", "title": "Resolution", "painterName": "resolution_icon", "startUnit": { "id": "dpi", "symbol": "dpi" }, "release": "Unavailable" },
+    { "id": "Latency", "title": "Latency", "painterName": "latency_icon", "startUnit": { "id": "Millisecond", "symbol": "ms" }, "release": "Experimental" },
+    { "id": "Band_width", "title": "Band width", "painterName": "bandwidth_icon", "startUnit": { "id": "Hz", "symbol": "Hz" }, "release": "Experimental" },
+    { "id": "IP_calculator", "title": "IP calculator", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Experimental" }
+
+  ],
+  "Transport": [
+    { "id": "Nautical", "title": "Nautical measures", "painterName": "nautical_icon", "startUnit": { "id": "Knot", "symbol": "kn" }, "release": "Unavailable" },
+    { "id": "Aviation", "title": "Aviation measures", "painterName": "aviation_icon", "startUnit": { "id": "Flight level", "symbol": "FL" }, "release": "Unavailable" },
+    { "id": "Fuel", "title": "Fuel consumption", "painterName": "fuel_icon", "startUnit": { "id": "L/100km", "symbol": "L/100km" }, "release": "Unavailable"  }
+  ],
+  "Daily life": [
+    { "id": "Cooking", "title": "Cooking measures", "painterName": "cooking_icon", "startUnit": {  "id": "Cup (US)", "symbol": "cup"} },
+    { "id": "Food_energy", "title": "Food energy", "painterName": "calories_icon", "startUnit": { "id": "Calorie (small)", "symbol": "cal" } },
+    { "id": "Alcohol", "title": "Alcohol strength", "painterName": "alcohol_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable"   }
+  ],
+  "Math": [
+    { "id": "Angles", "title": "Angles", "painterName": "angles_icon", "startUnit": { "id": "Degree", "symbol": "°" } },
+    { "id": "Function_graph", "title": "Function graph", "painterName": "graph_icon", "startUnit": { "id": "Degree", "symbol": "°" }, "release": "Beta" },
+    { "id": "Space_distances", "title": "Space distances", "painterName": "distance_icon", "startUnit": { "id": "Light year", "symbol": "ly" }, "release": "Unavailable" },
+    { "id": "Brightness", "title": "Brightness", "painterName": "brightness_icon", "startUnit": { "id": "Magnitude", "symbol": "mag" }, "release": "Unavailable" },
+    { "id": "Luminous_flux", "title": "Luminous flux", "painterName": "flux_icon", "startUnit": { "id": "Lumen", "symbol": "lm" }, "release": "Unavailable" }
+  ],
+  "Geography": [
+    { "id": "Coordinates", "title": "Coordinates", "painterName": "coordinates_icon", "startUnit": { "id": "Degree", "symbol": "°" }, "release": "Experimental"  },
+    { "id": "Elevation", "title": "Elevation", "painterName": "elevation_icon", "startUnit": { "id": "Meter", "symbol": "m" }, "release": "Experimental"  },
+    { "id": "Land_area", "title": "Land area", "painterName": "landarea_icon", "startUnit": { "id": "Hectare", "symbol": "ha" }, "release": "Unavailable" },
+    { "id": "Map_distance", "title": "Map distances", "painterName": "mapdistance_icon", "startUnit": { "id": "Kilometer", "symbol": "km" }, "release": "Unavailable" }
+  ],
+  "Chemistry": [
+    { "id": "Concentration", "title": "Concentration", "painterName": "concentration_icon", "startUnit": { "id": "mol/L", "symbol": "M" }, "release": "Unavailable" },
+    { "id": "Molarity", "title": "Molarity", "painterName": "molarity_icon", "startUnit": { "id": "mol/L", "symbol": "M" }, "release": "Unavailable"   },
+    { "id": "MassFraction", "title": "Mass fraction", "painterName": "massfraction_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable" },
+    { "id": "Solubility", "title": "Solubility", "painterName": "solubility_icon", "startUnit": { "id": "g/L", "symbol": "g/L" }, "release": "Unavailable"   },
+    { "id": "pH", "title": "pH", "painterName": "ph_icon", "startUnit": { "id": "pH (standard)", "symbol": "pH" }, "release": "Experimental" }
+  ],
+
+  "Science": [
+    { "id": "Viscosity", "title": "Viscosity", "painterName": "viscosity_icon", "startUnit": { "id": "Pascal second", "symbol": "Pa·s" }, "release": "Experimental"  },
+    { "id": "Thermal_conductivity", "title": "Thermal conductivity", "painterName": "thermal_icon", "startUnit": {  "id": "Watt per meter Kelvin", "symbol": "W/m·K" }, "release": "Experimental" },
+    { "id": "Density", "title": "Density", "painterName": "density_icon", "startUnit": {  "id": "Kilogram per cubic meter", "symbol": "kg/m³"}, "release": "Experimental" },
+    { "id": "Heat_capacity", "title": "Heat capacity", "painterName": "heatcapacity_icon", "startUnit": {  "id": "Joule per kilogram Kelvin", "symbol": "J/kg·K" }, "release": "Experimental"  },
+    { "id": "Heat_flux", "title": "Heat flux", "painterName": "heatflux_icon", "startUnit": {  "id": "Watt per square meter", "symbol": "W/m²" }, "release": "Experimental"  }
+  ],
+
+  "Other": [
+    { "id": "BMI", "title": "BMI", "painterName": "bmi_icon", "startUnit": { "id": "Weight", "symbol": "kg" } },
+    { "id": "Activity", "title": "Physical activity", "painterName": "activity_icon", "startUnit": { "id": "Steps", "symbol": "steps" }  },
+    { "id": "Numeration_system", "title": "Numeration system", "painterName": "numeration_system_icon", "startUnit": { "id": "Decimal", "symbol": "DEC" } }
+  ]
+}

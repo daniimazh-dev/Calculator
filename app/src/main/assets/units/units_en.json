@@ -1,0 +1,718 @@
+{
+  "Length": [
+    { "id": "Millimeter", "name": "Millimeter", "symbol": "mm", "multiplier": 0.001 },
+    { "id": "Centimeter", "name": "Centimeter", "symbol": "cm", "multiplier": 0.01 },
+    { "id": "Decimeter", "name": "Decimeter", "symbol": "dm", "multiplier": 0.1 },
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Kilometer", "name": "Kilometer", "symbol": "km", "multiplier": 1000.0 },
+    { "id": "Inch", "name": "Inch", "symbol": "in", "multiplier": 0.0254 },
+    { "id": "Foot", "name": "Foot", "symbol": "ft", "multiplier": 0.3048 },
+    { "id": "Yard", "name": "Yard", "symbol": "yd", "multiplier": 0.9144 },
+    { "id": "Mile", "name": "Mile", "symbol": "mi", "multiplier": 1609.34 },
+    { "id": "Nautical mile", "name": "Nautical mile", "symbol": "nmi", "multiplier": 1852.0 }
+  ],
+
+  "Mass": [
+    { "id": "Microgram", "name": "Microgram", "symbol": "µg", "multiplier": 0.000000001 },
+    { "id": "Milligram", "name": "Milligram", "symbol": "mg", "multiplier": 0.000001 },
+    { "id": "Gram", "name": "Gram", "symbol": "g", "multiplier": 0.001 },
+    { "id": "Kilogram", "name": "Kilogram", "symbol": "kg", "multiplier": 1.0 },
+    { "id": "Tonne", "name": "Tonne", "symbol": "t", "multiplier": 1000.0 },
+    { "id": "Ounce", "name": "Ounce", "symbol": "oz", "multiplier": 0.0283495 },
+    { "id": "Pound", "name": "Pound", "symbol": "lb", "multiplier": 0.453592 },
+    { "id": "Stone", "name": "Stone", "symbol": "st", "multiplier": 6.35029 },
+    { "id": "Carat", "name": "Carat", "symbol": "ct", "multiplier": 0.0002 },
+    { "id": "Grain", "name": "Grain", "symbol": "gr", "multiplier": 0.00006479891 }
+  ],
+
+  "Area": [
+    { "id": "Square millimeter", "name": "Square millimeter", "symbol": "mm²", "multiplier": 0.000001 },
+    { "id": "Square centimeter", "name": "Square centimeter", "symbol": "cm²", "multiplier": 0.0001 },
+    { "id": "Square decimeter", "name": "Square decimeter", "symbol": "dm²", "multiplier": 0.01 },
+    { "id": "Square meter", "name": "Square meter", "symbol": "m²", "multiplier": 1.0 },
+    { "id": "Are", "name": "Are", "symbol": "a", "multiplier": 100.0 },
+    { "id": "Hectare", "name": "Hectare", "symbol": "ha", "multiplier": 10000.0 },
+    { "id": "Square kilometer", "name": "Square kilometer", "symbol": "km²", "multiplier": 1000000.0 },
+    { "id": "Square foot", "name": "Square foot", "symbol": "ft²", "multiplier": 0.09290304 },
+    { "id": "Square yard", "name": "Square yard", "symbol": "yd²", "multiplier": 0.83612736 },
+    { "id": "Acre", "name": "Acre", "symbol": "ac", "multiplier": 4046.8564224 }
+  ],
+
+  "Volume": [
+    { "id": "Milliliter", "name": "Milliliter", "symbol": "mL", "multiplier": 0.001 },
+    { "id": "Centiliter", "name": "Centiliter", "symbol": "cL", "multiplier": 0.01 },
+    { "id": "Deciliter", "name": "Deciliter", "symbol": "dL", "multiplier": 0.1 },
+    { "id": "Liter", "name": "Liter", "symbol": "L", "multiplier": 1.0 },
+    { "id": "Cubic centimeter", "name": "Cubic centimeter", "symbol": "cm³", "multiplier": 0.001 },
+    { "id": "Cubic meter", "name": "Cubic meter", "symbol": "m³", "multiplier": 1000.0 },
+    { "id": "Cubic inch", "name": "Cubic inch", "symbol": "in³", "multiplier": 0.016387064 },
+    { "id": "Cubic foot", "name": "Cubic foot", "symbol": "ft³", "multiplier": 28.316846592 },
+    { "id": "Gallon (US)", "name": "Gallon (US)", "symbol": "gal (US)", "multiplier": 3.785411784 },
+    { "id": "Gallon (UK)", "name": "Gallon (UK)", "symbol": "gal (UK)", "multiplier": 4.54609 }
+  ],
+
+  "Speed": [
+    { "id": "Meter per second", "name": "Meter per second", "symbol": "m/s", "multiplier": 1.0 },
+    { "id": "Kilometer per hour", "name": "Kilometer per hour", "symbol": "km/h", "multiplier": 0.2777777778 },
+    { "id": "Mile per hour", "name": "Mile per hour", "symbol": "mph", "multiplier": 0.44704 },
+    { "id": "Knot", "name": "Knot", "symbol": "kn", "multiplier": 0.5144444444 },
+    { "id": "Foot per second", "name": "Foot per second", "symbol": "ft/s", "multiplier": 0.3048 },
+    { "id": "Inch per second", "name": "Inch per second", "symbol": "in/s", "multiplier": 0.0254 },
+    { "id": "Mach (approx at 20°C)", "name": "Mach (approx at 20°C)", "symbol": "Ma", "multiplier": 340.29 },
+    { "id": "Kilometer per second", "name": "Kilometer per second", "symbol": "km/s", "multiplier": 1000.0 },
+    { "id": "Centimeter per second", "name": "Centimeter per second", "symbol": "cm/s", "multiplier": 0.01 },
+    { "id": "Light speed", "name": "Light speed", "symbol": "c", "multiplier": 299792458.0 }
+  ],
+
+  "Temperature": [
+    { "id": "Celsius", "name": "Celsius", "symbol": "°C", "multiplier": 1.0 },
+    { "id": "Fahrenheit", "name": "Fahrenheit", "symbol": "°F", "multiplier": 1.0 },
+    { "id": "Kelvin", "name": "Kelvin", "symbol": "K", "multiplier": 1.0 },
+    { "id": "Rankine", "name": "Rankine", "symbol": "°R", "multiplier": 1.0 },
+    { "id": "Réaumur", "name": "Réaumur", "symbol": "°Ré", "multiplier": 1.0 },
+    { "id": "Delisle", "name": "Delisle", "symbol": "°De", "multiplier": 1.0 },
+    { "id": "Newton", "name": "Newton", "symbol": "°N", "multiplier": 1.0 },
+    { "id": "Rømer", "name": "Rømer", "symbol": "°Rø", "multiplier": 1.0 }
+  ],
+
+  "Pressure": [
+    { "id": "Pascal", "name": "Pascal", "symbol": "Pa", "multiplier": 1.0 },
+    { "id": "Kilopascal", "name": "Kilopascal", "symbol": "kPa", "multiplier": 1000.0 },
+    { "id": "Bar", "name": "Bar", "symbol": "bar", "multiplier": 100000.0 },
+    { "id": "Atmosphere", "name": "Atmosphere", "symbol": "atm", "multiplier": 101325.0 },
+    { "id": "Torr", "name": "Torr", "symbol": "Torr", "multiplier": 133.3223684 },
+    { "id": "Millimeter of mercury", "name": "Millimeter of mercury", "symbol": "mmHg", "multiplier": 133.322387415 },
+    { "id": "Pound per square inch", "name": "Pound per square inch", "symbol": "psi", "multiplier": 6894.757293168 },
+    { "id": "Kilogram-force per square centimeter", "name": "Kilogram-force per square centimeter", "symbol": "kgf/cm²", "multiplier": 98066.5 },
+    { "id": "Pascal (micro)", "name": "Pascal (micro)", "symbol": "µPa", "multiplier": 0.000001 },
+    { "id": "Gigapascal", "name": "Gigapascal", "symbol": "GPa", "multiplier": 1000000000.0 }
+  ],
+
+  "Energy": [
+    { "id": "Joule", "name": "Joule", "symbol": "J", "multiplier": 1.0 },
+    { "id": "Kilojoule", "name": "Kilojoule", "symbol": "kJ", "multiplier": 1000.0 },
+    { "id": "Calorie (thermochemical)", "name": "Calorie (thermochemical)", "symbol": "cal", "multiplier": 4.184 },
+    { "id": "Kilocalorie (kcal)", "name": "Kilocalorie (kcal)", "symbol": "kcal", "multiplier": 4184.0 },
+    { "id": "Watt-hour", "name": "Watt-hour", "symbol": "Wh", "multiplier": 3600.0 },
+    { "id": "Kilowatt-hour", "name": "Kilowatt-hour", "symbol": "kWh", "multiplier": 3600000.0 },
+    { "id": "Electronvolt", "name": "Electronvolt", "symbol": "eV", "multiplier": 1.602176634e-19 },
+    { "id": "BTU (International)", "name": "BTU (International)", "symbol": "BTU", "multiplier": 1055.05585262 },
+    { "id": "Therm (US)", "name": "Therm (US)", "symbol": "thm", "multiplier": 1.055e8 },
+    { "id": "Erg", "name": "Erg", "symbol": "erg", "multiplier": 1e-7 }
+  ],
+
+  "Power": [
+    { "id": "Watt", "name": "Watt", "symbol": "W", "multiplier": 1.0 },
+    { "id": "Kilowatt", "name": "Kilowatt", "symbol": "kW", "multiplier": 1000.0 },
+    { "id": "Megawatt", "name": "Megawatt", "symbol": "MW", "multiplier": 1000000.0 },
+    { "id": "Horsepower (metric)", "name": "Horsepower (metric)", "symbol": "hp", "multiplier": 735.49875 },
+    { "id": "Horsepower (mechanical)", "name": "Horsepower (mechanical)", "symbol": "hp (mech)", "multiplier": 745.69987158227022 },
+    { "id": "BTU per hour", "name": "BTU per hour", "symbol": "BTU/h", "multiplier": 0.29307107 },
+    { "id": "Kilowatt-hour per hour", "name": "Kilowatt-hour per hour", "symbol": "kWh/h", "multiplier": 1000.0 },
+    { "id": "Milliwatt", "name": "Milliwatt", "symbol": "mW", "multiplier": 0.001 },
+    { "id": "Gigawatt", "name": "Gigawatt", "symbol": "GW", "multiplier": 1e9 },
+    { "id": "Thermal horsepower", "name": "Thermal horsepower", "symbol": "hp (th)", "multiplier": 9809.5 }
+  ],
+
+  "Electricity": [
+    { "id": "Volt", "name": "Volt", "symbol": "V", "multiplier": 1.0 },
+    { "id": "Millivolt", "name": "Millivolt", "symbol": "mV", "multiplier": 0.001 },
+    { "id": "Kilovolt", "name": "Kilovolt", "symbol": "kV", "multiplier": 1000.0 },
+    { "id": "Ampere", "name": "Ampere", "symbol": "A", "multiplier": 1.0 },
+    { "id": "Milliampere", "name": "Milliampere", "symbol": "mA", "multiplier": 0.001 },
+    { "id": "Ohm", "name": "Ohm", "symbol": "Ω", "multiplier": 1.0 },
+    { "id": "Kiloohm", "name": "Kiloohm", "symbol": "kΩ", "multiplier": 1000.0 },
+    { "id": "Farad", "name": "Farad", "symbol": "F", "multiplier": 1.0 },
+    { "id": "Microfarad", "name": "Microfarad", "symbol": "µF", "multiplier": 0.000001 },
+    { "id": "Henry", "name": "Henry", "symbol": "H", "multiplier": 1.0 }
+  ],
+
+  "Efficiency": [
+    { "id": "Percent", "name": "Percent", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Fraction", "name": "Fraction", "symbol": "fraction", "multiplier": 0.01 },
+    { "id": "Coefficient (unitless)", "name": "Coefficient (unitless)", "symbol": "coef", "multiplier": 1.0 },
+    { "id": "Thermal efficiency", "name": "Thermal efficiency", "symbol": "η_th", "multiplier": 1.0 },
+    { "id": "Mechanical efficiency", "name": "Mechanical efficiency", "symbol": "η_mech", "multiplier": 1.0 },
+    { "id": "Electrical efficiency", "name": "Electrical efficiency", "symbol": "η_el", "multiplier": 1.0 },
+    { "id": "Volumetric efficiency", "name": "Volumetric efficiency", "symbol": "η_v", "multiplier": 1.0 },
+    { "id": "Isentropic efficiency", "name": "Isentropic efficiency", "symbol": "η_is", "multiplier": 1.0 },
+    { "id": "Carnot efficiency", "name": "Carnot efficiency", "symbol": "η_c", "multiplier": 1.0 },
+    { "id": "Energy return ratio", "name": "Energy return ratio", "symbol": "ERR", "multiplier": 1.0 }
+  ],
+
+  "Magnetism": [
+    { "id": "Tesla", "name": "Tesla", "symbol": "T", "multiplier": 1.0 },
+    { "id": "Gauss", "name": "Gauss", "symbol": "G", "multiplier": 0.0001 },
+    { "id": "Oersted", "name": "Oersted", "symbol": "Oe", "multiplier": 79.5774715 },
+    { "id": "Ampere per meter", "name": "Ampere per meter", "symbol": "A/m", "multiplier": 1.0 },
+    { "id": "Weber", "name": "Weber", "symbol": "Wb", "multiplier": 1.0 },
+    { "id": "Maxwell", "name": "Maxwell", "symbol": "Mx", "multiplier": 1e-8 },
+    { "id": "Henry per meter", "name": "Henry per meter", "symbol": "H/m", "multiplier": 1.0 },
+    { "id": "Magnetic moment (A·m²)", "name": "Magnetic moment (A·m²)", "symbol": "A·m²", "multiplier": 1.0 },
+    { "id": "Magnetomotive force (A·turn)", "name": "Magnetomotive force (A·turn)", "symbol": "At", "multiplier": 1.0 },
+    { "id": "Magnetic flux density (T)", "name": "Magnetic flux density (T)", "symbol": "T", "multiplier": 1.0 }
+  ],
+
+  "Radiation": [
+    { "id": "Gray", "name": "Gray", "symbol": "Gy", "multiplier": 1.0 },
+    { "id": "Sievert", "name": "Sievert", "symbol": "Sv", "multiplier": 1.0 },
+    { "id": "Rad", "name": "Rad", "symbol": "rad", "multiplier": 0.01 },
+    { "id": "Rem", "name": "Rem", "symbol": "rem", "multiplier": 0.01 },
+    { "id": "Becquerel", "name": "Becquerel", "symbol": "Bq", "multiplier": 1.0 },
+    { "id": "Curie", "name": "Curie", "symbol": "Ci", "multiplier": 3.7e10 },
+    { "id": "Roentgen", "name": "Roentgen", "symbol": "R", "multiplier": 2.58e-4 },
+    { "id": "Photon count", "name": "Photon count", "symbol": "photons", "multiplier": 1.0 },
+    { "id": "Dose equivalent", "name": "Dose equivalent", "symbol": "DE", "multiplier": 1.0 },
+    { "id": "Activity", "name": "Activity", "symbol": "Activity", "multiplier": 1.0 }
+  ],
+
+  "Optics": [
+    { "id": "Lumen", "name": "Lumen", "symbol": "lm", "multiplier": 1.0 },
+    { "id": "Lux", "name": "Lux", "symbol": "lx", "multiplier": 1.0 },
+    { "id": "Candela", "name": "Candela", "symbol": "cd", "multiplier": 1.0 },
+    { "id": "Nit", "name": "Nit", "symbol": "nt", "multiplier": 1.0 },
+    { "id": "Steradian", "name": "Steradian", "symbol": "sr", "multiplier": 1.0 },
+    { "id": "Phot", "name": "Phot", "symbol": "ph", "multiplier": 1.0 },
+    { "id": "Lumen per watt", "name": "Lumen per watt", "symbol": "lm/W", "multiplier": 1.0 },
+    { "id": "Radiant flux (W)", "name": "Radiant flux (W)", "symbol": "W", "multiplier": 1.0 },
+    { "id": "Radiance", "name": "Radiance", "symbol": "W·sr⁻¹·m⁻²", "multiplier": 1.0 },
+    { "id": "Illuminance", "name": "Illuminance", "symbol": "lux", "multiplier": 1.0 }
+  ],
+
+  "Acoustics": [
+    { "id": "Decibel", "name": "Decibel", "symbol": "dB", "multiplier": 1.0 },
+    { "id": "Bel", "name": "Bel", "symbol": "B", "multiplier": 0.1 },
+    { "id": "Sone", "name": "Sone", "symbol": "sone", "multiplier": 1.0 },
+    { "id": "Phon", "name": "Phon", "symbol": "phon", "multiplier": 1.0 },
+    { "id": "Sound pressure (Pa)", "name": "Sound pressure (Pa)", "symbol": "Pa", "multiplier": 1.0 },
+    { "id": "Sound intensity (W/m²)", "name": "Sound intensity (W/m²)", "symbol": "W/m²", "multiplier": 1.0 },
+    { "id": "dBA (A-weighted)", "name": "dBA (A-weighted)", "symbol": "dBA", "multiplier": 1.0 },
+    { "id": "dBC (C-weighted)", "name": "dBC (C-weighted)", "symbol": "dBC", "multiplier": 1.0 },
+    { "id": "SPL reference (20 µPa)", "name": "SPL reference (20 µPa)", "symbol": "ref", "multiplier": 1.0 },
+    { "id": "Hz (frequency)", "name": "Hz (frequency)", "symbol": "Hz", "multiplier": 1.0 }
+  ],
+
+  "Currency": [
+    { "id": "Українська гривня", "name": "Українська гривня", "symbol": "UAH", "multiplier": 1.0 }
+  ],
+
+  "Discount": [
+    { "id": "Price", "name": "Price", "symbol": "money", "multiplier": 1.0 },
+    { "id": "Percent", "name": "Percent", "symbol": "%", "multiplier": 1.0 }
+  ],
+
+  "Loans": [
+    { "id": "Principal (currency)", "name": "Principal (currency)", "symbol": "currency", "multiplier": 1.0 },
+    { "id": "Annual interest rate", "name": "Annual interest rate", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Monthly rate", "name": "Monthly rate", "symbol": "%/mo", "multiplier": 1.0 },
+    { "id": "APR", "name": "APR", "symbol": "APR", "multiplier": 1.0 },
+    { "id": "Term (years)", "name": "Term (years)", "symbol": "yr", "multiplier": 1.0 },
+    { "id": "Term (months)", "name": "Term (months)", "symbol": "mo", "multiplier": 1.0 },
+    { "id": "Payment (currency)", "name": "Payment (currency)", "symbol": "currency", "multiplier": 1.0 },
+    { "id": "Effective rate", "name": "Effective rate", "symbol": "eff", "multiplier": 1.0 },
+    { "id": "Nominal rate", "name": "Nominal rate", "symbol": "nom", "multiplier": 1.0 },
+    { "id": "Amortization", "name": "Amortization", "symbol": "amort", "multiplier": 1.0 }
+  ],
+
+  "Taxes": [
+    { "id": "Percent", "name": "Percent", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Absolute", "name": "Absolute", "symbol": "currency", "multiplier": 1.0 },
+    { "id": "VAT rate", "name": "VAT rate", "symbol": "VAT%", "multiplier": 1.0 },
+    { "id": "Income tax", "name": "Income tax", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Property tax", "name": "Property tax", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Effective tax rate", "name": "Effective tax rate", "symbol": "eff%", "multiplier": 1.0 },
+    { "id": "Tax credit", "name": "Tax credit", "symbol": "credit", "multiplier": 1.0 },
+    { "id": "Tax deduction", "name": "Tax deduction", "symbol": "ded", "multiplier": 1.0 },
+    { "id": "Bracket", "name": "Bracket", "symbol": "br", "multiplier": 1.0 },
+    { "id": "Withholding", "name": "Withholding", "symbol": "with", "multiplier": 1.0 }
+  ],
+
+  "Inflation": [
+    { "id": "Percent per year", "name": "Percent per year", "symbol": "%/yr", "multiplier": 1.0 },
+    { "id": "Percent per month", "name": "Percent per month", "symbol": "%/mo", "multiplier": 1.0 },
+    { "id": "CPI index", "name": "CPI index", "symbol": "CPI", "multiplier": 1.0 },
+    { "id": "Producer price index", "name": "Producer price index", "symbol": "PPI", "multiplier": 1.0 },
+    { "id": "Real value", "name": "Real value", "symbol": "real", "multiplier": 1.0 },
+    { "id": "Nominal value", "name": "Nominal value", "symbol": "nom", "multiplier": 1.0 },
+    { "id": "Annualized rate", "name": "Annualized rate", "symbol": "ann", "multiplier": 1.0 },
+    { "id": "Core inflation", "name": "Core inflation", "symbol": "core", "multiplier": 1.0 },
+    { "id": "Index points", "name": "Index points", "symbol": "idx", "multiplier": 1.0 },
+    { "id": "Percent change", "name": "Percent change", "symbol": "%chg", "multiplier": 1.0 }
+  ],
+
+  "Assets": [
+    { "id": "Gold (troy ounce)", "name": "Gold (troy ounce)", "symbol": "Au (oz)", "multiplier": 1.0 },
+    { "id": "Silver (troy ounce)", "name": "Silver (troy ounce)", "symbol": "Ag (oz)", "multiplier": 1.0 },
+    { "id": "Platinum (oz)", "name": "Platinum (oz)", "symbol": "Pt (oz)", "multiplier": 1.0 },
+    { "id": "Palladium (oz)", "name": "Palladium (oz)", "symbol": "Pd (oz)", "multiplier": 1.0 },
+    { "id": "Oil (barrel)", "name": "Oil (barrel)", "symbol": "bbl", "multiplier": 1.0 },
+    { "id": "Copper (tonne)", "name": "Copper (tonne)", "symbol": "Cu (t)", "multiplier": 1.0 },
+    { "id": "Wheat (tonne)", "name": "Wheat (tonne)", "symbol": "wht (t)", "multiplier": 1.0 },
+    { "id": "Corn (tonne)", "name": "Corn (tonne)", "symbol": "corn (t)", "multiplier": 1.0 },
+    { "id": "Natural gas (MMBtu)", "name": "Natural gas (MMBtu)", "symbol": "MMBtu", "multiplier": 1.0 },
+    { "id": "Coal (tonne)", "name": "Coal (tonne)", "symbol": "coal (t)", "multiplier": 1.0 }
+  ],
+
+  "Crypto": [
+    { "id": "Bitcoin", "name": "Bitcoin", "symbol": "BTC", "multiplier": 1.0 },
+    { "id": "Ethereum", "name": "Ethereum", "symbol": "ETH", "multiplier": 1.0 },
+    { "id": "Tether", "name": "Tether", "symbol": "USDT", "multiplier": 1.0 },
+    { "id": "BNB", "name": "BNB", "symbol": "BNB", "multiplier": 1.0 },
+    { "id": "Cardano", "name": "Cardano", "symbol": "ADA", "multiplier": 1.0 },
+    { "id": "Solana", "name": "Solana", "symbol": "SOL", "multiplier": 1.0 },
+    { "id": "XRP", "name": "XRP", "symbol": "XRP", "multiplier": 1.0 },
+    { "id": "Polkadot", "name": "Polkadot", "symbol": "DOT", "multiplier": 1.0 },
+    { "id": "Dogecoin", "name": "Dogecoin", "symbol": "DOGE", "multiplier": 1.0 },
+    { "id": "Litecoin", "name": "Litecoin", "symbol": "LTC", "multiplier": 1.0 }
+  ],
+
+  "Duration": [
+    { "id": "Minute", "name": "Minute", "symbol": "min", "multiplier": 0.0007 },
+    { "id": "Hour", "name": "Hour", "symbol": "hour", "multiplier": 0.04 },
+    { "id": "Day", "name": "Day", "symbol": "day", "multiplier": 1.0 },
+    { "id": "Week", "name": "Week", "symbol": "week", "multiplier": 7.0 },
+    { "id": "Month", "name": "Month", "symbol": "month", "multiplier": 30.0 }
+  ],
+
+  "Time_zones": [
+    { "id": "UTC", "name": "UTC", "symbol": "UTC", "multiplier": 1.0 },
+    { "id": "EET (Kyiv)", "name": "EET (Kyiv)", "symbol": "EET", "multiplier": 1.0 },
+    { "id": "CET", "name": "CET", "symbol": "CET", "multiplier": 1.0 },
+    { "id": "EST", "name": "EST", "symbol": "EST", "multiplier": 1.0 },
+    { "id": "PST", "name": "PST", "symbol": "PST", "multiplier": 1.0 },
+    { "id": "IST", "name": "IST", "symbol": "IST", "multiplier": 1.0 },
+    { "id": "JST", "name": "JST", "symbol": "JST", "multiplier": 1.0 },
+    { "id": "AEST", "name": "AEST", "symbol": "AEST", "multiplier": 1.0 },
+    { "id": "AKST", "name": "AKST", "symbol": "AKST", "multiplier": 1.0 },
+    { "id": "HST", "name": "HST", "symbol": "HST", "multiplier": 1.0 }
+  ],
+
+  "Time": [
+    { "id": "Year", "name": "Year", "symbol": "year", "multiplier": 365.0 },
+    { "id": "Millisecond", "name": "Millisecond", "symbol": "ms", "multiplier": 0.001 },
+    { "id": "Second", "name": "Second", "symbol": "s", "multiplier": 1.0 },
+    { "id": "Minute", "name": "Minute", "symbol": "min", "multiplier": 60.0 },
+    { "id": "Hour", "name": "Hour", "symbol": "h", "multiplier": 3600.0 },
+    { "id": "Day", "name": "Day", "symbol": "d", "multiplier": 86400.0 },
+    { "id": "Week", "name": "Week", "symbol": "wk", "multiplier": 604800.0 },
+    { "id": "Month (30d)", "name": "Month (30d)", "symbol": "mo", "multiplier": 2592000.0 },
+    { "id": "Year (365d)", "name": "Year (365d)", "symbol": "yr", "multiplier": 31536000.0 },
+    { "id": "Decade", "name": "Decade", "symbol": "dec", "multiplier": 315360000.0 },
+    { "id": "Century", "name": "Century", "symbol": "cent", "multiplier": 3153600000.0 }
+  ],
+
+  "Data_size": [
+    { "id": "Bit", "name": "Bit", "symbol": "b", "multiplier": 0.125 },
+    { "id": "Byte", "name": "Byte", "symbol": "B", "multiplier": 1.0 },
+    { "id": "Kilobyte (1000)", "name": "Kilobyte (1000)", "symbol": "KB", "multiplier": 1000.0 },
+    { "id": "Kilobyte (1024)", "name": "Kilobyte (1024)", "symbol": "KiB", "multiplier": 1024.0 },
+    { "id": "Megabyte", "name": "Megabyte", "symbol": "MB", "multiplier": 1000000.0 },
+    { "id": "Mebibyte", "name": "Mebibyte", "symbol": "MiB", "multiplier": 1048576.0 },
+    { "id": "Gigabyte", "name": "Gigabyte", "symbol": "GB", "multiplier": 1000000000.0 },
+    { "id": "Gibibyte", "name": "Gibibyte", "symbol": "GiB", "multiplier": 1073741824.0 },
+    { "id": "Terabyte", "name": "Terabyte", "symbol": "TB", "multiplier": 1000000000000.0 },
+    { "id": "Petabyte", "name": "Petabyte", "symbol": "PB", "multiplier": 1000000000000000.0 }
+  ],
+
+  "Data_rate": [
+    { "id": "bit per second", "name": "bit per second", "symbol": "bps", "multiplier": 1.0 },
+    { "id": "kilobit per second", "name": "kilobit per second", "symbol": "kbps", "multiplier": 1000.0 },
+    { "id": "megabit per second", "name": "megabit per second", "symbol": "Mbps", "multiplier": 1000000.0 },
+    { "id": "gigabit per second", "name": "gigabit per second", "symbol": "Gbps", "multiplier": 1000000000.0 },
+    { "id": "byte per second", "name": "byte per second", "symbol": "B/s", "multiplier": 8.0 },
+    { "id": "kilobyte per second", "name": "kilobyte per second", "symbol": "kB/s", "multiplier": 8000.0 },
+    { "id": "megabyte per second", "name": "megabyte per second", "symbol": "MB/s", "multiplier": 8000000.0 },
+    { "id": "gigabyte per second", "name": "gigabyte per second", "symbol": "GB/s", "multiplier": 8000000000.0 },
+    { "id": "packet per second", "name": "packet per second", "symbol": "pps", "multiplier": 1.0 },
+    { "id": "frame per second", "name": "frame per second", "symbol": "fps", "multiplier": 1.0 }
+  ],
+
+  "Resolution": [
+    { "id": "Pixels per inch", "name": "Pixels per inch", "symbol": "ppi", "multiplier": 1.0 },
+    { "id": "Dots per inch", "name": "Dots per inch", "symbol": "dpi", "multiplier": 1.0 },
+    { "id": "Pixels", "name": "Pixels", "symbol": "px", "multiplier": 1.0 },
+    { "id": "Percent scale", "name": "Percent scale", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Aspect ratio", "name": "Aspect ratio", "symbol": "AR", "multiplier": 1.0 },
+    { "id": "Points", "name": "Points", "symbol": "pt", "multiplier": 1.0 },
+    { "id": "Em", "name": "Em", "symbol": "em", "multiplier": 1.0 },
+    { "id": "Rem", "name": "Rem", "symbol": "rem", "multiplier": 1.0 },
+    { "id": "Viewport width", "name": "Viewport width", "symbol": "vw", "multiplier": 1.0 },
+    { "id": "Viewport height", "name": "Viewport height", "symbol": "vh", "multiplier": 1.0 }
+  ],
+
+  "Latency": [
+    { "id": "Nanosecond", "name": "Nanosecond", "symbol": "ns", "multiplier": 0.000000001 },
+    { "id": "Microsecond", "name": "Microsecond", "symbol": "µs", "multiplier": 0.000001 },
+    { "id": "Millisecond", "name": "Millisecond", "symbol": "ms", "multiplier": 0.001 },
+    { "id": "Second", "name": "Second", "symbol": "s", "multiplier": 1.0 },
+    { "id": "Minute", "name": "Minute", "symbol": "min", "multiplier": 60.0 },
+    { "id": "Hour", "name": "Hour", "symbol": "h", "multiplier": 3600.0 },
+    { "id": "Frame (at 60fps)", "name": "Frame (at 60fps)", "symbol": "frame", "multiplier": 0.0166666667 },
+    { "id": "Tick (system)", "name": "Tick (system)", "symbol": "tick", "multiplier": 0.001 },
+    { "id": "Jiffy (computing)", "name": "Jiffy (computing)", "symbol": "jiffy", "multiplier": 0.01 },
+    { "id": "UTick", "name": "UTick", "symbol": "ut", "multiplier": 1.0 }
+  ],
+
+  "Band_width": [
+    { "id": "Hertz", "name": "Hertz", "symbol": "Hz", "multiplier": 1.0 },
+    { "id": "Kilohertz", "name": "Kilohertz", "symbol": "kHz", "multiplier": 1000.0 },
+    { "id": "Megahertz", "name": "Megahertz", "symbol": "MHz", "multiplier": 1000000.0 },
+    { "id": "Gigahertz", "name": "Gigahertz", "symbol": "GHz", "multiplier": 1000000000.0 },
+    { "id": "Terahertz", "name": "Terahertz", "symbol": "THz", "multiplier": 1000000000000.0 },
+    { "id": "Octave", "name": "Octave", "symbol": "oct", "multiplier": 1.0 },
+    { "id": "Channel", "name": "Channel", "symbol": "ch", "multiplier": 1.0 },
+    { "id": "Subcarrier", "name": "Subcarrier", "symbol": "sc", "multiplier": 1.0 },
+    { "id": "Symbol rate", "name": "Symbol rate", "symbol": "baud", "multiplier": 1.0 },
+    { "id": "Bandwidth percent", "name": "Bandwidth percent", "symbol": "%", "multiplier": 1.0 }
+  ],
+
+  "IP_calculator": [
+    { "id": "address", "name": "address", "symbol": "ip" }
+  ],
+
+  "Nautical": [
+    { "id": "Knot", "name": "Knot", "symbol": "kn", "multiplier": 0.5144444444 },
+    { "id": "Nautical mile", "name": "Nautical mile", "symbol": "nmi", "multiplier": 1852.0 },
+    { "id": "Cable length (1/10 nmi)", "name": "Cable length (1/10 nmi)", "symbol": "cable", "multiplier": 185.2 },
+    { "id": "Fathom", "name": "Fathom", "symbol": "fathom", "multiplier": 1.8288 },
+    { "id": "League (nautical)", "name": "League (nautical)", "symbol": "league", "multiplier": 5556.0 },
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Foot", "name": "Foot", "symbol": "ft", "multiplier": 0.3048 },
+    { "id": "Degree of latitude", "name": "Degree of latitude", "symbol": "°lat", "multiplier": 111120.0 },
+    { "id": "Minute of arc (nautical)", "name": "Minute of arc (nautical)", "symbol": "′", "multiplier": 30.86 },
+    { "id": "Speed (m/s)", "name": "Speed (m/s)", "symbol": "m/s", "multiplier": 1.0 }
+  ],
+
+  "Aviation": [
+    { "id": "Flight level", "name": "Flight level", "symbol": "FL", "multiplier": 100.0 },
+    { "id": "Knot", "name": "Knot", "symbol": "kn", "multiplier": 0.5144444444 },
+    { "id": "Nautical mile", "name": "Nautical mile", "symbol": "nmi", "multiplier": 1852.0 },
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Foot", "name": "Foot", "symbol": "ft", "multiplier": 0.3048 },
+    { "id": "Statute mile", "name": "Statute mile", "symbol": "mi", "multiplier": 1609.34 },
+    { "id": "Knots (ground speed)", "name": "Knots (ground speed)", "symbol": "kts", "multiplier": 0.5144444444 },
+    { "id": "Degrees (heading)", "name": "Degrees (heading)", "symbol": "°", "multiplier": 1.0 },
+    { "id": "Mach", "name": "Mach", "symbol": "Ma", "multiplier": 340.29 },
+    { "id": "Feet per minute", "name": "Feet per minute", "symbol": "fpm", "multiplier": 0.00508 }
+  ],
+
+  "Fuel": [
+    { "id": "Liters per 100 km", "name": "Liters per 100 km", "symbol": "L/100km", "multiplier": 1.0 },
+    { "id": "Miles per gallon (US)", "name": "Miles per gallon (US)", "symbol": "mpg (US)", "multiplier": 235.214583 },
+    { "id": "Miles per gallon (UK)", "name": "Miles per gallon (UK)", "symbol": "mpg (UK)", "multiplier": 282.480936 },
+    { "id": "Kilometers per liter", "name": "Kilometers per liter", "symbol": "km/L", "multiplier": 1.0 },
+    { "id": "Liter per kilometer", "name": "Liter per kilometer", "symbol": "L/km", "multiplier": 1.0 },
+    { "id": "Gallons per 100 miles", "name": "Gallons per 100 miles", "symbol": "gal/100mi", "multiplier": 1.0 },
+    { "id": "Kilometers per gallon", "name": "Kilometers per gallon", "symbol": "km/gal", "multiplier": 1.0 },
+    { "id": "Tonnes per 100 km", "name": "Tonnes per 100 km", "symbol": "t/100km", "multiplier": 1.0 },
+    { "id": "Liters per hour", "name": "Liters per hour", "symbol": "L/h", "multiplier": 1.0 },
+    { "id": "Gallons per hour", "name": "Gallons per hour", "symbol": "gal/h", "multiplier": 1.0 }
+  ],
+
+  "Cooking": [
+    { "id": "Teaspoon", "name": "Teaspoon", "symbol": "tsp", "multiplier": 0.00492892159 },
+    { "id": "Tablespoon", "name": "Tablespoon", "symbol": "tbsp", "multiplier": 0.0147867648 },
+    { "id": "Fluid ounce (US)", "name": "Fluid ounce (US)", "symbol": "fl oz", "multiplier": 0.0295735296 },
+    { "id": "Cup (US)", "name": "Cup (US)", "symbol": "cup", "multiplier": 0.2365882365 },
+    { "id": "Pint (US)", "name": "Pint (US)", "symbol": "pt", "multiplier": 0.473176473 },
+    { "id": "Quart (US)", "name": "Quart (US)", "symbol": "qt", "multiplier": 0.946352946 },
+    { "id": "Gallon (US)", "name": "Gallon (US)", "symbol": "gal", "multiplier": 3.785411784 },
+    { "id": "Milliliter", "name": "Milliliter", "symbol": "mL", "multiplier": 0.001 },
+    { "id": "Liter", "name": "Liter", "symbol": "L", "multiplier": 1.0 },
+    { "id": "Dessert spoon", "name": "Dessert spoon", "symbol": "dsp", "multiplier": 0.01 }
+  ],
+
+  "Food_energy": [
+    { "id": "Calorie (small)", "name": "Calorie (small)", "symbol": "cal", "multiplier": 4.184 },
+    { "id": "Kilocalorie (kcal)", "name": "Kilocalorie (kcal)", "symbol": "kcal", "multiplier": 4184.0 },
+    { "id": "Joule", "name": "Joule", "symbol": "J", "multiplier": 1.0 },
+    { "id": "Kilojoule", "name": "Kilojoule", "symbol": "kJ", "multiplier": 1000.0 },
+    { "id": "Food Calorie (Cal)", "name": "Food Calorie (Cal)", "symbol": "Cal", "multiplier": 4184.0 },
+    { "id": "Watt-hour", "name": "Watt-hour", "symbol": "Wh", "multiplier": 3600.0 },
+    { "id": "BTU", "name": "BTU", "symbol": "BTU", "multiplier": 1055.05585262 },
+    { "id": "Therm", "name": "Therm", "symbol": "thm", "multiplier": 1.055e8 },
+    { "id": "Electronvolt", "name": "Electronvolt", "symbol": "eV", "multiplier": 1.602176634e-19 },
+    { "id": "Erg", "name": "Erg", "symbol": "erg", "multiplier": 1e-7 }
+  ],
+
+  "Alcohol": [
+    { "id": "ABV (percent)", "name": "ABV (percent)", "symbol": "% ABV", "multiplier": 1.0 },
+    { "id": "Proof (US)", "name": "Proof (US)", "symbol": "proof (US)", "multiplier": 2.0 },
+    { "id": "Proof (UK)", "name": "Proof (UK)", "symbol": "proof (UK)", "multiplier": 1.75 },
+    { "id": "Volume fraction", "name": "Volume fraction", "symbol": "vol", "multiplier": 1.0 },
+    { "id": "Specific gravity", "name": "Specific gravity", "symbol": "SG", "multiplier": 1.0 },
+    { "id": "Alcohol by mass", "name": "Alcohol by mass", "symbol": "% mass", "multiplier": 1.0 },
+    { "id": "Oechsle", "name": "Oechsle", "symbol": "°Oe", "multiplier": 1.0 },
+    { "id": "Plato", "name": "Plato", "symbol": "°P", "multiplier": 1.0 },
+    { "id": "Balling", "name": "Balling", "symbol": "°B", "multiplier": 1.0 },
+    { "id": "Brix", "name": "Brix", "symbol": "°Bx", "multiplier": 1.0 }
+  ],
+
+  "Angles": [
+    { "id": "Degree", "name": "Degree", "symbol": "°", "multiplier": 1.0 },
+    { "id": "Radian", "name": "Radian", "symbol": "rad", "multiplier": 57.29577951308232 },
+    { "id": "Arcminute", "name": "Arcminute", "symbol": "′", "multiplier": 0.016 },
+    { "id": "Arcsecond", "name": "Arcsecond", "symbol": "″", "multiplier": 0.00027 },
+    { "id": "Gradian", "name": "Gradian", "symbol": "gon", "multiplier": 0.9 },
+    { "id": "Mil (artillery)", "name": "Mil (artillery)", "symbol": "mil", "multiplier": 0.05625 },
+    { "id": "Turn", "name": "Turn", "symbol": "turn", "multiplier": 360.0 },
+    { "id": "Quadrant", "name": "Quadrant", "symbol": "quad", "multiplier": 90.0 },
+    { "id": "Sextant degree", "name": "Sextant degree", "symbol": "sex", "multiplier": 60.0 },
+    { "id": "Binary degree", "name": "Binary degree", "symbol": "binary", "multiplier": 1.0 }
+  ],
+
+  "Function_graph": [
+    { "id": "Degree", "name": "Degree", "symbol": "°", "multiplier": 1.0 }
+  ],
+
+  "Space_distances": [
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Kilometer", "name": "Kilometer", "symbol": "km", "multiplier": 1000.0 },
+    { "id": "Astronomical unit", "name": "Astronomical unit", "symbol": "AU", "multiplier": 149597870700.0 },
+    { "id": "Light year", "name": "Light year", "symbol": "ly", "multiplier": 9.4607304725808e15 },
+    { "id": "Parsec", "name": "Parsec", "symbol": "pc", "multiplier": 3.08567758149137e16 },
+    { "id": "Parsec (kpc)", "name": "Parsec (kpc)", "symbol": "kpc", "multiplier": 3.08567758149137e19 },
+    { "id": "Parsec (Mpc)", "name": "Parsec (Mpc)", "symbol": "Mpc", "multiplier": 3.08567758149137e22 },
+    { "id": "Astronomical mile", "name": "Astronomical mile", "symbol": "am", "multiplier": 1852.0 },
+    { "id": "Light-second", "name": "Light-second", "symbol": "ls", "multiplier": 299792458.0 },
+    { "id": "Light-minute", "name": "Light-minute", "symbol": "lm", "multiplier": 17987547480 }
+  ],
+
+  "Brightness": [
+    { "id": "Apparent magnitude", "name": "Apparent magnitude", "symbol": "mag", "multiplier": 1.0 },
+    { "id": "Absolute magnitude", "name": "Absolute magnitude", "symbol": "M", "multiplier": 1.0 },
+    { "id": "Luminosity (solar)", "name": "Luminosity (solar)", "symbol": "L☉", "multiplier": 1.0 },
+    { "id": "Flux (W/m²)", "name": "Flux (W/m²)", "symbol": "W/m²", "multiplier": 1.0 },
+    { "id": "Candela", "name": "Candela", "symbol": "cd", "multiplier": 1.0 },
+    { "id": "Lumen", "name": "Lumen", "symbol": "lm", "multiplier": 1.0 },
+    { "id": "Magnitude difference", "name": "Magnitude difference", "symbol": "Δmag", "multiplier": 1.0 },
+    { "id": "Flux density (Jy)", "name": "Flux density (Jy)", "symbol": "Jy", "multiplier": 1.0e-26 },
+    { "id": "Photon flux", "name": "Photon flux", "symbol": "photons/s·m²", "multiplier": 1.0 },
+    { "id": "Solar constant", "name": "Solar constant", "symbol": "SC", "multiplier": 1361.0 }
+  ],
+
+  "Luminous_flux": [
+    { "id": "Lumen", "name": "Lumen", "symbol": "lm", "multiplier": 1.0 },
+    { "id": "Kilolumen", "name": "Kilolumen", "symbol": "klm", "multiplier": 1000.0 },
+    { "id": "Lux", "name": "Lux", "symbol": "lx", "multiplier": 1.0 },
+    { "id": "Candela", "name": "Candela", "symbol": "cd", "multiplier": 1.0 },
+    { "id": "Phot", "name": "Phot", "symbol": "ph", "multiplier": 1.0 },
+    { "id": "Lumens per watt", "name": "Lumens per watt", "symbol": "lm/W", "multiplier": 1.0 },
+    { "id": "Solar luminosity", "name": "Solar luminosity", "symbol": "L☉", "multiplier": 1.0 },
+    { "id": "Nit", "name": "Nit", "symbol": "nt", "multiplier": 1.0 },
+    { "id": "Radiant flux", "name": "Radiant flux", "symbol": "W", "multiplier": 1.0 },
+    { "id": "Radiance", "name": "Radiance", "symbol": "W·sr⁻¹·m⁻²", "multiplier": 1.0 }
+  ],
+
+  "Coordinates": [
+    { "id": "Decimal degrees", "name": "Decimal degrees", "symbol": "° (dec)", "multiplier": 1.0 },
+    { "id": "Degrees minutes seconds", "name": "Degrees minutes seconds", "symbol": "DMS", "multiplier": 1.0 },
+    { "id": "Radians", "name": "Radians", "symbol": "rad", "multiplier": 57.29577951308232 },
+    { "id": "UTM", "name": "UTM", "symbol": "UTM", "multiplier": 1.0 },
+    { "id": "MGRS", "name": "MGRS", "symbol": "MGRS", "multiplier": 1.0 },
+    { "id": "Degrees", "name": "Degrees", "symbol": "°", "multiplier": 1.0 },
+    { "id": "Minutes", "name": "Minutes", "symbol": "′", "multiplier": 0.016 },
+    { "id": "Seconds", "name": "Seconds", "symbol": "″", "multiplier": 0.00027 },
+    { "id": "Decimal minutes", "name": "Decimal minutes", "symbol": "dm", "multiplier": 0.016 },
+    { "id": "Graticule", "name": "Graticule", "symbol": "grid", "multiplier": 1.0 }
+  ],
+
+  "Elevation": [
+    { "id": "Millimeter", "name": "Millimeter", "symbol": "mm", "multiplier": 0.001 },
+    { "id": "Centimeter", "name": "Centimeter", "symbol": "cm", "multiplier": 0.01 },
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Kilometer", "name": "Kilometer", "symbol": "km", "multiplier": 1000.0 },
+    { "id": "Foot", "name": "Foot", "symbol": "ft", "multiplier": 0.3048 },
+    { "id": "Yard", "name": "Yard", "symbol": "yd", "multiplier": 0.9144 },
+    { "id": "Mile", "name": "Mile", "symbol": "mi", "multiplier": 1609.34 },
+    { "id": "Fathom", "name": "Fathom", "symbol": "fathom", "multiplier": 1.8288 },
+    { "id": "League", "name": "League", "symbol": "league", "multiplier": 5556.0 },
+    { "id": "Survey foot", "name": "Survey foot", "symbol": "sft", "multiplier": 0.3048006096012192 }
+  ],
+
+  "Land_area": [
+    { "id": "Square meter", "name": "Square meter", "symbol": "m²", "multiplier": 1.0 },
+    { "id": "Hectare", "name": "Hectare", "symbol": "ha", "multiplier": 10000.0 },
+    { "id": "Acre", "name": "Acre", "symbol": "ac", "multiplier": 4046.8564224 },
+    { "id": "Square kilometer", "name": "Square kilometer", "symbol": "km²", "multiplier": 1000000.0 },
+    { "id": "Square mile", "name": "Square mile", "symbol": "mi²", "multiplier": 2589988.110336 },
+    { "id": "Are", "name": "Are", "symbol": "a", "multiplier": 100.0 },
+    { "id": "Square foot", "name": "Square foot", "symbol": "ft²", "multiplier": 0.09290304 },
+    { "id": "Square yard", "name": "Square yard", "symbol": "yd²", "multiplier": 0.83612736 },
+    { "id": "Barn", "name": "Barn", "symbol": "b", "multiplier": 1e-28 },
+    { "id": "Square chain", "name": "Square chain", "symbol": "ch²", "multiplier": 404.68564224 }
+  ],
+
+  "Map_distance": [
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Kilometer", "name": "Kilometer", "symbol": "km", "multiplier": 1000.0 },
+    { "id": "Mile", "name": "Mile", "symbol": "mi", "multiplier": 1609.34 },
+    { "id": "Nautical mile", "name": "Nautical mile", "symbol": "nmi", "multiplier": 1852.0 },
+    { "id": "US survey foot", "name": "US survey foot", "symbol": "sft", "multiplier": 0.3048006096 },
+    { "id": "Chain", "name": "Chain", "symbol": "ch", "multiplier": 20.1168 },
+    { "id": "Link", "name": "Link", "symbol": "link", "multiplier": 0.201168 },
+    { "id": "Meter (terrain)", "name": "Meter (terrain)", "symbol": "m (terr)", "multiplier": 1.0 },
+    { "id": "Map unit", "name": "Map unit", "symbol": "mu", "multiplier": 1.0 },
+    { "id": "Pixel", "name": "Pixel", "symbol": "px", "multiplier": 1.0 }
+  ],
+
+  "Concentration": [
+    { "id": "Molar (mol/L)", "name": "Molar (mol/L)", "symbol": "M", "multiplier": 1.0 },
+    { "id": "Millimolar (mmol/L)", "name": "Millimolar (mmol/L)", "symbol": "mM", "multiplier": 0.001 },
+    { "id": "Micromolar (µM)", "name": "Micromolar (µM)", "symbol": "µM", "multiplier": 1e-6 },
+    { "id": "Molality (mol/kg)", "name": "Molality (mol/kg)", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Mass percent", "name": "Mass percent", "symbol": "% w/w", "multiplier": 1.0 },
+    { "id": "Volume percent", "name": "Volume percent", "symbol": "% v/v", "multiplier": 1.0 },
+    { "id": "Parts per million", "name": "Parts per million", "symbol": "ppm", "multiplier": 1e-6 },
+    { "id": "Parts per billion", "name": "Parts per billion", "symbol": "ppb", "multiplier": 1e-9 },
+    { "id": "Normality", "name": "Normality", "symbol": "N", "multiplier": 1.0 },
+    { "id": "Mole fraction", "name": "Mole fraction", "symbol": "χ", "multiplier": 1.0 }
+  ],
+
+  "Molarity": [
+    { "id": "Mol per liter", "name": "Mol per liter", "symbol": "mol/L", "multiplier": 1.0 },
+    { "id": "Millimol per liter", "name": "Millimol per liter", "symbol": "mmol/L", "multiplier": 0.001 },
+    { "id": "Micromol per liter", "name": "Micromol per liter", "symbol": "µmol/L", "multiplier": 1e-6 },
+    { "id": "Mol per cubic meter", "name": "Mol per cubic meter", "symbol": "mol/m³", "multiplier": 1000.0 },
+    { "id": "Mol per deciliter", "name": "Mol per deciliter", "symbol": "mol/dL", "multiplier": 10.0 },
+    { "id": "Equivalent per liter", "name": "Equivalent per liter", "symbol": "eq/L", "multiplier": 1.0 },
+    { "id": "Molar fraction", "name": "Molar fraction", "symbol": "χ", "multiplier": 1.0 },
+    { "id": "Normality", "name": "Normality", "symbol": "N", "multiplier": 1.0 },
+    { "id": "Percent (w/v)", "name": "Percent (w/v)", "symbol": "% w/v", "multiplier": 1.0 },
+    { "id": "Milligram per liter", "name": "Milligram per liter", "symbol": "mg/L", "multiplier": 0.001 }
+  ],
+
+  "MassFraction": [
+    { "id": "Percent", "name": "Percent", "symbol": "%", "multiplier": 1.0 },
+    { "id": "Fraction", "name": "Fraction", "symbol": "fraction", "multiplier": 0.01 },
+    { "id": "Parts per million", "name": "Parts per million", "symbol": "ppm", "multiplier": 1e-6 },
+    { "id": "Parts per billion", "name": "Parts per billion", "symbol": "ppb", "multiplier": 1e-9 },
+    { "id": "Mass ratio", "name": "Mass ratio", "symbol": "ratio", "multiplier": 1.0 },
+    { "id": "Weight percent", "name": "Weight percent", "symbol": "wt%", "multiplier": 1.0 },
+    { "id": "Mole percent", "name": "Mole percent", "symbol": "mol%", "multiplier": 1.0 },
+    { "id": "Permille", "name": "Permille", "symbol": "‰", "multiplier": 0.001 },
+    { "id": "Per ten thousand", "name": "Per ten thousand", "symbol": "‱", "multiplier": 0.0001 },
+    { "id": "Unitless", "name": "Unitless", "symbol": "unit", "multiplier": 1.0 }
+  ],
+
+  "Solubility": [
+    { "id": "Gram per liter", "name": "Gram per liter", "symbol": "g/L", "multiplier": 1.0 },
+    { "id": "Milligram per liter", "name": "Milligram per liter", "symbol": "mg/L", "multiplier": 0.001 },
+    { "id": "Gram per 100 mL", "name": "Gram per 100 mL", "symbol": "g/100mL", "multiplier": 0.01 },
+    { "id": "Molar (mol/L)", "name": "Molar (mol/L)", "symbol": "M", "multiplier": 1.0 },
+    { "id": "Millimolar", "name": "Millimolar", "symbol": "mM", "multiplier": 0.001 },
+    { "id": "Percent (w/v)", "name": "Percent (w/v)", "symbol": "% w/v", "multiplier": 1.0 },
+    { "id": "Percent (w/w)", "name": "Percent (w/w)", "symbol": "% w/w", "multiplier": 1.0 },
+    { "id": "Parts per million", "name": "Parts per million", "symbol": "ppm", "multiplier": 1e-6 },
+    { "id": "Mole fraction", "name": "Mole fraction", "symbol": "χ", "multiplier": 1.0 },
+    { "id": "Saturation concentration", "name": "Saturation concentration", "symbol": "Csat", "multiplier": 1.0 }
+  ],
+
+  "pH": [
+    { "id": "pH (standard)", "name": "pH (standard)", "symbol": "pH", "multiplier": 1.0 },
+    { "id": "Hydrogen ion concentration [H+]", "name": "Hydrogen ion concentration [H+]", "symbol": "[H+]", "multiplier": 1.0 },
+    { "id": "pOH", "name": "pOH", "symbol": "pOH", "multiplier": 1.0 },
+    { "id": "Normalized scale", "name": "Normalized scale", "symbol": "norm", "multiplier": 1.0 },
+    { "id": "Acidity (μmol/L)", "name": "Acidity (μmol/L)", "symbol": "μmol/L", "multiplier": 1.0 },
+    { "id": "Basicity", "name": "Basicity", "symbol": "basic", "multiplier": 1.0 },
+    { "id": "Buffer index", "name": "Buffer index", "symbol": "β", "multiplier": 1.0 },
+    { "id": "pKa", "name": "pKa", "symbol": "pKa", "multiplier": 1.0 },
+    { "id": "pKb", "name": "pKb", "symbol": "pKb", "multiplier": 1.0 },
+    { "id": "Normalized H+", "name": "Normalized H+", "symbol": "nH+", "multiplier": 1.0 }
+  ],
+
+  "Viscosity": [
+    { "id": "Pascal second", "name": "Pascal second", "symbol": "Pa·s", "multiplier": 1.0 },
+    { "id": "Poise", "name": "Poise", "symbol": "P", "multiplier": 0.1 },
+    { "id": "Centipoise", "name": "Centipoise", "symbol": "cP", "multiplier": 0.001 },
+    { "id": "Stokes", "name": "Stokes", "symbol": "St", "multiplier": 0.0001 },
+    { "id": "Centistokes", "name": "Centistokes", "symbol": "cSt", "multiplier": 0.000001 },
+    { "id": "Reyn (dynamic)", "name": "Reyn (dynamic)", "symbol": "Re", "multiplier": 1.0 },
+    { "id": "Kinematic viscosity (m²/s)", "name": "Kinematic viscosity (m²/s)", "symbol": "m²/s", "multiplier": 1.0 },
+    { "id": "Engler degree", "name": "Engler degree", "symbol": "°E", "multiplier": 1.0 },
+    { "id": "Saybolt universal second", "name": "Saybolt universal second", "symbol": "SUS", "multiplier": 1.0 },
+    { "id": "Saybolt furol second", "name": "Saybolt furol second", "symbol": "SSF", "multiplier": 1.0 }
+  ],
+
+  "Thermal_conductivity": [
+    { "id": "Watt per meter Kelvin", "name": "Watt per meter Kelvin", "symbol": "W/m·K", "multiplier": 1.0 },
+    { "id": "BTU per foot hour °F", "name": "BTU per foot hour °F", "symbol": "BTU/(ft·h·°F)", "multiplier": 1.730735 },
+    { "id": "Calorie per cm s °C", "name": "Calorie per cm s °C", "symbol": "cal/(cm·s·°C)", "multiplier": 41868.0 },
+    { "id": "Kilowatt per meter Kelvin", "name": "Kilowatt per meter Kelvin", "symbol": "kW/m·K", "multiplier": 1000.0 },
+    { "id": "MilliWatt per meter Kelvin", "name": "MilliWatt per meter Kelvin", "symbol": "mW/m·K", "multiplier": 0.001 },
+    { "id": "BTU per inch hour °F", "name": "BTU per inch hour °F", "symbol": "BTU/(in·h·°F)", "multiplier": 0.0686 },
+    { "id": "Thermal resistance (R-value)", "name": "Thermal resistance (R-value)", "symbol": "R", "multiplier": 1.0 },
+    { "id": "Conductance (U-value)", "name": "Conductance (U-value)", "symbol": "U", "multiplier": 1.0 },
+    { "id": "Erg per second cm K", "name": "Erg per second cm K", "symbol": "erg/(s·cm·K)", "multiplier": 1e-7 },
+    { "id": "Unitless", "name": "Unitless", "symbol": "unit", "multiplier": 1.0 }
+  ],
+
+  "Density": [
+    { "id": "Kilogram per cubic meter", "name": "Kilogram per cubic meter", "symbol": "kg/m³", "multiplier": 1.0 },
+    { "id": "Gram per cubic centimeter", "name": "Gram per cubic centimeter", "symbol": "g/cm³", "multiplier": 1000.0 },
+    { "id": "Gram per liter", "name": "Gram per liter", "symbol": "g/L", "multiplier": 1.0 },
+    { "id": "Pound per cubic foot", "name": "Pound per cubic foot", "symbol": "lb/ft³", "multiplier": 16.01846337396 },
+    { "id": "Pound per gallon (US)", "name": "Pound per gallon (US)", "symbol": "lb/gal", "multiplier": 119.826427 },
+    { "id": "Ounce per cubic inch", "name": "Ounce per cubic inch", "symbol": "oz/in³", "multiplier": 1729.994 },
+    { "id": "Ton per cubic meter", "name": "Ton per cubic meter", "symbol": "t/m³", "multiplier": 1000.0 },
+    { "id": "Slug per cubic foot", "name": "Slug per cubic foot", "symbol": "slug/ft³", "multiplier": 515.378818 },
+    { "id": "Specific gravity", "name": "Specific gravity", "symbol": "SG", "multiplier": 1.0 },
+    { "id": "Relative density", "name": "Relative density", "symbol": "RD", "multiplier": 1.0 }
+  ],
+
+  "Heat_capacity": [
+    { "id": "Joule per kilogram Kelvin", "name": "Joule per kilogram Kelvin", "symbol": "J/kg·K", "multiplier": 1.0 },
+    { "id": "Calorie per gram Kelvin", "name": "Calorie per gram Kelvin", "symbol": "cal/g·K", "multiplier": 4184.0 },
+    { "id": "Kilojoule per kilogram Kelvin", "name": "Kilojoule per kilogram Kelvin", "symbol": "kJ/kg·K", "multiplier": 1000.0 },
+    { "id": "BTU per pound °F", "name": "BTU per pound °F", "symbol": "BTU/lb·°F", "multiplier": 4186.8 },
+    { "id": "Joule per mole Kelvin", "name": "Joule per mole Kelvin", "symbol": "J/mol·K", "multiplier": 1.0 },
+    { "id": "Calorie per mole Kelvin", "name": "Calorie per mole Kelvin", "symbol": "cal/mol·K", "multiplier": 4184.0 },
+    { "id": "Specific heat (unitless)", "name": "Specific heat (unitless)", "symbol": "cp", "multiplier": 1.0 },
+    { "id": "Mass-based heat capacity", "name": "Mass-based heat capacity", "symbol": "C_m", "multiplier": 1.0 },
+    { "id": "Volumetric heat capacity", "name": "Volumetric heat capacity", "symbol": "C_v", "multiplier": 1.0 },
+    { "id": "Unitless", "name": "Unitless", "symbol": "unit", "multiplier": 1.0 }
+  ],
+
+  "Heat_flux": [
+    { "id": "Watt per square meter", "name": "Watt per square meter", "symbol": "W/m²", "multiplier": 1.0 },
+    { "id": "BTU per hour square foot", "name": "BTU per hour square foot", "symbol": "BTU/(h·ft²)", "multiplier": 3.15459 },
+    { "id": "Calorie per second square centimeter", "name": "Calorie per second square centimeter", "symbol": "cal/(s·cm²)", "multiplier": 41840.0 },
+    { "id": "Kilowatt per square meter", "name": "Kilowatt per square meter", "symbol": "kW/m²", "multiplier": 1000.0 },
+    { "id": "Watt per square centimeter", "name": "Watt per square centimeter", "symbol": "W/cm²", "multiplier": 10000.0 },
+    { "id": "Erg per second cm²", "name": "Erg per second cm²", "symbol": "erg/(s·cm²)", "multiplier": 1e-3 },
+    { "id": "Radiant flux", "name": "Radiant flux", "symbol": "W", "multiplier": 1.0 },
+    { "id": "Thermal intensity", "name": "Thermal intensity", "symbol": "TI", "multiplier": 1.0 },
+    { "id": "Unitless", "name": "Unitless", "symbol": "unit", "multiplier": 1.0 },
+    { "id": "Surface flux", "name": "Surface flux", "symbol": "Sf", "multiplier": 1.0 }
+  ],
+
+  "BMI": [
+    { "id": "Weight", "name": "Weight", "symbol": "kg" },
+    { "id": "Height", "name": "Height", "symbol": "cm" }
+  ],
+
+  "Activity": [
+    { "id": "Steps", "name": "Steps", "symbol": "steps", "multiplier": 1.0 },
+    { "id": "Meters walked", "name": "Meters walked", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Kilometers", "name": "Kilometers", "symbol": "km", "multiplier": 1000.0 },
+    { "id": "Calories burned", "name": "Calories burned", "symbol": "kcal", "multiplier": 4184.0 },
+    { "id": "MET-hours", "name": "MET-hours", "symbol": "MET·h", "multiplier": 1.0 },
+    { "id": "Minutes active", "name": "Minutes active", "symbol": "min", "multiplier": 60.0 },
+    { "id": "Hours active", "name": "Hours active", "symbol": "h", "multiplier": 3600.0 },
+    { "id": "Distance (miles)", "name": "Distance (miles)", "symbol": "mi", "multiplier": 1609.34 },
+    { "id": "Floors climbed", "name": "Floors climbed", "symbol": "floors", "multiplier": 1.0 },
+    { "id": "Steps per minute", "name": "Steps per minute", "symbol": "spm", "multiplier": 1.0 }
+  ],
+
+  "Numeration_system": [
+    { "id": "Binary", "name": "Binary", "symbol": "BIN", "multiplier": 2.0 },
+    { "id": "Ternary", "name": "Ternary", "symbol": "TRI", "multiplier": 3.0 },
+    { "id": "Quaternary", "name": "Quaternary", "symbol": "QUA", "multiplier": 4.0 },
+    { "id": "Quinary", "name": "Quinary", "symbol": "QUIN", "multiplier": 5.0 },
+    { "id": "Octal", "name": "Octal", "symbol": "OCT", "multiplier": 8.0 },
+    { "id": "Decimal", "name": "Decimal", "symbol": "DEC", "multiplier": 10.0 },
+    { "id": "Duodecimal", "name": "Duodecimal", "symbol": "DUO", "multiplier": 12.0 },
+    { "id": "Hexadecimal", "name": "Hexadecimal", "symbol": "HEX", "multiplier": 16.0 },
+    { "id": "Vigesimal", "name": "Vigesimal", "symbol": "VIG", "multiplier": 20.0 }
+  ]
+}

@@ -1,0 +1,443 @@
+[
+  {
+    "id": "general_title",
+    "title": "General",
+    "static": true,
+    "description": "",
+    "type": "Title",
+    "enabled": true
+  },
+
+  {
+    "id": "convertor_list_view",
+    "title": "Convertor selection list view",
+    "description": "Select the display type of the convector selection list",
+    "type": "ListSelect",
+    "enabled": true,
+    "defaultValue": "Grid",
+    "parameters": [
+      { "id": "Grid", "name": "Grid", "positionCode": 0 },
+      { "id": "Column", "name": "Column", "positionCode": 1 }
+    ],
+    "value": "Grid"
+  },
+
+  {
+    "id": "experimental_features",
+    "title": "Experimental features",
+    "description": "Unstable and unfinished features",
+    "type": "CustomScreen",
+    "enabled": true,
+    "static": true,
+    "defaultValue": "experimental_features_screen",
+    "value": "experimental_features_screen"
+  },
+
+  {
+    "id": "language",
+    "title": "App language",
+    "description": "Change app language",
+    "type": "ListSelect",
+    "enabled": true,
+    "defaultValue": "System",
+    "parameters": [
+      { "id": "System", "name": "System", "positionCode": 0 },
+      { "id": "en", "name": "English", "positionCode": 1 },
+      { "id": "uk", "name": "Ukrainian", "positionCode": 2 }
+    ],
+    "value": "System"
+  },
+
+
+
+  {
+    "id": "theme_title",
+    "title": "Theme",
+    "static": true,
+    "description": "",
+    "type": "Title",
+    "enabled": true
+  },
+  {
+    "id": "theme_mode",
+    "title": "Theme mode",
+    "description": "Enable dark or light theme",
+    "type": "ListSelect",
+    "enabled": true,
+    "defaultValue": "System",
+    "parameters": [
+      { "id": "System", "name": "System", "positionCode": 0 },
+      { "id": "Light", "name": "Light", "positionCode": 1 },
+      { "id": "Dark", "name": "Dark", "positionCode": 2 }
+    ],
+    "value": "System"
+  },
+  {
+    "id": "custom_color_scheme",
+    "title": "Custom color",
+    "description": "Enable custom theme color",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false"
+  },
+  {
+    "id": "color_accent",
+    "title": "Color accent",
+    "description": "Pick a main theme color",
+    "type": "ColorPicker",
+    "enabled": true,
+    "defaultValue": "-16725563",
+    "value": "-16725563"
+  },
+
+  {
+    "id": "calculator_title",
+    "title": "Calculator",
+    "description": "",
+    "type": "Title",
+    "enabled": true,
+    "static": true
+  },
+  {
+    "id": "save_history",
+    "title": "Save history",
+    "description": "Save history of calculator operation",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "true",
+    "value": "true"
+  },
+  {
+    "id": "button_vibration_enable",
+    "title": "Button vibration",
+    "description": "Enable button vibration when pressed",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "true",
+    "value": "true"
+  },
+
+
+  {
+    "id": "experimental_convertor_buttons",
+    "title": "Experimental converters",
+    "description": "Show experimental converters",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "experimental_features_screen"
+  },
+  {
+    "id": "unavailable_convertor_buttons",
+    "title": "Unavailable converters",
+    "description": "Show unavailable converters",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "experimental_features_screen"
+  },
+
+  {
+    "id": "background_image",
+    "title": "Background image",
+    "description": "Set image as background",
+    "type": "ImagePicker",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "experimental_features_screen"
+  },
+
+
+
+
+
+  {
+    "id": "about_title",
+    "title": "About",
+    "static": true,
+    "description": "",
+    "type": "Title",
+    "enabled": true
+  },
+  {
+    "id": "developer",
+    "title": "Developer menu",
+    "description": "Function for debagging and development",
+    "type": "CustomScreen",
+    "enabled": true,
+    "static": true,
+    "defaultValue": "developer_screen",
+    "value": "developer_screen"
+  },
+  {
+    "id": "developer_enable",
+    "title": "Developer mode",
+    "description": "Enable developer mode",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "dev_debag_title",
+    "title": "Debag",
+    "static": true,
+    "type": "Title",
+    "group": "developer_screen"
+
+  },
+  {
+    "id": "logs",
+    "title": "Logs",
+    "description": "All app logs",
+    "type": "CustomScreen",
+    "enabled": true,
+    "static": true,
+    "defaultValue": "logs_screen",
+    "value": "logs_screen",
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "collect_logs",
+    "title": "Collect logs",
+    "description": "Collect application logs",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "true",
+    "value": "true",
+    "group": "developer_screen"
+  },
+  {
+    "id": "save_logs",
+    "title": "Save logs",
+    "description": "Save logs to memory",
+    "type": "Switch",
+    "enabled":true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "dev_server_title",
+    "title": "Server",
+    "static": true,
+    "type": "Title",
+    "group": "developer_screen"
+  },
+  {
+    "id": "locale_mode",
+    "title": "Locale mode",
+    "description": "Disconnect any connection to the server",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "developer_screen"
+  },
+  {
+    "id": "use_test_server",
+    "title": "Use test server",
+    "description": "Switch connection to test server",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "developer_screen"
+  },
+  {
+    "id": "current_token",
+    "title": "Device token",
+    "description": "",
+    "type": "Text",
+    "enabled": true,
+    "group": "developer_screen"
+  },
+  {
+    "id": "drop_token",
+    "title": "Reset token",
+    "description": "Reset device ID",
+    "type": "DropToken",
+    "enabled": true,
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "dev_version_title",
+    "title": "Version",
+    "static": true,
+    "type": "Title",
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "version_request",
+    "title": "Disable version request",
+    "description": "Disable request version to server",
+    "type": "Switch",
+    "enabled": true,
+    "defaultValue": "false",
+    "value": "false",
+    "group": "developer_screen"
+  },
+
+  {
+    "id": "imitate_version",
+    "title": "Imitate app version",
+    "description": "Imitate version code",
+    "type": "StringData",
+    "enabled": true,
+    "defaultValue": "",
+    "value": "",
+    "group": "developer_screen"
+  },
+
+
+
+  {
+    "id": "about",
+    "title": "About",
+    "description": "About app and contacts",
+    "type": "CustomScreen",
+    "enabled": true,
+    "static": true,
+    "defaultValue": "about_screen",
+    "value": "about_screen"
+  },
+
+
+  {
+    "id": "app_logo",
+    "title": "Calculator",
+    "description": "Daniil Mazhyrovsky",
+    "type": "Logo",
+    "enabled": true,
+    "static": true,
+    "defaultValue": "ester_egg_screen",
+    "value": "ester_egg_screen",
+    "group": "about_screen"
+  },
+
+  {
+    "id": "ester_egg_logo",
+    "title": "Calculator",
+    "description": "{Version}",
+    "type": "EasterEgg",
+    "enabled": true,
+    "static": true,
+    "group": "ester_egg_screen"
+  },
+
+  {
+    "id": "new_version_title",
+    "title": "New version",
+    "static": true,
+    "description": "",
+    "type": "Title",
+    "enabled": false,
+    "group": "about_screen"
+  },
+
+  {
+    "id": "new_version",
+    "title": "",
+    "description": "",
+    "type": "NewVersion",
+    "enabled": true,
+    "static": true,
+    "group": "about_screen"
+  },
+  {
+    "id": "info_title",
+    "title": "Info",
+    "static": true,
+    "description": "",
+    "type": "Title",
+    "enabled": false,
+    "group": "about_screen"
+  },
+
+
+  {
+    "id": "app_version",
+    "title": "App version",
+    "description": "{Version}",
+    "type": "CustomScreen",
+    "enabled": true,
+    "static": true,
+    "value": "changeLog_screen",
+    "defaultValue": "changeLog_screen",
+    "group": "about_screen"
+  },
+
+
+  {
+    "id": "about_developer",
+    "title": "Developer",
+    "description": "Daniil Mazhyrovsky",
+    "type": "DeveloperAbout",
+    "enabled": true,
+    "static": true,
+    "group": "about_screen"
+  },
+  {
+    "id": "contacts_title",
+    "title": "Contacts",
+    "description": "",
+    "type": "Title",
+    "enabled": true,
+    "static": true,
+    "group": "about_screen"
+  },
+  {
+    "id": "server_contact",
+    "title": "Server",
+    "description": "calculator server",
+    "type": "Link",
+    "enabled": true,
+    "static": true,
+    "value": "http://31.134.109.18:70",
+    "icon": "server_icon",
+    "group": "about_screen"
+  },
+  {
+    "id": "tg_contact",
+    "title": "Telegram",
+    "description": "calculator_release",
+    "type": "Link",
+    "enabled": true,
+    "static": true,
+    "value": "https://t.me/calculator_release",
+    "icon": "telegram_icon",
+    "group": "about_screen"
+  },
+  {
+    "id": "github_contact",
+    "title": "GitHub",
+    "description": "daniimazh-dev",
+    "type": "Link",
+    "enabled": true,
+    "static": true,
+    "value": "https://github.com/daniimazh-dev",
+    "icon": "github_icon",
+    "group": "about_screen"
+  },
+  {
+    "id": "gmail_contact",
+    "title": "Gmail",
+    "description": "daniimazh8@gmail.com",
+    "type": "Link",
+    "enabled": true,
+    "static": true,
+    "value": "https://mail.google.com/",
+    "icon": "gmail_icon",
+    "group": "about_screen"
+  }
+]

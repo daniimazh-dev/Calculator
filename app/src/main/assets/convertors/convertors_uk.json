@@ -1,0 +1,87 @@
+{
+  "Фізика": [
+    { "id": "Length", "title": "Довжина", "painterName": "length_icon", "startUnit": { "id": "Meter", "symbol": "m" } },
+    { "id": "Mass", "title": "Маса", "painterName": "mass_icon", "startUnit": { "id": "Kilogram", "symbol": "kg" } },
+    { "id": "Area", "title": "Площа", "painterName": "area_icon", "startUnit": { "id": "Square meter", "symbol": "m²" } },
+    { "id": "Volume", "title": "Об'єм", "painterName": "volume_icon", "startUnit": { "id": "Liter", "symbol": "L" } },
+    { "id": "Speed", "title": "Швидкість", "painterName": "speed_icon", "startUnit": { "id": "Meter per second", "symbol": "m/s" } },
+    { "id": "Temperature", "title": "Температура", "painterName": "temperature_icon", "startUnit": { "id": "Celsius", "symbol": "°C" } },
+    { "id": "Pressure", "title": "Тиск", "painterName": "pressure_icon", "startUnit": { "id": "Pascal", "symbol": "Pa" } },
+    { "id": "Energy", "title": "Енергія", "painterName": "energy_icon", "startUnit": { "id": "Joule", "symbol": "J" } },
+    { "id": "Power", "title": "Потужність", "painterName": "power_icon", "startUnit": { "id": "Watt", "symbol": "W" } },
+    { "id": "Electricity", "title": "Електрика", "painterName": "electricity_icon", "startUnit": { "id": "Volt", "symbol": "V" }, "release": "Experimental" },
+    { "id": "Efficiency", "title": "Ефективність", "painterName": "efficiency_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release":"Unavailable"  },
+    { "id": "Magnetism", "title": "Магнетизм", "painterName": "magnetism_icon", "startUnit": { "id": "Tesla", "symbol": "T" }, "release": "Experimental"   },
+    { "id": "Radiation", "title": "Радіація", "painterName": "radiation_icon", "startUnit": { "id": "Gray", "symbol": "Gy" }, "release": "Experimental"  },
+    { "id": "Optics", "title": "Оптика", "painterName": "optics_icon", "startUnit": { "id": "Lumen", "symbol": "lm" }, "release": "Unavailable"   },
+
+    { "id": "Acoustics", "title": "Акустика", "painterName": "acoustics_icon", "startUnit": { "id": "Decibel", "symbol": "dB" }, "release": "Unavailable" }
+  ],
+  "Фінанси": [
+    { "id": "Currency", "title": "Валюта", "painterName": "currency_icon", "startUnit": { "id": "Українська гривня", "symbol": "UAH" }},
+    { "id": "Discount", "title": "Знижка", "painterName": "discount_icon", "startUnit": { "id": "Annual", "symbol": "%" } },
+    { "id": "Loans", "title": "Кредити", "painterName": "loans_icon", "startUnit": { "id": "Credit", "symbol": "$" }, "release": "Unavailable"  },
+    { "id": "Taxes", "title": "Податки", "painterName": "taxes_icon", "startUnit": { "id": "Tax rate", "symbol": "%" }, "release": "Unavailable"   },
+    { "id": "Inflation", "title": "Інфляція", "painterName": "inflation_icon", "startUnit": { "id": "CPI", "symbol": "%" }, "release": "Unavailable"   },
+    { "id": "Assets", "title": "Активи та метали", "painterName": "assets_icon", "startUnit": { "id": "Gold", "symbol": "Au" }, "release": "Unavailable"   },
+    { "id": "Crypto", "title": "Криптовалюти", "painterName": "crypto_icon", "startUnit": { "id": "Bitcoin", "symbol": "BTC" }, "release": "Unavailable"  }
+  ],
+  "Час": [
+    { "id": "Duration", "title": "Тривалість", "painterName": "duration_icon", "startUnit": { "id": "Day", "symbol": "day"} },
+    { "id": "Time_zones", "title": "Часові пояси", "painterName": "timezone_icon", "startUnit": { "id": "UTC", "symbol": "UTC" }, "release": "Unavailable" },
+    { "id": "Time", "title": "Час", "painterName": "time_icon", "startUnit": { "id": "Second", "symbol": "s" } }
+  ],
+  "Комп'ютер": [
+    { "id": "Data_size", "title": "Розмір даних", "painterName": "datasize_icon", "startUnit": { "id": "Gigabyte", "symbol": "GB" } },
+    { "id": "Data_rate", "title": "Швидкість передачі даних", "painterName": "datarate_icon", "startUnit": {  "id": "bit per second", "symbol": "bps" } },
+    { "id": "Resolution", "title": "Роздільна здатність", "painterName": "resolution_icon", "startUnit": { "id": "dpi", "symbol": "dpi" }, "release": "Unavailable" },
+    { "id": "Latency", "title": "Затримка", "painterName": "latency_icon", "startUnit": { "id": "Millisecond", "symbol": "ms" }, "release": "Experimental" },
+    { "id": "Band_width", "title": "Смуга пропускання", "painterName": "bandwidth_icon", "startUnit": { "id": "Hz", "symbol": "Hz" }, "release": "Experimental" },
+    { "id": "IP_calculator", "title": "IP калькулятор", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Experimental" }
+
+  ],
+  "Траспорт": [
+    { "id": "Nautical", "title": "Морські міри", "painterName": "nautical_icon", "startUnit": { "id": "Knot", "symbol": "kn" }, "release": "Unavailable" },
+    { "id": "Aviation", "title": "Авіаційні міри", "painterName": "aviation_icon", "startUnit": { "id": "Flight level", "symbol": "FL" }, "release": "Unavailable" },
+    { "id": "Fuel", "title": "Витрата палива", "painterName": "fuel_icon", "startUnit": { "id": "L/100km", "symbol": "L/100km" }, "release": "Unavailable"  }
+  ],
+  "Щоденна активність": [
+    { "id": "Cooking", "title": "Кулінарні міри", "painterName": "cooking_icon", "startUnit": {  "id": "Cup (US)", "symbol": "cup"} },
+    { "id": "Food_energy", "title": "Поживна енергія", "painterName": "calories_icon", "startUnit": { "id": "Calorie (small)", "symbol": "cal" } },
+    { "id": "Alcohol", "title": "Міцність алкоголю", "painterName": "alcohol_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable"   }
+  ],
+  "Математика": [
+    { "id": "Angles", "title": "Кути", "painterName": "angles_icon", "startUnit": { "id": "Degree", "symbol": "°" } },
+    { "id": "Function_graph", "title": "Графік функцій", "painterName": "graph_icon", "startUnit": { "id": "Degree", "symbol": "°" }, "release": "Beta" },
+    { "id": "Space_distances", "title": "Космічні відстані", "painterName": "distance_icon", "startUnit": { "id": "Light year", "symbol": "ly" }, "release": "Unavailable" },
+    { "id": "Brightness", "title": "Яскравість", "painterName": "brightness_icon", "startUnit": { "id": "Magnitude", "symbol": "mag" }, "release": "Unavailable" },
+    { "id": "Luminous_flux", "title": "Світловий потік", "painterName": "flux_icon", "startUnit": { "id": "Lumen", "symbol": "lm" }, "release": "Unavailable" }
+  ],
+  "Географія": [
+    { "id": "Coordinates", "title": "Координати", "painterName": "coordinates_icon", "startUnit": { "id": "Degree", "symbol": "°" }, "release": "Experimental"  },
+    { "id": "Elevation", "title": "Висота", "painterName": "elevation_icon", "startUnit": { "id": "Meter", "symbol": "m" }, "release": "Experimental"  },
+    { "id": "Land_area", "title": "Площа землі", "painterName": "landarea_icon", "startUnit": { "id": "Hectare", "symbol": "ha" }, "release": "Unavailable" },
+    { "id": "Map_distance", "title": "Відстані на карті", "painterName": "mapdistance_icon", "startUnit": { "id": "Kilometer", "symbol": "km" }, "release": "Unavailable" }
+  ],
+  "Хімія": [
+    { "id": "Concentration", "title": "Концентрація", "painterName": "concentration_icon", "startUnit": { "id": "mol/L", "symbol": "M" }, "release": "Unavailable" },
+    { "id": "Molarity", "title": "Молярність", "painterName": "molarity_icon", "startUnit": { "id": "mol/L", "symbol": "M" }, "release": "Unavailable"   },
+    { "id": "MassFraction", "title": "Масова частка", "painterName": "massfraction_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable" },
+    { "id": "Solubility", "title": "Розчинність", "painterName": "solubility_icon", "startUnit": { "id": "g/L", "symbol": "g/L" }, "release": "Unavailable"   },
+    { "id": "pH", "title": "pH", "painterName": "ph_icon", "startUnit": { "id": "pH (standard)", "symbol": "pH" }, "release": "Experimental" }
+  ],
+
+  "Наука": [
+    { "id": "Viscosity", "title": "В'язкість", "painterName": "viscosity_icon", "startUnit": { "id": "Pascal second", "symbol": "Pa·s" }, "release": "Experimental"  },
+    { "id": "Thermal_conductivity", "title": "Теплопровідність", "painterName": "thermal_icon", "startUnit": {  "id": "Watt per meter Kelvin", "symbol": "W/m·K" }, "release": "Experimental" },
+    { "id": "Density", "title": "Густина", "painterName": "density_icon", "startUnit": {  "id": "Kilogram per cubic meter", "symbol": "kg/m³"}, "release": "Experimental" },
+    { "id": "Heat_capacity", "title": "Теплоємність", "painterName": "heatcapacity_icon", "startUnit": {  "id": "Joule per kilogram Kelvin", "symbol": "J/kg·K" }, "release": "Experimental"  },
+    { "id": "Heat_flux", "title": "Тепловий потік", "painterName": "heatflux_icon", "startUnit": {  "id": "Watt per square meter", "symbol": "W/m²" }, "release": "Experimental"  }
+  ],
+
+  "Інші": [
+    { "id": "BMI", "title": "ІМТ", "painterName": "bmi_icon", "startUnit": { "id": "Weight", "symbol": "kg" } },
+    { "id": "Activity", "title": "Фізична активність", "painterName": "activity_icon", "startUnit": { "id": "Steps", "symbol": "steps" }  },
+    { "id": "Numeration_system", "title": "Система числення", "painterName": "numeration_system_icon", "startUnit": { "id": "Decimal", "symbol": "DEC" } }
+  ]
+}
