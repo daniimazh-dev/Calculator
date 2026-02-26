@@ -1,6 +1,11 @@
 package com.daniil.calculator.calculatorscreen.history
 
 import android.content.ClipData
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -11,13 +16,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -30,9 +40,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -44,6 +56,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalClipboard
@@ -51,9 +64,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.daniil.calculator.R
 import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
+import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
 import kotlinx.coroutines.delay
@@ -72,6 +87,7 @@ fun HistoryTimeHeader(
     horizontalAlignment: Alignment.Horizontal = Alignment.End,
 ) {
 
+    val context = LocalContext.current
     val expanded = rememberSaveable { mutableStateOf(!key.contains("-")) }
 
     var dropdownMenuExpanded by remember { mutableStateOf(false) }
@@ -85,6 +101,7 @@ fun HistoryTimeHeader(
         targetValue = if (expanded.value) 12.dp else 0.dp,
         animationSpec = tween(400)
     )
+    var selectedMenuOpen by remember { mutableStateOf<Int?>(null) }
 
     fun onClick() {
         expanded.value = !expanded.value
@@ -206,14 +223,68 @@ fun HistoryTimeHeader(
                 (pair?.first ?: emptyList()) + (pair?.second ?: emptyList())
             }
 
-            content.forEach { item ->
-                HistoryItemUI(
-                    modifier = modifier
-                        .padding(horizontal = 6.dp),
-                    historyData = item,
-                    horizontalAlignment = horizontalAlignment,
-                    calculatorScreenModel = calculatorScreenModel
+            content.forEachIndexed { index, item ->
+                val addCommentAlertShow = remember { mutableStateOf(false) }
+
+                SwipeableItemWithActions(
+                    isRevealed = index == selectedMenuOpen,
+                    onExpanded = { selectedMenuOpen = index },
+                    onCollapsed = { selectedMenuOpen = null },
+                    actions = {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(MaterialTheme.shapes.medium),
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            ActionButton(
+                                color = MaterialTheme.colorScheme.primaryContainer,
+                                icon = ImageVector.vectorResource(if (item.pinned) R.drawable.unpin_icon else R.drawable.pinned_icon)
+                            ) {
+                                calculatorScreenModel.calckHistory.pinnedItem(item)
+                                calculatorScreenModel.saveClack(context)
+                                selectedMenuOpen = null
+                            }
+                            ActionButton(
+                                color = MaterialTheme.colorScheme.secondaryContainer,
+                                icon = ImageVector.vectorResource(R.drawable.comment_icon)
+                            ) {
+                                addCommentAlertShow.value = true
+                            }
+                            ActionButton(
+                                color = MaterialTheme.colorScheme.errorContainer,
+                                icon = ImageVector.vectorResource(R.drawable.delete_icon)
+                            ) {
+                                calculatorScreenModel.calckHistory.removeHistory(item)
+                                calculatorScreenModel.saveClack(context)
+                                selectedMenuOpen = null
+                            }
+                        }
+
+                    }
+                ) {
+                    HistoryItemUI(
+                        modifier = modifier
+                            .padding(horizontal = 6.dp),
+                        historyData = item,
+                        horizontalAlignment = horizontalAlignment,
+                        calculatorScreenModel = calculatorScreenModel,
+                        addCommentAlertShow = addCommentAlertShow
+                    )
+                }
+                AddCommentAlert(
+                    expanded = addCommentAlertShow.value,
+                    value = item.comment.orEmpty(),
+                    onDismissRequest = {
+                        addCommentAlertShow.value = false
+                    },
+                    onConfirm = {
+                        addCommentAlertShow.value = false
+                        calculatorScreenModel.calckHistory.addComment(item, it.ifEmpty { null })
+                    }
                 )
+
+
             }
         }
 
@@ -223,16 +294,67 @@ fun HistoryTimeHeader(
 }
 
 @Composable
+private fun RowScope.ActionButton(
+    modifier: Modifier = Modifier,
+    color: Color,
+    icon: ImageVector,
+    onClick: () -> Unit,
+) {
+    val context = LocalContext.current
+    var isClick by remember { mutableStateOf(false) }
+    val animateClick by animateFloatAsState(
+        if (isClick) 0.8f else 1f
+    )
+    LaunchedEffect(isClick) {
+        delay(100)
+        isClick = false
+    }
+    val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val vibratorManager =
+            context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+        vibratorManager.defaultVibrator
+    } else {
+        context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    }
+    val effect = VibrationEffect.createOneShot(18, VibrationEffect.DEFAULT_AMPLITUDE)
+    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+
+    Box(
+        modifier = modifier
+            .heightIn(min = 56.dp)
+            .weight(1f)
+            .clip(RoundedCornerShape(4.dp))
+            .background(color)
+            .clickable {
+                if (vibrationEnabled) vibrator.vibrate(effect)
+                isClick = true
+                onClick()
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            modifier = Modifier.graphicsLayer {
+                scaleX = animateClick
+                scaleY = animateClick
+            },
+            imageVector = icon,
+            contentDescription = "icon"
+        )
+    }
+}
+
+@Composable
 private fun HistoryItemUI(
     modifier: Modifier = Modifier,
     horizontalAlignment: Alignment.Horizontal = Alignment.End,
     calculatorScreenModel: CalculatorScreenModel,
     historyData: HistoryData,
-) {
+    addCommentAlertShow: MutableState<Boolean>,
+
+    ) {
     val calckBlock by calculatorScreenModel.calckBlock.collectAsState()
     val predictive by calculatorScreenModel.predictiveCalckBlock.collectAsState()
     var dropdownMenuExpanded by remember { mutableStateOf(false) }
-    var addCommentAlertShow by remember { mutableStateOf(false) }
 
     val density = LocalDensity.current
     val context = LocalContext.current
@@ -272,8 +394,8 @@ private fun HistoryItemUI(
                         .weight(1f)
                         .clip(MaterialTheme.shapes.medium)
                         .combinedClickable(
-                            onClick =  {
-                                addCommentAlertShow = true
+                            onClick = {
+                                addCommentAlertShow.value = true
                             },
                             onLongClick = {
                                 commentDropdownMenuExpanded = true
@@ -306,7 +428,6 @@ private fun HistoryItemUI(
                         }
 
                     ),
-
                     UniversalDropDownItem(
                         title = stringResource(R.string.delete),
                         iconResource = R.drawable.delete_icon,
@@ -326,7 +447,6 @@ private fun HistoryItemUI(
 
             } else {
                 Spacer(modifier = Modifier.weight(1f))
-
             }
 
             Column(
@@ -410,33 +530,14 @@ private fun HistoryItemUI(
                             }
 
                         ),
-                        UniversalDropDownItem(
-                            title = if (historyData.pinned) stringResource(R.string.unpin) else stringResource(
-                                R.string.pin
-                            ),
-                            iconResource = if (historyData.pinned) R.drawable.unpin_icon else R.drawable.pinned_icon,
-                            onClick = {
-                                calculatorScreenModel.calckHistory.pinnedItem(historyData)
-                                calculatorScreenModel.saveClack(context)
 
-                            }
-                        ),
-                        UniversalDropDownItem(
-                            title = stringResource(R.string.comment),
-                            iconResource = R.drawable.comment_icon,
-                            onClick = {
-                                addCommentAlertShow = true
-                            }
-                        ),
-                        UniversalDropDownItem(
-                            title = stringResource(R.string.delete),
-                            iconResource = R.drawable.delete_icon,
-                            onClick = {
-                                calculatorScreenModel.calckHistory.removeHistory(historyData)
-                                calculatorScreenModel.saveClack(context)
-
-                            }
-                        )
+//                        UniversalDropDownItem(
+//                            title = stringResource(R.string.archive),
+//                            iconResource = R.drawable.archive_icon,
+//                            onClick = {
+//
+//                            }
+//                        )
                     )
                     UniversalDropDownMenu(
                         expanded = dropdownMenuExpanded,
@@ -468,17 +569,7 @@ private fun HistoryItemUI(
             )
         }
     }
-    AddCommentAlert(
-        expanded = addCommentAlertShow,
-        value = historyData.comment ?: "",
-        onDismissRequest = {
-            addCommentAlertShow = false
-        },
-        onConfirm = {
-            addCommentAlertShow = false
-            calculatorScreenModel.calckHistory.addComment(historyData, it.ifEmpty { null })
-        }
-    )
+
 }
 
 

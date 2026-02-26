@@ -21,6 +21,7 @@
     <string name="copy">Скопіювати</string>
     <string name="paste">Вставити</string>
     <string name="delete">Видалити</string>
+    <string name="archive">Архів</string>
     <string name="close_all">Закрити все</string>
     <string name="open_all">Відкрити все</string>
     <string name="gird_mode">Сітка</string>

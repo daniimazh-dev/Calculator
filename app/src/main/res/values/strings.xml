@@ -61,5 +61,6 @@
     <string name="follow_link">Follow the link?</string>
     <string name="select_date">Select a date</string>
     <string name="actual">Actual</string>
+    <string name="archive">Archive</string>
 
 </resources>
