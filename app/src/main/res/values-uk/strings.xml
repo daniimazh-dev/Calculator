@@ -63,4 +63,5 @@
     <string name="follow_link">Перейти за посиланням?</string>
     <string name="select_date">Виберіть дату</string>
     <string name="actual">Актуальний</string>
+    <string name="open_menu">Відкрити меню</string>
 </resources>

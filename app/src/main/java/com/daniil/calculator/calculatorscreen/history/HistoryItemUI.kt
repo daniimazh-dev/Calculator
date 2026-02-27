@@ -2,6 +2,7 @@ package com.daniil.calculator.calculatorscreen.history
 
 import android.content.ClipData
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -66,8 +67,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.edit
 import com.daniil.calculator.R
 import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
+import com.daniil.calculator.firstOpenApp
 import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
@@ -101,7 +104,7 @@ fun HistoryTimeHeader(
         targetValue = if (expanded.value) 12.dp else 0.dp,
         animationSpec = tween(400)
     )
-    var selectedMenuOpen by remember { mutableStateOf<Int?>(null) }
+    var selectedMenuOpen = remember { mutableStateOf<Int?>(null) }
 
     fun onClick() {
         expanded.value = !expanded.value
@@ -214,8 +217,27 @@ fun HistoryTimeHeader(
             }
         }
         Spacer(modifier = Modifier.height(4.dp))
+        val sharedPref = context
+            .getSharedPreferences("save", MODE_PRIVATE)
+        val show = remember { sharedPref.getBoolean("showHistoryItemMenu", true) }
 
-        closeAll.value?.let { expanded.value = !it }
+        LaunchedEffect(timeSorted.values.size) {
+            if (show) {
+                delay(100)
+                selectedMenuOpen.value = 0
+                delay(700)
+                selectedMenuOpen.value = null
+                sharedPref.edit(commit = true) {
+                    putBoolean("showHistoryItemMenu", false)
+                }
+            }
+        }
+        LaunchedEffect(closeAll.value) {
+            if (closeAll.value != null) {
+                expanded.value = !closeAll.value!!
+            }
+        }
+
         if (expanded.value) {
             val content = run {
                 val list = timeSorted[key]?.reversed()
@@ -227,9 +249,9 @@ fun HistoryTimeHeader(
                 val addCommentAlertShow = remember { mutableStateOf(false) }
 
                 SwipeableItemWithActions(
-                    isRevealed = index == selectedMenuOpen,
-                    onExpanded = { selectedMenuOpen = index },
-                    onCollapsed = { selectedMenuOpen = null },
+                    isRevealed = index == selectedMenuOpen.value,
+                    onExpanded = { selectedMenuOpen.value= index },
+                    onCollapsed = { selectedMenuOpen.value = null },
                     actions = {
                         Row(
                             modifier = Modifier
@@ -243,7 +265,7 @@ fun HistoryTimeHeader(
                             ) {
                                 calculatorScreenModel.calckHistory.pinnedItem(item)
                                 calculatorScreenModel.saveClack(context)
-                                selectedMenuOpen = null
+                                selectedMenuOpen.value = null
                             }
                             ActionButton(
                                 color = MaterialTheme.colorScheme.secondaryContainer,
@@ -257,7 +279,7 @@ fun HistoryTimeHeader(
                             ) {
                                 calculatorScreenModel.calckHistory.removeHistory(item)
                                 calculatorScreenModel.saveClack(context)
-                                selectedMenuOpen = null
+                                selectedMenuOpen.value = null
                             }
                         }
 
@@ -266,7 +288,9 @@ fun HistoryTimeHeader(
                     HistoryItemUI(
                         modifier = modifier
                             .padding(horizontal = 6.dp),
+                        selectedMenuOpen = selectedMenuOpen,
                         historyData = item,
+                        index= index,
                         horizontalAlignment = horizontalAlignment,
                         calculatorScreenModel = calculatorScreenModel,
                         addCommentAlertShow = addCommentAlertShow
@@ -349,8 +373,9 @@ private fun HistoryItemUI(
     horizontalAlignment: Alignment.Horizontal = Alignment.End,
     calculatorScreenModel: CalculatorScreenModel,
     historyData: HistoryData,
+    index: Int,
     addCommentAlertShow: MutableState<Boolean>,
-
+    selectedMenuOpen: MutableState<Int?>
     ) {
     val calckBlock by calculatorScreenModel.calckBlock.collectAsState()
     val predictive by calculatorScreenModel.predictiveCalckBlock.collectAsState()
@@ -530,7 +555,6 @@ private fun HistoryItemUI(
                             }
 
                         ),
-
 //                        UniversalDropDownItem(
 //                            title = stringResource(R.string.archive),
 //                            iconResource = R.drawable.archive_icon,
@@ -538,7 +562,13 @@ private fun HistoryItemUI(
 //
 //                            }
 //                        )
-                    )
+                    ) + if (selectedMenuOpen.value != index) {
+                        UniversalDropDownItem(
+                            title = stringResource(R.string.open_menu),
+                            iconResource = R.drawable.menu_open_icon,
+                            onClick = { selectedMenuOpen.value = index }
+                        )
+                    } else UniversalDropDownItem.None
                     UniversalDropDownMenu(
                         expanded = dropdownMenuExpanded,
                         buttonList = dropDownButtonList,

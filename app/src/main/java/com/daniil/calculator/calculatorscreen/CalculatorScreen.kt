@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -80,9 +81,8 @@ fun CalculatorScreen(
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+    val replaceTokenIndex by calckScreenModel.replaceTokenIndex.collectAsState()
 
-
-    val buttons by calckScreenModel.buttons.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val sheetState = rememberStandardBottomSheetState(
@@ -190,6 +190,7 @@ fun CalculatorScreen(
             },
             snackbarHost = { SnackbarHost(snackbarHostState) }
         ) { sheetPadding ->
+
             Column(
                 modifier = Modifier
                     .padding(sheetPadding)
@@ -199,7 +200,19 @@ fun CalculatorScreen(
                     calculatorScreenModel = calckScreenModel
                 )
             }
-
+            if (replaceTokenIndex != null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = {
+                                calckScreenModel.dropReplaceToken()
+                            }
+                        )
+                )
+            }
         }
     } else {
         val componentOffset by calckScreenModel.componentOffset.collectAsState()

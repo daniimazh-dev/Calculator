@@ -7,11 +7,15 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -75,7 +79,9 @@ fun CalckBlockPanel(
             .combinedClickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
-                onClick = {},
+                onClick = {
+                    calculatorScreenModel.dropReplaceToken()
+                },
                 onLongClick = {
                     dropDownMenuExpanded = true
                 }
@@ -135,9 +141,8 @@ fun CalckBlockPanel(
                 }
             )
 
-            val isVisibleCalck = !animate
             AnimatedVisibility(
-                visible = isVisibleCalck,
+                visible = !animate,
             ) {
                 CalculatorInputField(
                     tokens = calculatorScreenModel.getTokensForUI(),

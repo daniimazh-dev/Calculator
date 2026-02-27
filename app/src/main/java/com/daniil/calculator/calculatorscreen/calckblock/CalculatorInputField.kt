@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
 import com.daniil.calculator.universal.Copy
 import com.daniil.calculator.universal.Paste
 import com.daniil.calculator.universal.UniversalDropDownMenu
@@ -67,83 +68,102 @@ fun CalculatorInputField(
         previousTokens.value = tokens
     }
 
-
     BackHandler(selectedTokenIndex != null) {
         onCancelSelection()
     }
-
 
     FlowRow(
         modifier = modifier
             .padding(4.dp)
     ) {
         (tokens + listOf("")).forEachIndexed { index, token ->
-            var dropdownMenuExpanded by remember { mutableStateOf(false) }
-
-            Box(
-                modifier = Modifier
-                    .alpha(
-                        if (selectedTokenIndex == null || selectedTokenIndex == index) 1f else 0.5f
-                    )
-                    .border(
-                        if (selectedTokenIndex == index) 2.dp else 0.dp,
-                        if (selectedTokenIndex == index)
-                            MaterialTheme.colorScheme.primaryContainer
-                        else Color.Transparent,
-                        MaterialTheme.shapes.small
-                    )
-            ) {
-
-
-                Row(
-                    modifier = Modifier
-                        .padding(
-                            horizontal = when {
-                                selectedTokenIndex == index ->  6.dp
-                                token.isBlank() -> 0.dp
-                                else -> 2.dp
-                            }
-                        )
-                        .combinedClickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() },
-                            onClick = {
-                                onTokenClicked(index, token)
-                            },
-                            onLongClick = {
-                                dropdownMenuExpanded = true
-                            }
-                        )
-
-                ) {
-
-                    val oldToken = previousTokens.value.getOrNull(index).orEmpty()
-//                    val maxLength = maxOf(oldToken.length, token.length) + 1
-                    val resultToken = if (oldToken.length > token.length) oldToken else token
-                    AutoSizeAnimatedToken(
-                        token = resultToken,
-                        baseTextStyle = textStyle,
-                    )
-
-                    UniversalDropDownMenu(
-                        expanded = dropdownMenuExpanded,
-                        buttonList = Copy(token)
-                                + Paste { str ->
-                                    if (str.isNullOrBlank()) return@Paste
-                                    onChangeToken(index, str)
-                                },
-                        enabled = selectedTokenIndex == index,
-                        onDismissRequest = {
-                            dropdownMenuExpanded = false
-                        }
-                    )
-                }
-
-            }
+          Token(
+              index = index,
+              token = token,
+              previousTokens = previousTokens,
+              selectedTokenIndex = selectedTokenIndex,
+              textStyle = textStyle,
+              onTokenClicked = onTokenClicked,
+              onChangeToken = onChangeToken
+          )
         }
     }
 }
 
+
+@Composable
+private fun Token(
+    index: Int,
+    token: String,
+    previousTokens: MutableState<List<String>>,
+    selectedTokenIndex: Int? = null,
+    textStyle: TextStyle = LocalTextStyle.current,
+    onTokenClicked: (index: Int, token: String) -> Unit = { _, _ -> },
+    onChangeToken: (index: Int, token: String) -> Unit = { _, _ -> },
+) {
+    var dropdownMenuExpanded by remember { mutableStateOf(false) }
+
+    Box(
+        modifier = Modifier
+            .alpha(
+                if (selectedTokenIndex == null || selectedTokenIndex == index) 1f else 0.5f
+            )
+            .border(
+                if (selectedTokenIndex == index) 2.dp else 0.dp,
+                if (selectedTokenIndex == index)
+                    MaterialTheme.colorScheme.primaryContainer
+                else Color.Transparent,
+                MaterialTheme.shapes.small
+            )
+    ) {
+
+        Row(
+            modifier = Modifier
+                .padding(
+                    horizontal = when {
+                        selectedTokenIndex == index -> 6.dp
+                        token.isBlank() -> 0.dp
+                        else -> 2.dp
+                    }
+                )
+                .combinedClickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                    onClick = {
+                        onTokenClicked(index, token)
+                    },
+                    onLongClick = {
+                        dropdownMenuExpanded = true
+                    }
+                )
+
+        ) {
+
+
+            val oldToken = previousTokens.value.getOrNull(index).orEmpty()
+//                    val maxLength = maxOf(oldToken.length, token.length) + 1
+            val resultToken = if (oldToken.length > token.length) oldToken else token
+            AutoSizeAnimatedToken(
+                token = resultToken,
+                baseTextStyle = textStyle,
+            )
+
+            UniversalDropDownMenu(
+                expanded = dropdownMenuExpanded,
+                buttonList = Copy(token)
+                        + Paste { str ->
+                    if (str.isNullOrBlank()) return@Paste
+                    onChangeToken(index, str)
+                },
+                enabled = selectedTokenIndex == index,
+                onDismissRequest = {
+                    dropdownMenuExpanded = false
+                }
+            )
+        }
+
+    }
+}
 
 @Composable
 private fun AutoSizeAnimatedToken(

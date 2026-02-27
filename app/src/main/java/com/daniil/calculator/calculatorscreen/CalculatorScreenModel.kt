@@ -416,7 +416,6 @@ class CalculatorScreenModel(application: Application) : AndroidViewModel(applica
     fun setReplaceToken(index: Int) {
         if (index in getTokens().indices) {
             _replaceTokenIndex.value = index
-            // змінюємо кнопку "=" на "ok"
             val idx = _buttons.value.indexOfFirst { it.id == "=" }
             if (idx != -1) {
                 _buttons.value[idx] = ButtonData(

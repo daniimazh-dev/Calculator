@@ -150,11 +150,6 @@
     "value": "false",
     "group": "experimental_features_screen"
   },
-
-
-
-
-
   {
     "id": "about_title",
     "title": "About",
@@ -425,7 +420,7 @@
     "type": "Link",
     "enabled": true,
     "static": true,
-    "value": "https://github.com/daniimazh-dev",
+    "value": "https://github.com/daniimazh-dev/Calculator",
     "icon": "github_icon",
     "group": "about_screen"
   },

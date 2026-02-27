@@ -2,6 +2,7 @@ package com.daniil.calculator
 
 import android.app.Application
 import android.app.LocaleManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.LocaleList
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.core.content.edit
 import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
@@ -34,6 +36,7 @@ import java.util.Locale
 
 val openScreen = mutableIntStateOf(0)
 const val currentVersionCode = 4
+var firstOpenApp = true
 var globalVersion: VersionRequest? = null
 
 class MainActivity : AppCompatActivity() {
@@ -41,10 +44,17 @@ class MainActivity : AppCompatActivity() {
     private val convertorScreenModel: ConvertorScreenModel by viewModels()
     private val settingsScreenModel: SettingsScreenModel by viewModels()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val sharedPref = this@MainActivity
+            .getSharedPreferences("save", MODE_PRIVATE)
+        firstOpenApp = sharedPref.getBoolean("firstOpenApp", false)
+
         if (savedInstanceState == null) {
             lifecycleScope.launch(Dispatchers.IO) {
                 delay(200)
@@ -170,6 +180,13 @@ class MainActivity : AppCompatActivity() {
                 UserDataManager.unactive()
             }
             save()
+        }
+        if (firstOpenApp) {
+            val sharedPref = this@MainActivity
+                .getSharedPreferences("save", MODE_PRIVATE)
+            sharedPref.edit(commit = true) {
+                putBoolean("firstOpenApp", true)
+            }
         }
         super.onStop()
     }

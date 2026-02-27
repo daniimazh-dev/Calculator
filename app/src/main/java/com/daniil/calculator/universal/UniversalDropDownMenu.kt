@@ -69,7 +69,7 @@ fun UniversalDropDownMenu(
         },
         shape = MaterialTheme.shapes.medium
     ) {
-        buttonList.forEach { item ->
+        buttonList.filterNot { it.title.isEmpty() }.forEach { item ->
             var isClicked by remember { mutableStateOf(false) }
 
             val animateButton by animateFloatAsState(
@@ -184,6 +184,10 @@ operator fun UniversalDropDownItem.plus(item: UniversalDropDownItem): List<Unive
     return listOf(this, item)
 }
 
+operator fun Iterable<UniversalDropDownItem>.plus(item: UniversalDropDownItem): List<UniversalDropDownItem> {
+    return  this + listOf(item)
+
+}
 
 
 data class UniversalDropDownItem(
@@ -193,4 +197,11 @@ data class UniversalDropDownItem(
     val enabled: Boolean = true,
     val autoClose: Boolean = true,
     val onClick: () -> Unit,
-)
+) {
+    companion object {
+        val None = UniversalDropDownItem(
+            title = "",
+            onClick = {}
+        )
+    }
+}

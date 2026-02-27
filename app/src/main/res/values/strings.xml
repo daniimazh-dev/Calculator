@@ -62,5 +62,6 @@
     <string name="select_date">Select a date</string>
     <string name="actual">Actual</string>
     <string name="archive">Archive</string>
+    <string name="open_menu">Open menu</string>
 
 </resources>
