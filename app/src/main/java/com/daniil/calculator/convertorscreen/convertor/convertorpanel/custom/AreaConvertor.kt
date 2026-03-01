@@ -119,7 +119,6 @@ fun AreaConvertorImplementation.AreaConvertor() {
     ) as ConvertorUnit
 
 
-    // standart
     val currentUnit: ConvertorUnit = convertorScreenModel.getParameter(
         key = "currentUnit",
         defaultValue = getUnits().getOrElse(0) { NullableUnit }

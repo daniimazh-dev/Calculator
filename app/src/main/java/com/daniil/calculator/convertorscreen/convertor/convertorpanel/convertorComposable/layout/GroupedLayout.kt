@@ -29,12 +29,11 @@ fun ConvertorLayoutScope.GroupedLayout(
 ) {
 
     val modifier = if (scrollState != null) {
-        modifier.verticalScroll(scrollState)
-    } else modifier
+        modifier.clip(containerShape).verticalScroll(scrollState)
+    } else modifier.clip(containerShape)
 
     Column(
-        modifier = modifier
-            .clip(containerShape),
+        modifier = modifier,
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment
     ) {

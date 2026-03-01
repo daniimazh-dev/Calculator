@@ -124,7 +124,7 @@ fun ConvertorScreenModel.validateValue(
     if (unit == NullableUnit) return (false to unitIsNullable)
 
     // convertors
-    val nonNegativeConvertors = listOf("Length", "Area", "Mass", "Volume", "Currency", "Discount", "Area", "Time", "BMI")
+    val nonNegativeConvertors = listOf("Length", "Area", "Mass", "Volume", "Currency", "Discount", "Area", "Time", "BMI", "IP_calculator")
 
     if (rules != null) {
         val result = validate(rules)

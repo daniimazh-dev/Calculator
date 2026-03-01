@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -113,7 +114,7 @@ class CurrencyConvertorImplementation(
                     }
                 }
                 showClackPanel.value = false
-                showKeyboard.value = !isLoading.value
+//                showKeyboard.value = !isLoading.value
                 dropdownMenu = customDropDown.toMutableStateList()
             }
             mode(
@@ -143,7 +144,7 @@ class CurrencyConvertorImplementation(
                     }
                 }
                 dropdownMenu = customDropDown.toMutableStateList()
-                showKeyboard.value = !isLoading.value
+//                showKeyboard.value = !isLoading.value
             }
         }
     }
@@ -162,7 +163,8 @@ class CurrencyConvertorImplementation(
         var againEnabled by remember { mutableStateOf(true) }
         Box(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxWidth()
+                .fillMaxHeight(0.5f),
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -177,13 +179,9 @@ class CurrencyConvertorImplementation(
                         contentDescription = "Internet lost"
                     )
                     Text(stringResource(R.string.no_conection_server))
-                } else {
-                    CircularProgressIndicator(modifier = Modifier.size(62.dp))
-
-                }
-                Button(
-                    enabled = againEnabled,
-                    onClick = {
+                    Button(
+                        enabled = againEnabled,
+                        onClick = {
                         coroutine.launch(Dispatchers.IO) {
                             againEnabled = false
                             loadCurrency()
@@ -191,8 +189,13 @@ class CurrencyConvertorImplementation(
                             againEnabled = true
                         }
                     }) {
-                    Text(stringResource(R.string.try_again))
+                        Text(stringResource(R.string.try_again))
+                    }
+                } else {
+                    CircularProgressIndicator(modifier = Modifier.size(62.dp))
+
                 }
+
             }
 
         }
