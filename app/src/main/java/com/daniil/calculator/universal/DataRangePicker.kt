@@ -6,6 +6,7 @@ package com.daniil.calculator.universal
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
@@ -193,8 +194,10 @@ fun DateRangeCalendar(
                 HorizontalPager(
                     state = pagerState,
                     modifier = Modifier
+
                         .fillMaxWidth()
                         .weight(1f)
+                        .animateContentSize()
                 ) { page ->
 
                     val targetMonth = remember(calendarPosition, page) {

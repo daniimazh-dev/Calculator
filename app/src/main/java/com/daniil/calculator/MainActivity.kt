@@ -35,7 +35,7 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 
 val openScreen = mutableIntStateOf(0)
-const val currentVersionCode = 4
+const val currentVersionCode = 5
 var firstOpenApp = true
 var globalVersion: VersionRequest? = null
 

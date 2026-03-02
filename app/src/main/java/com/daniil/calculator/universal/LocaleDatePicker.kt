@@ -147,7 +147,7 @@ fun LocalDatePicker(
     }
 }
 @Composable
-fun ScrollPickerList(
+private fun ScrollPickerList(
     modifier: Modifier = Modifier,
     items: List<String>,
     selectedIndex: Int,

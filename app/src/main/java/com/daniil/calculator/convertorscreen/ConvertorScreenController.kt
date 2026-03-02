@@ -1,6 +1,5 @@
 package com.daniil.calculator.convertorscreen
 
-import android.util.Log
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
@@ -10,17 +9,14 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Modifier
 import com.daniil.calculator.convertorscreen.convertor.ConvertorCalckScreen
 import com.daniil.calculator.convertorscreen.homescreen.ConvertorHomeScreen
-import com.daniil.calculator.settingsscreen.customscreen.logs.LogsScreen
 
+private var oneLaunch = true
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -30,19 +26,11 @@ fun ConvertorScreenController(
 
     val currentConvertor by convertorScreenModel.currentConvertor.collectAsState()
     val currentScreen by convertorScreenModel.currentScreen.collectAsState()
-    var oneLaunch = rememberSaveable() { true }
+
     if (oneLaunch) {
         oneLaunch = false
-        Log.w("MyLog", "Register")
         convertorScreenModel.RegisterCustomConvertor()
     }
-
-
-
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    )
-
 
     SharedTransitionLayout {
         AnimatedContent(

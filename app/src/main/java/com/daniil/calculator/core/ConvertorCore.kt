@@ -14,6 +14,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 import com.daniil.calculator.core.DaniilServerAPI
+import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import kotlinx.coroutines.launch
 
 class ConvertorCore(
     val model: ConvertorScreenModel,
@@ -44,31 +46,35 @@ class ConvertorCore(
         LogManager.i("ConvertorCore started", content = "ConvertorCore fun \"loadUnitData\" is started")
         loadUnitData(context)
         LogManager.c("ConvertorCore all complete", content = "Load ALL data COMPLETE.\nLoad COMPLETE -> RETURN: COMPLETE")
+        val localMode = DynamicSettingsManager.getValue("locale_mode").toBoolean()
+        val useTestServer = DynamicSettingsManager.getValue("use_test_server").toBoolean()
+        LogManager.d("Local mode", content = localMode.toString())
+        LogManager.d("Use test server", content = useTestServer.toString())
     }
 
 
     suspend fun checkConvertorsRelease() = withContext(Dispatchers.IO) {
-        val convertorsStatus = try {
-            DaniilServerAPI().getConvertorsStatus()
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val convertorCopy = convertors
+        try {
+            val convertorsStatus = DaniilServerAPI().getConvertorsStatus()
+            if (!convertorsStatus.isSuccessful) return@withContext
+            convertors = convertorCopy.mapValues { (key, value) ->
+                value.map {
+                    val releaseInt = convertorsStatus.body()?.blocked[it.id]
+                    val release = when (releaseInt) {
+                        0 -> ConvertorReleseState.Unavailable
+                        2 -> ConvertorReleseState.Beta
+                        3 -> ConvertorReleseState.Experimental
+                        null -> it.release
+                        else -> ConvertorReleseState.Verified
+                    }
+                    it.copy(release = release)
+                }
+            }.toMutableMap()
+        } catch (_: Exception) {
             return@withContext
         }
-        if (!convertorsStatus.isSuccessful) return@withContext
-        convertors = convertors.mapValues {
-            (key, value) ->
-            value.map {
-                val releaseInt = convertorsStatus.body()?.blocked[it.id]
-                val release = when (releaseInt) {
-                    0 -> ConvertorReleseState.Unavailable
-                    2 -> ConvertorReleseState.Beta
-                    3 -> ConvertorReleseState.Experimental
-                    null -> it.release
-                    else -> ConvertorReleseState.Verified
-                }
-                it.copy(release = release)
-            }
-        }.toMutableMap()
+
     }
 
     suspend fun loadConvertorsData(context: Context) = withContext(Dispatchers.IO) {
@@ -124,7 +130,6 @@ class ConvertorCore(
                 }
 
             convertors = merged.toMutableMap()
-            checkConvertorsRelease()
             LogManager.c("ConvertorCore complete", content = "Load convertor data COMPLETE.\nLoad COMPLETE -> RETURN: COMPLETE")
 
         } catch (e: Exception) {

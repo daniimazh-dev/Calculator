@@ -3,6 +3,7 @@ package com.daniil.calculator.convertorscreen
 import android.content.Context
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ import com.daniil.calculator.convertorscreen.homescreen.dataclass.ConvertorData
 import com.daniil.calculator.core.CalculatorCore
 import com.daniil.calculator.core.ConvertorCore
 import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,7 +52,6 @@ class ConvertorScreenModel : ViewModel() {
 
     // core
     lateinit var convertorCore: ConvertorCore
-    // log
 
     // custom convertor UI manager
     val customConvertorManager = CustomConvertorManager(this)
@@ -95,6 +96,12 @@ class ConvertorScreenModel : ViewModel() {
     }
     @Composable
     fun RegisterCustomConvertor() {
+        LaunchedEffect(Unit) {
+            launch(Dispatchers.IO) {
+                convertorCore.checkConvertorsRelease()
+            }
+        }
+
         LogManager.i("ViewModel load", content = "ConvertorViewModel fun \"registerCustomConvertor\" is started. Register custom convertors")
         registerCustomConvertors(this)
         LogManager.c("ViewModel complete", content = "Register custom convertors is COMPLETE")
