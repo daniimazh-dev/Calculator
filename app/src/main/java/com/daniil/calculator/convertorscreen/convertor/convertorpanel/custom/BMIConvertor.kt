@@ -115,9 +115,10 @@ fun BMIConvertorImplementation.BMIConvertor() {
             "—"
         }
     }
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         convertorData = activeScreen ?: return,
         scrollState = scrollState,
         containerColor = Color.Transparent

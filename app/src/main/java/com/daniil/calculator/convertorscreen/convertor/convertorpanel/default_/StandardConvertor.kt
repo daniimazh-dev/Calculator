@@ -197,10 +197,10 @@ open class StandardConvertor(
                 swapClicked = false
             }
         }
-
+        val unitList by getUnitsAsSate().collectAsState()
         ConvertorLayout(
             convertorScreenModel = convertorScreenModel,
-            unitList = getUnits(),
+            unitList = unitList,
             convertorData = activeScreen ?: return,
             containerColor = Color.Transparent
         ) { innerPadding ->
@@ -463,7 +463,7 @@ open class StandardConvertor(
         }
 
         var oldCurrentUnit by remember { mutableStateOf(currentUnit) }
-
+        val unitList by getUnitsAsSate().collectAsState()
         ConvertorLayout(
             convertorScreenModel = convertorScreenModel,
             unitList = getUnits(),

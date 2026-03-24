@@ -134,7 +134,6 @@ fun AreaConvertorImplementation.AreaConvertor() {
         defaultValue = getUnits().getOrElse(1) { NullableUnit }
     ) as ConvertorUnit
 
-
     val scrollState = rememberScrollState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,

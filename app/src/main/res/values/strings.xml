@@ -63,5 +63,6 @@
     <string name="actual">Actual</string>
     <string name="archive">Archive</string>
     <string name="open_menu">Open menu</string>
+    <string name="dontShowAgain">Don\'t show again</string>
 
 </resources>

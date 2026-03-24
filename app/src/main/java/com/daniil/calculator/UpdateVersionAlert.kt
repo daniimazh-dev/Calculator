@@ -5,8 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -15,8 +21,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.daniil.calculator.core.DaniilServerAPI
 import com.daniil.calculator.core.RetrofitDaniilServerInstance
@@ -65,8 +74,25 @@ fun UpdateVersionAlert() {
                 Text(stringResource(R.string.new_version) + " " +  _globalVersion.versionName)
             },
             text = {
+                var selectedDontShow by remember { mutableStateOf(false) }
                 Column() {
                     Text(_globalVersion.whatsNew)
+                    Spacer(modifier = Modifier.height(12.dp))
+                    HorizontalDivider()
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Checkbox(
+                            checked = selectedDontShow,
+                            onCheckedChange = {
+                                selectedDontShow = !selectedDontShow
+                                DynamicSettingsManager.setValue("version_request", selectedDontShow)
+                            }
+                        )
+                        Text(stringResource(R.string.dontShowAgain))
+                    }
+
                 }
             },
             onDismissRequest = {

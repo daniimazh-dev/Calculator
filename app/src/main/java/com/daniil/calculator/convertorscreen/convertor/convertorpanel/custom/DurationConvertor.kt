@@ -129,10 +129,10 @@ private fun DurationConvertorImplementation.CalendarScreen(
         }
     }
 
-
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         convertorData = activeScreen ?: return,
         containerColor = Color.Transparent,
     ) {

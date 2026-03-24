@@ -1,9 +1,9 @@
 {
   "Length": [
     { "id": "Millimeter", "name": "Міліметр", "symbol": "mm", "multiplier": 0.001 },
-    { "id": "Centimeter", "name": "Сантиметр", "symbol": "cm", "multiplier": 0.01 },
+    { "id": "Centimeter", "name": "Сантиметр", "symbol": "cm", "multiplier": 0.01, "pinned": true },
     { "id": "Decimeter", "name": "Дециметр", "symbol": "dm", "multiplier": 0.1 },
-    { "id": "Meter", "name": "Метр", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Meter", "name": "Метр", "symbol": "m", "multiplier": 1.0, "pinned": true },
     { "id": "Kilometer", "name": "Кілометр", "symbol": "km", "multiplier": 1000.0 },
     { "id": "Inch", "name": "Дюйм", "symbol": "in", "multiplier": 0.0254 },
     { "id": "Foot", "name": "Фут", "symbol": "ft", "multiplier": 0.3048 },
@@ -15,8 +15,8 @@
   "Mass": [
     { "id": "Microgram", "name": "Мікрограм", "symbol": "µg", "multiplier": 0.000000001 },
     { "id": "Milligram", "name": "Міліграм", "symbol": "mg", "multiplier": 0.000001 },
-    { "id": "Gram", "name": "Грам", "symbol": "g", "multiplier": 0.001 },
-    { "id": "Kilogram", "name": "Кілограм", "symbol": "kg", "multiplier": 1.0 },
+    { "id": "Gram", "name": "Грам", "symbol": "g", "multiplier": 0.001, "pinned": true },
+    { "id": "Kilogram", "name": "Кілограм", "symbol": "kg", "multiplier": 1.0, "pinned": true },
     { "id": "Tonne", "name": "Тонна", "symbol": "t", "multiplier": 1000.0 },
     { "id": "Ounce", "name": "Унція", "symbol": "oz", "multiplier": 0.0283495 },
     { "id": "Pound", "name": "Фунт", "symbol": "lb", "multiplier": 0.453592 },
@@ -27,9 +27,9 @@
 
   "Area": [
     { "id": "Square millimeter", "name": "Квадратний міліметр", "symbol": "mm²", "multiplier": 0.000001 },
-    { "id": "Square centimeter", "name": "Квадратний сантиметр", "symbol": "cm²", "multiplier": 0.0001 },
+    { "id": "Square centimeter", "name": "Квадратний сантиметр", "symbol": "cm²", "multiplier": 0.0001, "pinned": true },
     { "id": "Square decimeter", "name": "Квадратний дециметр", "symbol": "dm²", "multiplier": 0.01 },
-    { "id": "Square meter", "name": "Квадратний метр", "symbol": "m²", "multiplier": 1.0 },
+    { "id": "Square meter", "name": "Квадратний метр", "symbol": "m²", "multiplier": 1.0, "pinned": true },
     { "id": "Are", "name": "Ар", "symbol": "a", "multiplier": 100.0 },
     { "id": "Hectare", "name": "Гектар", "symbol": "ha", "multiplier": 10000.0 },
     { "id": "Square kilometer", "name": "Квадратний кілометр", "symbol": "km²", "multiplier": 1000000.0 },
@@ -40,9 +40,9 @@
 
   "Volume": [
     { "id": "Milliliter", "name": "Мілілітр", "symbol": "mL", "multiplier": 0.001 },
-    { "id": "Centiliter", "name": "Сантилітр", "symbol": "cL", "multiplier": 0.01 },
+    { "id": "Centiliter", "name": "Сантилітр", "symbol": "cL", "multiplier": 0.01, "pinned": true },
     { "id": "Deciliter", "name": "Децилітр", "symbol": "dL", "multiplier": 0.1 },
-    { "id": "Liter", "name": "Літр", "symbol": "L", "multiplier": 1.0 },
+    { "id": "Liter", "name": "Літр", "symbol": "L", "multiplier": 1.0, "pinned": true },
     { "id": "Cubic centimeter", "name": "Кубічний сантиметр", "symbol": "cm³", "multiplier": 0.001 },
     { "id": "Cubic meter", "name": "Кубічний метр", "symbol": "m³", "multiplier": 1000.0 },
     { "id": "Cubic inch", "name": "Кубічний дюйм", "symbol": "in³", "multiplier": 0.016387064 },
@@ -52,8 +52,8 @@
   ],
 
   "Speed": [
-    { "id": "Meter per second", "name": "Метр за секунду", "symbol": "m/s", "multiplier": 1.0 },
-    { "id": "Kilometer per hour", "name": "Кілометр на годину", "symbol": "km/h", "multiplier": 0.2777777778 },
+    { "id": "Meter per second", "name": "Метр за секунду", "symbol": "m/s", "multiplier": 1.0, "pinned": true },
+    { "id": "Kilometer per hour", "name": "Кілометр на годину", "symbol": "km/h", "multiplier": 0.2777777778, "pinned": true },
     { "id": "Mile per hour", "name": "Миля на годину", "symbol": "mph", "multiplier": 0.44704 },
     { "id": "Knot", "name": "Вузол", "symbol": "kn", "multiplier": 0.5144444444 },
     { "id": "Foot per second", "name": "Фут за секунду", "symbol": "ft/s", "multiplier": 0.3048 },
@@ -65,8 +65,8 @@
   ],
 
   "Temperature": [
-    { "id": "Celsius", "name": "Цельсій", "symbol": "°C", "multiplier": 1.0 },
-    { "id": "Fahrenheit", "name": "Фаренгейт", "symbol": "°F", "multiplier": 1.0 },
+    { "id": "Celsius", "name": "Цельсій", "symbol": "°C", "multiplier": 1.0, "pinned": true },
+    { "id": "Fahrenheit", "name": "Фаренгейт", "symbol": "°F", "multiplier": 1.0, "pinned": true },
     { "id": "Kelvin", "name": "Кельвін", "symbol": "K", "multiplier": 1.0 },
     { "id": "Rankine", "name": "Ранкін", "symbol": "°R", "multiplier": 1.0 },
     { "id": "Réaumur", "name": "Реомюр", "symbol": "°Ré", "multiplier": 1.0 },
@@ -76,9 +76,9 @@
   ],
 
   "Pressure": [
-    { "id": "Pascal", "name": "Паскаль", "symbol": "Pa", "multiplier": 1.0 },
+    { "id": "Pascal", "name": "Паскаль", "symbol": "Pa", "multiplier": 1.0, "pinned": true },
     { "id": "Kilopascal", "name": "Кілопаскаль", "symbol": "kPa", "multiplier": 1000.0 },
-    { "id": "Bar", "name": "Бар", "symbol": "bar", "multiplier": 100000.0 },
+    { "id": "Bar", "name": "Бар", "symbol": "bar", "multiplier": 100000.0, "pinned": true },
     { "id": "Atmosphere", "name": "Атмосфера", "symbol": "atm", "multiplier": 101325.0 },
     { "id": "Torr", "name": "Торр", "symbol": "Torr", "multiplier": 133.3223684 },
     { "id": "Millimeter of mercury", "name": "Міліметр ртутного стовпа", "symbol": "mmHg", "multiplier": 133.322387415 },
@@ -90,11 +90,11 @@
 
   "Energy": [
     { "id": "Joule", "name": "Джоуль", "symbol": "J", "multiplier": 1.0 },
-    { "id": "Kilojoule", "name": "Кілоджоуль", "symbol": "kJ", "multiplier": 1000.0 },
+    { "id": "Kilojoule", "name": "Кілоджоуль", "symbol": "kJ", "multiplier": 1000.0, "pinned": true },
     { "id": "Calorie (thermochemical)", "name": "Калорія (термохімічна)", "symbol": "cal", "multiplier": 4.184 },
     { "id": "Kilocalorie (kcal)", "name": "Кілокалорія (ккал)", "symbol": "kcal", "multiplier": 4184.0 },
     { "id": "Watt-hour", "name": "Ват-година", "symbol": "Wh", "multiplier": 3600.0 },
-    { "id": "Kilowatt-hour", "name": "Кіловат-година", "symbol": "kWh", "multiplier": 3600000.0 },
+    { "id": "Kilowatt-hour", "name": "Кіловат-година", "symbol": "kWh", "multiplier": 3600000.0, "pinned": true },
     { "id": "Electronvolt", "name": "Електронвольт", "symbol": "eV", "multiplier": 1.602176634e-19 },
     { "id": "BTU (International)", "name": "Британська теплова одиниця (міжнародна)", "symbol": "BTU", "multiplier": 1055.05585262 },
     { "id": "Therm (US)", "name": "Терм (США)", "symbol": "thm", "multiplier": 1.055e8 },
@@ -102,8 +102,8 @@
   ],
 
   "Power": [
-    { "id": "Watt", "name": "Ват", "symbol": "W", "multiplier": 1.0 },
-    { "id": "Kilowatt", "name": "Кіловат", "symbol": "kW", "multiplier": 1000.0 },
+    { "id": "Watt", "name": "Ват", "symbol": "W", "multiplier": 1.0, "pinned": true },
+    { "id": "Kilowatt", "name": "Кіловат", "symbol": "kW", "multiplier": 1000.0, "pinned": true },
     { "id": "Megawatt", "name": "Мегават", "symbol": "MW", "multiplier": 1000000.0 },
     { "id": "Horsepower (metric)", "name": "Кінська сила (метрична)", "symbol": "hp", "multiplier": 735.49875 },
     { "id": "Horsepower (mechanical)", "name": "Кінська сила (механічна)", "symbol": "hp (mech)", "multiplier": 745.69987158227022 },
@@ -115,8 +115,8 @@
   ],
 
   "Electricity": [
-    { "id": "Volt", "name": "Вольт", "symbol": "V", "multiplier": 1.0 },
-    { "id": "Millivolt", "name": "Мілівольт", "symbol": "mV", "multiplier": 0.001 },
+    { "id": "Volt", "name": "Вольт", "symbol": "V", "multiplier": 1.0, "pinned": true },
+    { "id": "Millivolt", "name": "Мілівольт", "symbol": "mV", "multiplier": 0.001, "pinned": true },
     { "id": "Kilovolt", "name": "Кіловольт", "symbol": "kV", "multiplier": 1000.0 },
     { "id": "Ampere", "name": "Ампер", "symbol": "A", "multiplier": 1.0 },
     { "id": "Milliampere", "name": "Міліампер", "symbol": "mA", "multiplier": 0.001 },
@@ -193,7 +193,7 @@
   ],
 
   "Currency": [
-    { "id": "Українська гривня", "name": "Українська гривня", "symbol": "UAH", "multiplier": 1.0 }
+    { "id": "Українська гривня", "name": "Українська гривня", "symbol": "UAH", "multiplier": 1.0, "pinned": true }
   ],
 
   "Discount": [
@@ -268,8 +268,8 @@
 
   "Duration": [
     { "id": "Hour", "name": "Година", "symbol": "hour", "multiplier": 0.04 },
-    { "id": "Day", "name": "День", "symbol": "day", "multiplier": 1.0 },
-    { "id": "Week", "name": "Тиждень", "symbol": "week", "multiplier": 7.0 },
+    { "id": "Day", "name": "День", "symbol": "day", "multiplier": 1.0, "pinned": true },
+    { "id": "Week", "name": "Тиждень", "symbol": "week", "multiplier": 7.0, "pinned": true },
     { "id": "Month", "name": "Місяць", "symbol": "month", "multiplier": 30.0 },
     { "id": "Year", "name": "Рік", "symbol": "year", "multiplier": 365.0 }
   ],
@@ -291,8 +291,8 @@
     { "id": "Millisecond", "name": "Мілісекунда", "symbol": "ms", "multiplier": 0.001 },
     { "id": "Second", "name": "Секунда", "symbol": "s", "multiplier": 1.0 },
     { "id": "Minute", "name": "Хвилина", "symbol": "min", "multiplier": 60.0 },
-    { "id": "Hour", "name": "Година", "symbol": "h", "multiplier": 3600.0 },
-    { "id": "Day", "name": "День", "symbol": "d", "multiplier": 86400.0 },
+    { "id": "Hour", "name": "Година", "symbol": "h", "multiplier": 3600.0, "pinned": true },
+    { "id": "Day", "name": "День", "symbol": "d", "multiplier": 86400.0, "pinned": true },
     { "id": "Week", "name": "Тиждень", "symbol": "wk", "multiplier": 604800.0 },
     { "id": "Month (30d)", "name": "Місяць (30 днів)", "symbol": "mo", "multiplier": 2592000.0 },
     { "id": "Year (365d)", "name": "Рік (365 днів)", "symbol": "yr", "multiplier": 31536000.0 },
@@ -306,10 +306,10 @@
     { "id": "Byte", "name": "Байт", "symbol": "B", "multiplier": 1.0 },
     { "id": "Kilobyte (1000)", "name": "Кілобайт (1000)", "symbol": "KB", "multiplier": 1000.0 },
     { "id": "Kilobyte (1024)", "name": "Кібібайт (1024)", "symbol": "KiB", "multiplier": 1024.0 },
-    { "id": "Megabyte", "name": "Мегабайт", "symbol": "MB", "multiplier": 1000000.0 },
+    { "id": "Megabyte", "name": "Мегабайт", "symbol": "MB", "multiplier": 1000000.0, "pinned": true },
     { "id": "Mebibyte", "name": "Мебібайт", "symbol": "MiB", "multiplier": 1048576.0 },
     { "id": "Gigabyte", "name": "Гігабайт", "symbol": "GB", "multiplier": 1000000000.0 },
-    { "id": "Gibibyte", "name": "Гібібайт", "symbol": "GiB", "multiplier": 1073741824.0 },
+    { "id": "Gibibyte", "name": "Гібібайт", "symbol": "GiB", "multiplier": 1073741824.0, "pinned": true },
     { "id": "Terabyte", "name": "Терабайт", "symbol": "TB", "multiplier": 1000000000000.0 },
     { "id": "Petabyte", "name": "Петабайт", "symbol": "PB", "multiplier": 1000000000000000.0 }
   ],
@@ -317,8 +317,8 @@
   "Data_rate": [
     { "id": "bit per second", "name": "Біт за секунду", "symbol": "bps", "multiplier": 1.0 },
     { "id": "kilobit per second", "name": "Кілобіт за секунду", "symbol": "kbps", "multiplier": 1000.0 },
-    { "id": "megabit per second", "name": "Мегабіт за секунду", "symbol": "Mbps", "multiplier": 1000000.0 },
-    { "id": "gigabit per second", "name": "Гігабіт за секунду", "symbol": "Gbps", "multiplier": 1000000000.0 },
+    { "id": "megabit per second", "name": "Мегабіт за секунду", "symbol": "Mbps", "multiplier": 1000000.0, "pinned": true },
+    { "id": "gigabit per second", "name": "Гігабіт за секунду", "symbol": "Gbps", "multiplier": 1000000000.0, "pinned": true },
     { "id": "byte per second", "name": "Байт за секунду", "symbol": "B/s", "multiplier": 8.0 },
     { "id": "kilobyte per second", "name": "Кілобайт за секунду", "symbol": "kB/s", "multiplier": 8000.0 },
     { "id": "megabyte per second", "name": "Мегабайт за секунду", "symbol": "MB/s", "multiplier": 8000000.0 },
@@ -390,7 +390,7 @@
     { "id": "255.255.248.0", "symbol": "21" },
     { "id": "255.255.252.0", "symbol": "22" },
     { "id": "255.255.254.0", "symbol": "23" },
-    { "id": "255.255.255.0", "symbol": "24" },
+    { "id": "255.255.255.0", "symbol": "24", "pinned": true },
     { "id": "255.255.255.128", "symbol": "25" },
     { "id": "255.255.255.192", "symbol": "26" },
     { "id": "255.255.255.224", "symbol": "27" },
@@ -441,8 +441,8 @@
   ],
 
   "Cooking": [
-    { "id": "Teaspoon", "name": "Чайна ложка", "symbol": "tsp", "multiplier": 0.00492892159 },
-    { "id": "Tablespoon", "name": "Столова ложка", "symbol": "tbsp", "multiplier": 0.0147867648 },
+    { "id": "Teaspoon", "name": "Чайна ложка", "symbol": "tsp", "multiplier": 0.00492892159, "pinned": true },
+    { "id": "Tablespoon", "name": "Столова ложка", "symbol": "tbsp", "multiplier": 0.0147867648, "pinned": true },
     { "id": "Fluid ounce (US)", "name": "Рідка унція (США)", "symbol": "fl oz", "multiplier": 0.0295735296 },
     { "id": "Cup (US)", "name": "Чашка (США)", "symbol": "cup", "multiplier": 0.2365882365 },
     { "id": "Pint (US)", "name": "Пінта (США)", "symbol": "pt", "multiplier": 0.473176473 },
@@ -454,8 +454,8 @@
   ],
 
   "Food_energy": [
-    { "id": "Calorie (small)", "name": "Калорія (мала)", "symbol": "cal", "multiplier": 4.184 },
-    { "id": "Kilocalorie (kcal)", "name": "Кілокалорія (ккал)", "symbol": "kcal", "multiplier": 4184.0 },
+    { "id": "Calorie (small)", "name": "Калорія (мала)", "symbol": "cal", "multiplier": 4.184, "pinned": true },
+    { "id": "Kilocalorie (kcal)", "name": "Кілокалорія (ккал)", "symbol": "kcal", "multiplier": 4184.0, "pinned": true },
     { "id": "Joule", "name": "Джоуль", "symbol": "J", "multiplier": 1.0 },
     { "id": "Kilojoule", "name": "Кілоджоуль", "symbol": "kJ", "multiplier": 1000.0 },
     { "id": "Food Calorie (Cal)", "name": "Харчова калорія (Кал)", "symbol": "Cal", "multiplier": 4184.0 },
@@ -481,8 +481,8 @@
 
 
   "Angles": [
-    { "id": "Degree", "name": "Градус", "symbol": "°", "multiplier": 1.0 },
-    { "id": "Radian", "name": "Радіан", "symbol": "rad", "multiplier": 57.29577951308232 },
+    { "id": "Degree", "name": "Градус", "symbol": "°", "multiplier": 1.0, "pinned": true },
+    { "id": "Radian", "name": "Радіан", "symbol": "rad", "multiplier": 57.29577951308232, "pinned": true },
     { "id": "Arcminute", "name": "Мінута дуги", "symbol": "′", "multiplier": 0.016 },
     { "id": "Arcsecond", "name": "Секунда дуги", "symbol": "″", "multiplier": 0.00027 },
     { "id": "Gradian", "name": "Град", "symbol": "gon", "multiplier": 0.9 },
@@ -724,8 +724,8 @@
   ],
 
   "Activity": [
-    { "id": "Steps", "name": "Кроки", "symbol": "steps", "multiplier": 1.0 },
-    { "id": "Meters walked", "name": "Метрів пройдено", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Steps", "name": "Кроки", "symbol": "steps", "multiplier": 1.0, "pinned": true },
+    { "id": "Meters walked", "name": "Метрів пройдено", "symbol": "m", "multiplier": 1.0, "pinned": true },
     { "id": "Kilometers", "name": "Кілометри", "symbol": "km", "multiplier": 1000.0 },
     { "id": "Calories burned", "name": "Спалені калорії", "symbol": "kcal", "multiplier": 4184.0 },
     { "id": "MET-hours", "name": "MET-години", "symbol": "MET·h", "multiplier": 1.0 },
@@ -742,7 +742,7 @@
     { "id": "Quaternary", "name": "Четвіркова", "symbol": "QUA", "multiplier": 4.0 },
     { "id": "Quinary", "name": "П'ятіркова", "symbol": "QUIN", "multiplier": 5.0 },
     { "id": "Octal", "name": "Вісімкова", "symbol": "OCT", "multiplier": 8.0 },
-    { "id": "Decimal", "name": "Десяткова", "symbol": "DEC", "multiplier": 10.0 },
+    { "id": "Decimal", "name": "Десяткова", "symbol": "DEC", "multiplier": 10.0, "pinned": true },
     { "id": "Duodecimal", "name": "Дванадцяткова", "symbol": "DUO", "multiplier": 12.0 },
     { "id": "Hexadecimal", "name": "Шістнадцяткова", "symbol": "HEX", "multiplier": 16.0 },
     { "id": "Vigesimal", "name": "Двадцяткова", "symbol": "VIG", "multiplier": 20.0 }

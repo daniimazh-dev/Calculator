@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -123,8 +124,11 @@ open class CustomConvertorImplementation(
     fun getButtons(mode: String, unit: ConvertorUnit): ButtonsStack? {
         return getButtons(mode)?.get(unit)
     }
+    @Composable
+    fun getUnitsAsSate() = convertorScreenModel.units
 
     fun getUnits() = convertorScreenModel.convertorCore.getUnits(convertorData.id)
+
     fun getStartUnits() = convertorScreenModel.convertorCore.getStartUnit(convertorData.id)
     fun setUnit(unitList: List<ConvertorUnitJson>) {
         convertorScreenModel.convertorCore.setUnits(convertorData.id, unitList)

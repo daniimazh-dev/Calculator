@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -55,8 +56,11 @@ fun DropdownUnit(
     content: @Composable () -> Unit,
 
     ) {
-    val startIndex = unitList.indexOf(currentUnit)
-    var selectedIndex by remember(startIndex) { mutableStateOf(startIndex) }
+    val unitList = remember(expanded) { unitList }
+    val start = unitList.indexOfFirst { currentUnit.id == it.id }
+    val startIndex = if (start == -1) 0 else start
+
+    var selectedIndex by remember(startIndex) { mutableIntStateOf(startIndex) }
     val itemSize = 32.dp
     val itemHeightPx = with(LocalDensity.current) { itemSize.toPx() }
 
@@ -127,7 +131,6 @@ fun DropdownUnit(
                             unitList.lastIndex
                         )
                     )
-
                 }
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp)

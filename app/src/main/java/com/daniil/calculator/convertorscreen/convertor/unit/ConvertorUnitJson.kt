@@ -11,12 +11,14 @@ data class ConvertorUnitJson(
     val symbol: String,
     val multiplier: Double? = null,
     val saveData: Boolean = false,
+    val pinned: Boolean? = null
 ) {
     companion object {
         fun ConvertorUnitJson.fromJsonType(): ConvertorUnit {
             return ConvertorUnit(
                 id = this.id,
                 name = this.name,
+                pinned = this.pinned,
                 symbol = this.symbol,
             )
         }

@@ -13,8 +13,9 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import com.daniil.calculator.core.DaniilServerAPI
 import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class ConvertorCore(
@@ -154,8 +155,6 @@ class ConvertorCore(
     ) = withContext(Dispatchers.IO) {
         appContext = context.applicationContext
 
-
-
         LogManager.i("ConvertorCore perform", content = "Read template units data from \"$UNITS_FILE_ASSET\"")
         val templateUnit = try {
             val templateJson =
@@ -186,7 +185,8 @@ class ConvertorCore(
             val merged: Map<String, List<ConvertorUnitJson>> =
                 templateUnit.mapValues { (category, templateList) ->
                     val savedList = savedUnit[category].orEmpty()
-                    templateList.filter { !it.saveData } + savedList
+                    val savedIDs = savedList.map { it.id }
+                    templateList.filter { it.id !in savedIDs } + savedList
                 }
 
             units = merged.toMutableMap()
@@ -207,7 +207,7 @@ class ConvertorCore(
         try {
             val file = File(appContext.filesDir, UNITS_FILE_SAVE)
             val toSave = (unitMap ?: units).mapValues { (key, value) ->
-                value.filter { unitJson -> unitJson.saveData }.ifEmpty { emptyList() }
+                value.filter { unitJson -> unitJson.saveData || unitJson.pinned != null }.ifEmpty { emptyList() }
             }
             file.writeText(jsonParser.encodeToString(toSave))
             LogManager.c("ConvertorCore complete", content = "Save units data COMPLETE.\nLoad COMPLETE -> RETURN: COMPLETE")
@@ -227,7 +227,6 @@ class ConvertorCore(
 
         val savedUnits = units[group]?.filter { !it.saveData }
 
-
         savedUnits?.let {
             units[group] = it
             LogManager.c("ConvertorCore call complete", content = "Call COMPLETE. Units group: \"$group\" is reset to default")
@@ -237,11 +236,17 @@ class ConvertorCore(
         }
     }
 
-
-
-
     fun getUnits(group: String): List<ConvertorUnit> {
         return units[group]?.map { it.fromJsonType() } ?: emptyList()
+    }
+
+    fun getUnitsFlow(group: String): Flow<MutableList<ConvertorUnit>> = flow {
+        emit(getUnits(group).toMutableList())
+    }
+
+    fun searchGroupByUnit(id: String): String? {
+        units.forEach { (key, list) -> if (list.find { it.id == id } != null) return key }
+        return null
     }
 
     fun setUnits(
@@ -250,6 +255,21 @@ class ConvertorCore(
     ) {
         LogManager.i("ConvertorCore call", content = "Call: Set unit group: \"$group\"")
         units[group] = unitsList
+    }
+
+    fun pinUnit(
+        id: String,
+        isPinned: Boolean
+    ): String {
+        val group = searchGroupByUnit(id) ?: return "Group not found"
+        val unit = units[group]?.find { it.id == id }?.copy(pinned = isPinned) ?: return "unit not found"
+        val index = units[group]?.indexOfFirst { it.id == unit.id }!!
+        if (index == -1) return "Index not found"
+        val list = units[group]!!.toMutableList()
+        list.removeIf { it.id == unit.id }
+        list.add(index, unit)
+        units[group] = list
+        return unit.toString()
     }
 
     fun addToUnits(
@@ -275,14 +295,18 @@ class ConvertorCore(
         }
     }
 
-    fun getUnits(group: String, name: String): ConvertorUnit? {
-        return units[group]?.map { it.fromJsonType() }?.find { it.id == name }
+    fun getUnit(group: String, id: String): ConvertorUnit? {
+        return units[group]?.map { it.fromJsonType() }?.find { it.id == id }
+    }
+    fun getUnit(id: String): ConvertorUnit? {
+        val group = searchGroupByUnit(id) ?: return null
+        return units[group]?.map { it.fromJsonType() }?.find { it.id == id }
     }
 
     fun getAllUnits() = units
 
-    fun getButtonsList(): List<ConvertorData> = convertors.values.flatten()
-    fun getButtonsMap(): MutableMap<String, MutableList<ConvertorData>> {
+    fun getConvertorList(): List<ConvertorData> = convertors.values.flatten()
+    fun getConvertorsMap(): MutableMap<String, MutableList<ConvertorData>> {
         val merged = mutableMapOf<String, MutableList<ConvertorData>>()
         convertors.forEach { template ->
             val list = template.value
@@ -291,7 +315,7 @@ class ConvertorCore(
         return merged
     }
 
-    fun getButtonByGroups(group: String): List<ConvertorData>? = convertors[group]
+    fun getConvertorByGroups(group: String): List<ConvertorData>? = convertors[group]
 
 
     fun getStartListUnits(group: String): List<ConvertorUnit>? {

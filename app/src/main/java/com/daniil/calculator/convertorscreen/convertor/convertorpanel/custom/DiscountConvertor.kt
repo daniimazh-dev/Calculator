@@ -42,7 +42,7 @@ class DiscountConvertorImplementation(
 
             mode(id ="Discount", painterId = R.drawable.calculator_icon) {
                 content = {
-                    DiscountConvertor(units = getUnits())
+                    DiscountConvertor()
                 }
                 showClackPanel.value = false
             }
@@ -53,10 +53,7 @@ class DiscountConvertorImplementation(
 
 @Composable
 fun DiscountConvertorImplementation.DiscountConvertor(
-    modifier: Modifier = Modifier,
-    units: List<ConvertorUnit>,
-
-    ) {
+    modifier: Modifier = Modifier, ) {
     val context = LocalContext.current
     val calckBlock by convertorScreenModel.calckBlock.collectAsState()
 
@@ -98,9 +95,10 @@ fun DiscountConvertorImplementation.DiscountConvertor(
             "—"
         }
     }
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         convertorData = activeScreen ?: return,
         containerColor = Color.Transparent,
         scrollState = scrollState

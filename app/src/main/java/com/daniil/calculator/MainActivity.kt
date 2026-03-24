@@ -41,7 +41,7 @@ var globalVersion: VersionRequest? = null
 
 class MainActivity : AppCompatActivity() {
     private val calculatorScreenModel: CalculatorScreenModel by viewModels()
-    private val convertorScreenModel: ConvertorScreenModel by viewModels()
+    val convertorScreenModel: ConvertorScreenModel by viewModels()
     private val settingsScreenModel: SettingsScreenModel by viewModels()
 
 

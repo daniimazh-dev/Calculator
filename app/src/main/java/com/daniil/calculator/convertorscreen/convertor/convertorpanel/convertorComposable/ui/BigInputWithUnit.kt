@@ -97,7 +97,8 @@ fun ConvertorLayoutScope.BigInputWithUnit(
             }
             UnitSelect(
                 currentUnit = currentUnit,
-                unitList = unitList
+                unitList = unitList,
+                convertorScreenModel = convertorScreenModel
             ) {
                 onChangeUnit(it)
             }

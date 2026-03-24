@@ -37,7 +37,7 @@
     { "id": "Resolution", "title": "Роздільна здатність", "painterName": "resolution_icon", "startUnit": { "id": "dpi", "symbol": "dpi" }, "release": "Unavailable" },
     { "id": "Latency", "title": "Затримка", "painterName": "latency_icon", "startUnit": { "id": "Millisecond", "symbol": "ms" }, "release": "Experimental" },
     { "id": "Band_width", "title": "Смуга пропускання", "painterName": "bandwidth_icon", "startUnit": { "id": "Hz", "symbol": "Hz" }, "release": "Experimental" },
-    { "id": "IP_calculator", "title": "IP калькулятор", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Experimental" }
+    { "id": "IP_calculator", "title": "IP калькулятор", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Beta" }
 
   ],
   "Траспорт": [
@@ -48,7 +48,7 @@
   "Щоденна активність": [
     { "id": "Cooking", "title": "Кулінарні міри", "painterName": "cooking_icon", "startUnit": {  "id": "Cup (US)", "symbol": "cup"} },
     { "id": "Food_energy", "title": "Поживна енергія", "painterName": "calories_icon", "startUnit": { "id": "Calorie (small)", "symbol": "cal" } },
-    { "id": "Alcohol", "title": "Міцність алкоголю", "painterName": "alcohol_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable"   }
+    { "id": "Alcohol", "title": "Міцність алкоголю", "painterName": "alcohol_icon", "startUnit": { "id": "Percent", "symbol": "%" }, "release": "Unavailable" }
   ],
   "Математика": [
     { "id": "Angles", "title": "Кути", "painterName": "angles_icon", "startUnit": { "id": "Degree", "symbol": "°" } },

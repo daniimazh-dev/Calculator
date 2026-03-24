@@ -36,7 +36,7 @@
     { "id": "Resolution", "title": "Resolution", "painterName": "resolution_icon", "startUnit": { "id": "dpi", "symbol": "dpi" }, "release": "Unavailable" },
     { "id": "Latency", "title": "Latency", "painterName": "latency_icon", "startUnit": { "id": "Millisecond", "symbol": "ms" }, "release": "Experimental" },
     { "id": "Band_width", "title": "Band width", "painterName": "bandwidth_icon", "startUnit": { "id": "Hz", "symbol": "Hz" }, "release": "Experimental" },
-    { "id": "IP_calculator", "title": "IP calculator", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Experimental" }
+    { "id": "IP_calculator", "title": "IP calculator", "painterName": "ip_icon", "startUnit": { "id": "address", "symbol": "ip" }, "release": "Beta" }
 
   ],
   "Transport": [

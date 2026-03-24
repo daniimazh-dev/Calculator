@@ -312,6 +312,7 @@ class CurrencyConvertorImplementation(
             )
         }
         isLoading.value = false
+        serverError.value = false
     }
 
 }

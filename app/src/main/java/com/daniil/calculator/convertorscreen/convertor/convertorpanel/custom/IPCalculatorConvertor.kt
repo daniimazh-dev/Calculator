@@ -80,9 +80,10 @@ private fun IPCalculatorConvertorImplementation.IPCalculatorContentIPv4() {
         defaultValue = getUnits().getOrElse(23) { NullableUnit }
     ) as ConvertorUnit
 
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         convertorData = convertorData,
         containerColor = Color.Transparent,
         verticalArrangement = Arrangement.spacedBy(16.dp)

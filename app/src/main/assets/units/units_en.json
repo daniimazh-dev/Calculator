@@ -1,9 +1,9 @@
 {
   "Length": [
     { "id": "Millimeter", "name": "Millimeter", "symbol": "mm", "multiplier": 0.001 },
-    { "id": "Centimeter", "name": "Centimeter", "symbol": "cm", "multiplier": 0.01 },
+    { "id": "Centimeter", "name": "Centimeter", "symbol": "cm", "multiplier": 0.01, "pinned": true },
     { "id": "Decimeter", "name": "Decimeter", "symbol": "dm", "multiplier": 0.1 },
-    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Meter", "name": "Meter", "symbol": "m", "multiplier": 1.0, "pinned": true },
     { "id": "Kilometer", "name": "Kilometer", "symbol": "km", "multiplier": 1000.0 },
     { "id": "Inch", "name": "Inch", "symbol": "in", "multiplier": 0.0254 },
     { "id": "Foot", "name": "Foot", "symbol": "ft", "multiplier": 0.3048 },
@@ -15,8 +15,8 @@
   "Mass": [
     { "id": "Microgram", "name": "Microgram", "symbol": "µg", "multiplier": 0.000000001 },
     { "id": "Milligram", "name": "Milligram", "symbol": "mg", "multiplier": 0.000001 },
-    { "id": "Gram", "name": "Gram", "symbol": "g", "multiplier": 0.001 },
-    { "id": "Kilogram", "name": "Kilogram", "symbol": "kg", "multiplier": 1.0 },
+    { "id": "Gram", "name": "Gram", "symbol": "g", "multiplier": 0.001, "pinned": true },
+    { "id": "Kilogram", "name": "Kilogram", "symbol": "kg", "multiplier": 1.0, "pinned": true },
     { "id": "Tonne", "name": "Tonne", "symbol": "t", "multiplier": 1000.0 },
     { "id": "Ounce", "name": "Ounce", "symbol": "oz", "multiplier": 0.0283495 },
     { "id": "Pound", "name": "Pound", "symbol": "lb", "multiplier": 0.453592 },
@@ -27,9 +27,9 @@
 
   "Area": [
     { "id": "Square millimeter", "name": "Square millimeter", "symbol": "mm²", "multiplier": 0.000001 },
-    { "id": "Square centimeter", "name": "Square centimeter", "symbol": "cm²", "multiplier": 0.0001 },
+    { "id": "Square centimeter", "name": "Square centimeter", "symbol": "cm²", "multiplier": 0.0001, "pinned": true },
     { "id": "Square decimeter", "name": "Square decimeter", "symbol": "dm²", "multiplier": 0.01 },
-    { "id": "Square meter", "name": "Square meter", "symbol": "m²", "multiplier": 1.0 },
+    { "id": "Square meter", "name": "Square meter", "symbol": "m²", "multiplier": 1.0, "pinned": true },
     { "id": "Are", "name": "Are", "symbol": "a", "multiplier": 100.0 },
     { "id": "Hectare", "name": "Hectare", "symbol": "ha", "multiplier": 10000.0 },
     { "id": "Square kilometer", "name": "Square kilometer", "symbol": "km²", "multiplier": 1000000.0 },
@@ -40,9 +40,9 @@
 
   "Volume": [
     { "id": "Milliliter", "name": "Milliliter", "symbol": "mL", "multiplier": 0.001 },
-    { "id": "Centiliter", "name": "Centiliter", "symbol": "cL", "multiplier": 0.01 },
+    { "id": "Centiliter", "name": "Centiliter", "symbol": "cL", "multiplier": 0.01, "pinned": true },
     { "id": "Deciliter", "name": "Deciliter", "symbol": "dL", "multiplier": 0.1 },
-    { "id": "Liter", "name": "Liter", "symbol": "L", "multiplier": 1.0 },
+    { "id": "Liter", "name": "Liter", "symbol": "L", "multiplier": 1.0, "pinned": true },
     { "id": "Cubic centimeter", "name": "Cubic centimeter", "symbol": "cm³", "multiplier": 0.001 },
     { "id": "Cubic meter", "name": "Cubic meter", "symbol": "m³", "multiplier": 1000.0 },
     { "id": "Cubic inch", "name": "Cubic inch", "symbol": "in³", "multiplier": 0.016387064 },
@@ -52,8 +52,8 @@
   ],
 
   "Speed": [
-    { "id": "Meter per second", "name": "Meter per second", "symbol": "m/s", "multiplier": 1.0 },
-    { "id": "Kilometer per hour", "name": "Kilometer per hour", "symbol": "km/h", "multiplier": 0.2777777778 },
+    { "id": "Meter per second", "name": "Meter per second", "symbol": "m/s", "multiplier": 1.0, "pinned": true },
+    { "id": "Kilometer per hour", "name": "Kilometer per hour", "symbol": "km/h", "multiplier": 0.2777777778, "pinned": true },
     { "id": "Mile per hour", "name": "Mile per hour", "symbol": "mph", "multiplier": 0.44704 },
     { "id": "Knot", "name": "Knot", "symbol": "kn", "multiplier": 0.5144444444 },
     { "id": "Foot per second", "name": "Foot per second", "symbol": "ft/s", "multiplier": 0.3048 },
@@ -65,8 +65,8 @@
   ],
 
   "Temperature": [
-    { "id": "Celsius", "name": "Celsius", "symbol": "°C", "multiplier": 1.0 },
-    { "id": "Fahrenheit", "name": "Fahrenheit", "symbol": "°F", "multiplier": 1.0 },
+    { "id": "Celsius", "name": "Celsius", "symbol": "°C", "multiplier": 1.0, "pinned": true },
+    { "id": "Fahrenheit", "name": "Fahrenheit", "symbol": "°F", "multiplier": 1.0, "pinned": true },
     { "id": "Kelvin", "name": "Kelvin", "symbol": "K", "multiplier": 1.0 },
     { "id": "Rankine", "name": "Rankine", "symbol": "°R", "multiplier": 1.0 },
     { "id": "Réaumur", "name": "Réaumur", "symbol": "°Ré", "multiplier": 1.0 },
@@ -76,9 +76,9 @@
   ],
 
   "Pressure": [
-    { "id": "Pascal", "name": "Pascal", "symbol": "Pa", "multiplier": 1.0 },
+    { "id": "Pascal", "name": "Pascal", "symbol": "Pa", "multiplier": 1.0, "pinned": true },
     { "id": "Kilopascal", "name": "Kilopascal", "symbol": "kPa", "multiplier": 1000.0 },
-    { "id": "Bar", "name": "Bar", "symbol": "bar", "multiplier": 100000.0 },
+    { "id": "Bar", "name": "Bar", "symbol": "bar", "multiplier": 100000.0, "pinned": true },
     { "id": "Atmosphere", "name": "Atmosphere", "symbol": "atm", "multiplier": 101325.0 },
     { "id": "Torr", "name": "Torr", "symbol": "Torr", "multiplier": 133.3223684 },
     { "id": "Millimeter of mercury", "name": "Millimeter of mercury", "symbol": "mmHg", "multiplier": 133.322387415 },
@@ -90,11 +90,11 @@
 
   "Energy": [
     { "id": "Joule", "name": "Joule", "symbol": "J", "multiplier": 1.0 },
-    { "id": "Kilojoule", "name": "Kilojoule", "symbol": "kJ", "multiplier": 1000.0 },
+    { "id": "Kilojoule", "name": "Kilojoule", "symbol": "kJ", "multiplier": 1000.0, "pinned": true },
     { "id": "Calorie (thermochemical)", "name": "Calorie (thermochemical)", "symbol": "cal", "multiplier": 4.184 },
     { "id": "Kilocalorie (kcal)", "name": "Kilocalorie (kcal)", "symbol": "kcal", "multiplier": 4184.0 },
     { "id": "Watt-hour", "name": "Watt-hour", "symbol": "Wh", "multiplier": 3600.0 },
-    { "id": "Kilowatt-hour", "name": "Kilowatt-hour", "symbol": "kWh", "multiplier": 3600000.0 },
+    { "id": "Kilowatt-hour", "name": "Kilowatt-hour", "symbol": "kWh", "multiplier": 3600000.0, "pinned": true },
     { "id": "Electronvolt", "name": "Electronvolt", "symbol": "eV", "multiplier": 1.602176634e-19 },
     { "id": "BTU (International)", "name": "BTU (International)", "symbol": "BTU", "multiplier": 1055.05585262 },
     { "id": "Therm (US)", "name": "Therm (US)", "symbol": "thm", "multiplier": 1.055e8 },
@@ -102,8 +102,8 @@
   ],
 
   "Power": [
-    { "id": "Watt", "name": "Watt", "symbol": "W", "multiplier": 1.0 },
-    { "id": "Kilowatt", "name": "Kilowatt", "symbol": "kW", "multiplier": 1000.0 },
+    { "id": "Watt", "name": "Watt", "symbol": "W", "multiplier": 1.0, "pinned": true },
+    { "id": "Kilowatt", "name": "Kilowatt", "symbol": "kW", "multiplier": 1000.0, "pinned": true },
     { "id": "Megawatt", "name": "Megawatt", "symbol": "MW", "multiplier": 1000000.0 },
     { "id": "Horsepower (metric)", "name": "Horsepower (metric)", "symbol": "hp", "multiplier": 735.49875 },
     { "id": "Horsepower (mechanical)", "name": "Horsepower (mechanical)", "symbol": "hp (mech)", "multiplier": 745.69987158227022 },
@@ -115,8 +115,8 @@
   ],
 
   "Electricity": [
-    { "id": "Volt", "name": "Volt", "symbol": "V", "multiplier": 1.0 },
-    { "id": "Millivolt", "name": "Millivolt", "symbol": "mV", "multiplier": 0.001 },
+    { "id": "Volt", "name": "Volt", "symbol": "V", "multiplier": 1.0, "pinned": true },
+    { "id": "Millivolt", "name": "Millivolt", "symbol": "mV", "multiplier": 0.001, "pinned": true },
     { "id": "Kilovolt", "name": "Kilovolt", "symbol": "kV", "multiplier": 1000.0 },
     { "id": "Ampere", "name": "Ampere", "symbol": "A", "multiplier": 1.0 },
     { "id": "Milliampere", "name": "Milliampere", "symbol": "mA", "multiplier": 0.001 },
@@ -193,7 +193,7 @@
   ],
 
   "Currency": [
-    { "id": "Українська гривня", "name": "Українська гривня", "symbol": "UAH", "multiplier": 1.0 }
+    { "id": "Українська гривня", "name": "Українська гривня", "symbol": "UAH", "multiplier": 1.0, "pinned": true }
   ],
 
   "Discount": [
@@ -268,8 +268,8 @@
 
   "Duration": [
     { "id": "Minute", "name": "Minute", "symbol": "min", "multiplier": 0.0007 },
-    { "id": "Hour", "name": "Hour", "symbol": "hour", "multiplier": 0.04 },
-    { "id": "Day", "name": "Day", "symbol": "day", "multiplier": 1.0 },
+    { "id": "Hour", "name": "Hour", "symbol": "hour", "multiplier": 0.04, "pinned": true },
+    { "id": "Day", "name": "Day", "symbol": "day", "multiplier": 1.0, "pinned": true },
     { "id": "Week", "name": "Week", "symbol": "week", "multiplier": 7.0 },
     { "id": "Month", "name": "Month", "symbol": "month", "multiplier": 30.0 }
   ],
@@ -292,8 +292,8 @@
     { "id": "Millisecond", "name": "Millisecond", "symbol": "ms", "multiplier": 0.001 },
     { "id": "Second", "name": "Second", "symbol": "s", "multiplier": 1.0 },
     { "id": "Minute", "name": "Minute", "symbol": "min", "multiplier": 60.0 },
-    { "id": "Hour", "name": "Hour", "symbol": "h", "multiplier": 3600.0 },
-    { "id": "Day", "name": "Day", "symbol": "d", "multiplier": 86400.0 },
+    { "id": "Hour", "name": "Hour", "symbol": "h", "multiplier": 3600.0, "pinned": true },
+    { "id": "Day", "name": "Day", "symbol": "d", "multiplier": 86400.0, "pinned": true },
     { "id": "Week", "name": "Week", "symbol": "wk", "multiplier": 604800.0 },
     { "id": "Month (30d)", "name": "Month (30d)", "symbol": "mo", "multiplier": 2592000.0 },
     { "id": "Year (365d)", "name": "Year (365d)", "symbol": "yr", "multiplier": 31536000.0 },
@@ -306,10 +306,10 @@
     { "id": "Byte", "name": "Byte", "symbol": "B", "multiplier": 1.0 },
     { "id": "Kilobyte (1000)", "name": "Kilobyte (1000)", "symbol": "KB", "multiplier": 1000.0 },
     { "id": "Kilobyte (1024)", "name": "Kilobyte (1024)", "symbol": "KiB", "multiplier": 1024.0 },
-    { "id": "Megabyte", "name": "Megabyte", "symbol": "MB", "multiplier": 1000000.0 },
+    { "id": "Megabyte", "name": "Megabyte", "symbol": "MB", "multiplier": 1000000.0, "pinned": true },
     { "id": "Mebibyte", "name": "Mebibyte", "symbol": "MiB", "multiplier": 1048576.0 },
     { "id": "Gigabyte", "name": "Gigabyte", "symbol": "GB", "multiplier": 1000000000.0 },
-    { "id": "Gibibyte", "name": "Gibibyte", "symbol": "GiB", "multiplier": 1073741824.0 },
+    { "id": "Gibibyte", "name": "Gibibyte", "symbol": "GiB", "multiplier": 1073741824.0, "pinned": true },
     { "id": "Terabyte", "name": "Terabyte", "symbol": "TB", "multiplier": 1000000000000.0 },
     { "id": "Petabyte", "name": "Petabyte", "symbol": "PB", "multiplier": 1000000000000000.0 }
   ],
@@ -317,8 +317,8 @@
   "Data_rate": [
     { "id": "bit per second", "name": "bit per second", "symbol": "bps", "multiplier": 1.0 },
     { "id": "kilobit per second", "name": "kilobit per second", "symbol": "kbps", "multiplier": 1000.0 },
-    { "id": "megabit per second", "name": "megabit per second", "symbol": "Mbps", "multiplier": 1000000.0 },
-    { "id": "gigabit per second", "name": "gigabit per second", "symbol": "Gbps", "multiplier": 1000000000.0 },
+    { "id": "megabit per second", "name": "megabit per second", "symbol": "Mbps", "multiplier": 1000000.0, "pinned": true },
+    { "id": "gigabit per second", "name": "gigabit per second", "symbol": "Gbps", "multiplier": 1000000000.0, "pinned": true },
     { "id": "byte per second", "name": "byte per second", "symbol": "B/s", "multiplier": 8.0 },
     { "id": "kilobyte per second", "name": "kilobyte per second", "symbol": "kB/s", "multiplier": 8000.0 },
     { "id": "megabyte per second", "name": "megabyte per second", "symbol": "MB/s", "multiplier": 8000000.0 },
@@ -390,7 +390,7 @@
     { "id": "255.255.248.0", "symbol": "21" },
     { "id": "255.255.252.0", "symbol": "22" },
     { "id": "255.255.254.0", "symbol": "23" },
-    { "id": "255.255.255.0", "symbol": "24" },
+    { "id": "255.255.255.0", "symbol": "24", "pinned": true },
     { "id": "255.255.255.128", "symbol": "25" },
     { "id": "255.255.255.192", "symbol": "26" },
     { "id": "255.255.255.224", "symbol": "27" },
@@ -441,8 +441,8 @@
   ],
 
   "Cooking": [
-    { "id": "Teaspoon", "name": "Teaspoon", "symbol": "tsp", "multiplier": 0.00492892159 },
-    { "id": "Tablespoon", "name": "Tablespoon", "symbol": "tbsp", "multiplier": 0.0147867648 },
+    { "id": "Teaspoon", "name": "Teaspoon", "symbol": "tsp", "multiplier": 0.00492892159, "pinned": true },
+    { "id": "Tablespoon", "name": "Tablespoon", "symbol": "tbsp", "multiplier": 0.0147867648, "pinned": true },
     { "id": "Fluid ounce (US)", "name": "Fluid ounce (US)", "symbol": "fl oz", "multiplier": 0.0295735296 },
     { "id": "Cup (US)", "name": "Cup (US)", "symbol": "cup", "multiplier": 0.2365882365 },
     { "id": "Pint (US)", "name": "Pint (US)", "symbol": "pt", "multiplier": 0.473176473 },
@@ -454,8 +454,8 @@
   ],
 
   "Food_energy": [
-    { "id": "Calorie (small)", "name": "Calorie (small)", "symbol": "cal", "multiplier": 4.184 },
-    { "id": "Kilocalorie (kcal)", "name": "Kilocalorie (kcal)", "symbol": "kcal", "multiplier": 4184.0 },
+    { "id": "Calorie (small)", "name": "Calorie (small)", "symbol": "cal", "multiplier": 4.184, "pinned": true },
+    { "id": "Kilocalorie (kcal)", "name": "Kilocalorie (kcal)", "symbol": "kcal", "multiplier": 4184.0, "pinned": true },
     { "id": "Joule", "name": "Joule", "symbol": "J", "multiplier": 1.0 },
     { "id": "Kilojoule", "name": "Kilojoule", "symbol": "kJ", "multiplier": 1000.0 },
     { "id": "Food Calorie (Cal)", "name": "Food Calorie (Cal)", "symbol": "Cal", "multiplier": 4184.0 },
@@ -480,8 +480,8 @@
   ],
 
   "Angles": [
-    { "id": "Degree", "name": "Degree", "symbol": "°", "multiplier": 1.0 },
-    { "id": "Radian", "name": "Radian", "symbol": "rad", "multiplier": 57.29577951308232 },
+    { "id": "Degree", "name": "Degree", "symbol": "°", "multiplier": 1.0, "pinned": true },
+    { "id": "Radian", "name": "Radian", "symbol": "rad", "multiplier": 57.29577951308232, "pinned": true },
     { "id": "Arcminute", "name": "Arcminute", "symbol": "′", "multiplier": 0.016 },
     { "id": "Arcsecond", "name": "Arcsecond", "symbol": "″", "multiplier": 0.00027 },
     { "id": "Gradian", "name": "Gradian", "symbol": "gon", "multiplier": 0.9 },
@@ -723,8 +723,8 @@
   ],
 
   "Activity": [
-    { "id": "Steps", "name": "Steps", "symbol": "steps", "multiplier": 1.0 },
-    { "id": "Meters walked", "name": "Meters walked", "symbol": "m", "multiplier": 1.0 },
+    { "id": "Steps", "name": "Steps", "symbol": "steps", "multiplier": 1.0, "pinned": true },
+    { "id": "Meters walked", "name": "Meters walked", "symbol": "m", "multiplier": 1.0, "pinned": true },
     { "id": "Kilometers", "name": "Kilometers", "symbol": "km", "multiplier": 1000.0 },
     { "id": "Calories burned", "name": "Calories burned", "symbol": "kcal", "multiplier": 4184.0 },
     { "id": "MET-hours", "name": "MET-hours", "symbol": "MET·h", "multiplier": 1.0 },
@@ -741,7 +741,7 @@
     { "id": "Quaternary", "name": "Quaternary", "symbol": "QUA", "multiplier": 4.0 },
     { "id": "Quinary", "name": "Quinary", "symbol": "QUIN", "multiplier": 5.0 },
     { "id": "Octal", "name": "Octal", "symbol": "OCT", "multiplier": 8.0 },
-    { "id": "Decimal", "name": "Decimal", "symbol": "DEC", "multiplier": 10.0 },
+    { "id": "Decimal", "name": "Decimal", "symbol": "DEC", "multiplier": 10.0, "pinned": true },
     { "id": "Duodecimal", "name": "Duodecimal", "symbol": "DUO", "multiplier": 12.0 },
     { "id": "Hexadecimal", "name": "Hexadecimal", "symbol": "HEX", "multiplier": 16.0 },
     { "id": "Vigesimal", "name": "Vigesimal", "symbol": "VIG", "multiplier": 20.0 }

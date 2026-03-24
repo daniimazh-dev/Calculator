@@ -226,10 +226,10 @@ fun FunctionGraphConvertorImplementation.FunctionGraphScreen() {
         defaultValue = 8f
     ).toString().toFloat()
 
-
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         convertorData = convertorData,
         containerColor = Color.Transparent,
     ) {
@@ -573,10 +573,11 @@ private fun FunctionGraphConvertorImplementation.SettingsContent() {
         defaultValue = 8f
     ).toString().toFloat()
 
+    val unitList by getUnitsAsSate().collectAsState()
     ConvertorLayout(
         modifier = Modifier,
         convertorScreenModel = convertorScreenModel,
-        unitList = getUnits(),
+        unitList = unitList,
         contentPadding = PaddingValues(8.dp),
         convertorData = convertorData,
         verticalArrangement = Arrangement.spacedBy(16.dp),

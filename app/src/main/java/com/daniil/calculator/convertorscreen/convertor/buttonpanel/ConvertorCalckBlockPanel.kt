@@ -84,6 +84,7 @@ fun ConvertorCalckBlockPanel(
             currentUnit = currentUnit.ifNullable { inputUnit },
             unitList = units,
             horizontalAlignment = Alignment.End,
+            convertorScreenModel = convertorScreenModel,
             onSelected = { unit ->
                 convertorScreenModel.saveParameters {
                     when (currentUnit) {

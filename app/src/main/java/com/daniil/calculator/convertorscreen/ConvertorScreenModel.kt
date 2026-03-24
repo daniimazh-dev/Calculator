@@ -20,21 +20,29 @@ import com.daniil.calculator.core.CalculatorCore
 import com.daniil.calculator.core.ConvertorCore
 import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 class ConvertorScreenModel : ViewModel() {
 
     // -------------------- STATE --------------------
     // convertors
-    private val _convertorButtons =
+    private val _convertors =
         MutableStateFlow(mutableMapOf<String, MutableList<ConvertorData>>())
 
     // current convertor UI
-    private val _currenrConvertorScreen = MutableStateFlow<ConvertorData?>(null)
+    private val _currentConvertorScreen = MutableStateFlow<ConvertorData?>(null)
 
     private val _currentScreen = MutableStateFlow<ConvertorScreens>(ConvertorScreens.Home)
 
@@ -71,13 +79,21 @@ class ConvertorScreenModel : ViewModel() {
     var componentOffset = MutableStateFlow(0f)
 
 
-    val convertorButtons = _convertorButtons.asStateFlow()
+    val convertors = _convertors.asStateFlow()
     val calckButtons = _calckButtons.asStateFlow()
     val calckBlock = _currentCalckBlock.asStateFlow()
-    val currentConvertor = _currenrConvertorScreen.asStateFlow()
+    val currentConvertor = _currentConvertorScreen.asStateFlow()
     val currentScreen = _currentScreen.asStateFlow()
     val currentUnit = _currentUnit.asStateFlow()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val units = currentConvertor.flatMapLatest { convertor ->
+        convertor?.let { convertorCore.getUnitsFlow(it.id) } ?: flowOf(mutableListOf())
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = mutableListOf()
+    )
     // -------------------- INIT --------------------
     init {
         LogManager.c("ViewModel START", content = "ConvertorViewModel start init")
@@ -86,22 +102,20 @@ class ConvertorScreenModel : ViewModel() {
     suspend fun load(
         context: Context,
         locale: String
-    ) {
-        convertorCore = ConvertorCore(this, locale)
+    ) = withContext(Dispatchers.IO) {
+        convertorCore = ConvertorCore(this@ConvertorScreenModel, locale)
         LogManager.i("ViewModel load", content = "ConvertorViewModel fun \"load\" is started. Load data")
         convertorCore.load(context)
-        _convertorButtons.value = convertorCore.getButtonsMap()
+        _convertors.value = convertorCore.getConvertorsMap()
+        launch {
+            convertorCore.checkConvertorsRelease()
+            _convertors.value = convertorCore.getConvertorsMap()
+        }
         LogManager.c("ViewModel load complete", content = "ConvertorViewModel fun \"load\" is complete")
 
     }
     @Composable
     fun RegisterCustomConvertor() {
-        LaunchedEffect(Unit) {
-            launch(Dispatchers.IO) {
-                convertorCore.checkConvertorsRelease()
-            }
-        }
-
         LogManager.i("ViewModel load", content = "ConvertorViewModel fun \"registerCustomConvertor\" is started. Register custom convertors")
         registerCustomConvertors(this)
         LogManager.c("ViewModel complete", content = "Register custom convertors is COMPLETE")
@@ -109,22 +123,22 @@ class ConvertorScreenModel : ViewModel() {
 
     suspend fun save() {
         convertorCore.saveUnitData(convertorCore.getAllUnits())
-        convertorCore.saveConvertorsData(_convertorButtons.value)
+        convertorCore.saveConvertorsData(_convertors.value)
     }
 
     private fun loadParameters() {
-        val currentConvertor = _currenrConvertorScreen.value ?: return
+        val currentConvertor = _currentConvertorScreen.value ?: return
         convertorParametersStore.setAllOf(currentConvertor.id, currentConvertor.saveParameters)
         currentParameters.value = currentConvertor.saveParameters
     }
 
     suspend fun saveConvertorButtonsData() {
-        convertorCore.saveConvertorsData(_convertorButtons.value)
+        convertorCore.saveConvertorsData(_convertors.value)
     }
 
 
     private suspend fun saveConvertorData() {
-        val currentConvertor = _currenrConvertorScreen.value ?: return
+        val currentConvertor = _currentConvertorScreen.value ?: return
         updateButtonData(
             currentConvertor.copy(
                 calckBlock = calckBlock.value,
@@ -133,13 +147,13 @@ class ConvertorScreenModel : ViewModel() {
                 saveParameters = currentParameters.value
             )
         )
-        convertorCore.saveConvertorsData(_convertorButtons.value)
+        convertorCore.saveConvertorsData(_convertors.value)
     }
 
     // -------------------- NAVIGATION --------------------
 
     fun goToHome() {
-        val currentConvertor = _currenrConvertorScreen.value ?: run {
+        val currentConvertor = _currentConvertorScreen.value ?: run {
             _currentScreen.value = ConvertorScreens.Home
             return
         }
@@ -154,13 +168,13 @@ class ConvertorScreenModel : ViewModel() {
                 val visible = scrollState.layoutInfo.visibleItemsInfo
                 val range =
                     if (visible.isNotEmpty()) visible.first().index..visible.last().index else 0..0
-                val itemIndex = (_convertorButtons.value.values.indexOfFirst { list ->
+                val itemIndex = (_convertors.value.values.indexOfFirst { list ->
                     list.any { it.id == currentConvertor.id }
                 } * 2 + 1).coerceAtLeast(0)
                 if (itemIndex !in range) scrollState.scrollToItem(itemIndex)
             }
             delay(20)
-            _currenrConvertorScreen.value = null
+            _currentConvertorScreen.value = null
         }
 
     }
@@ -170,7 +184,7 @@ class ConvertorScreenModel : ViewModel() {
         viewModelScope.launch {
             saveConvertorData()
         }
-        customConvertorManager.getImplementation(_currenrConvertorScreen.value?.id ?: return)
+        customConvertorManager.getImplementation(_currentConvertorScreen.value?.id ?: return)
             ?.buildResult?.runtime?.onHide()
 
     }
@@ -183,14 +197,14 @@ class ConvertorScreenModel : ViewModel() {
 
         if (convertorButtonData != null) {
             _currentScreen.value = ConvertorScreens.Convertor
-            _currenrConvertorScreen.value = convertorButtonData
+            _currentConvertorScreen.value = convertorButtonData
 
 
             viewConvertorMode.value = convertorButtonData.currentViewMode
                 ?: customConvertor?.convertorScreen?.startViewModeId
 
             _currentUnit.value =
-                convertorCore.getUnits(convertorButtonData.id, convertorButtonData.startUnit.name) // for Language
+                convertorCore.getUnit(convertorButtonData.id, convertorButtonData.startUnit.name) // for Language
                 ?: convertorButtonData.startUnit
 
             loadParameters()
@@ -216,10 +230,10 @@ class ConvertorScreenModel : ViewModel() {
 
     fun setFavoriteButton(
         favorite: Boolean,
-        convertorData: ConvertorData? = _currenrConvertorScreen.value,
+        convertorData: ConvertorData? = _currentConvertorScreen.value,
     ) {
-        _currenrConvertorScreen.value?.let {
-            _currenrConvertorScreen.value = convertorData?.copy(favorite = favorite)
+        _currentConvertorScreen.value?.let {
+            _currentConvertorScreen.value = convertorData?.copy(favorite = favorite)
         }
         convertorData?.let {
             updateButtonData(convertorData.copy(favorite = favorite))
@@ -258,7 +272,7 @@ class ConvertorScreenModel : ViewModel() {
 
     fun setButtons(
         unit: ConvertorUnit?,
-        convertorData: ConvertorData = _currenrConvertorScreen.value!!,
+        convertorData: ConvertorData = _currentConvertorScreen.value!!,
     ) {
         val customScreen = customConvertorManager.getImplementation(convertorData.id)?.buildResult?.convertorScreen
 //        val firstKey = customScreen?.viewScreens?.keys?.first()?.id
@@ -275,7 +289,7 @@ class ConvertorScreenModel : ViewModel() {
         clearInput: Boolean = false,
         calckBlock: String? = null,
     ) {
-        val currentConvertor = _currenrConvertorScreen.value ?: return
+        val currentConvertor = _currentConvertorScreen.value ?: return
         calckBlock?.let { setCalck(it) }
 
         setButtons(unit, currentConvertor)
@@ -299,11 +313,11 @@ class ConvertorScreenModel : ViewModel() {
 
 
     fun saveParameters(
-        convertorName: String? = _currenrConvertorScreen.value?.id,
+        convertorName: String? = _currentConvertorScreen.value?.id,
         data: ParameterBuilder.() -> Unit,
     ) {
         convertorName?.let {
-            val screen = _currenrConvertorScreen.value ?: return
+            val screen = _currentConvertorScreen.value ?: return
             convertorParametersStore.setParameter(convertorName, data)
             currentParameters.value = convertorParametersStore.getAllOf(screen.id) ?: listOf()
         }
@@ -332,10 +346,10 @@ class ConvertorScreenModel : ViewModel() {
     }
 
     fun clearParam(
-        convertorName: String? = _currenrConvertorScreen.value?.id,
+        convertorName: String? = _currentConvertorScreen.value?.id,
         key: String? = null,
     ) {
-        val convertorName = convertorName ?: _currenrConvertorScreen.value?.id ?: return
+        val convertorName = convertorName ?: _currentConvertorScreen.value?.id ?: return
 
         if (key != null) {
             convertorParametersStore.deleteParameter(convertorName, key)
@@ -350,16 +364,16 @@ class ConvertorScreenModel : ViewModel() {
 
     private fun updateButtonData(updated: ConvertorData) {
         val entry =
-            _convertorButtons.value.entries.firstOrNull { (_, list) ->
+            _convertors.value.entries.firstOrNull { (_, list) ->
                 list.any { it.id == updated.id }
             } ?: return
 
         val list = entry.value
         val index = list.indexOfFirst { it.id == updated.id }
         if (index != -1) {
-            val new = _convertorButtons.value[entry.key] ?: return
+            val new = _convertors.value[entry.key] ?: return
             new[index] = updated
-            _convertorButtons.value[entry.key] = new
+            _convertors.value[entry.key] = new
         }
 
     }
@@ -367,7 +381,7 @@ class ConvertorScreenModel : ViewModel() {
 
     // -------------------- LOGIC HELPERS --------------------
     fun getConvertorData(id: String): ConvertorData? =
-        _convertorButtons.value.values.flatten().find { it.id == id }
+        _convertors.value.values.flatten().find { it.id == id }
 
 
 }

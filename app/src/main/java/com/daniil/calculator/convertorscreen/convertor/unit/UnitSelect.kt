@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.daniil.calculator.convertorscreen.ConvertorScreenModel
 
 
 @Composable
@@ -18,6 +19,7 @@ fun UnitSelect(
     currentUnit: ConvertorUnit,
     unitList: List<ConvertorUnit>,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+    convertorScreenModel: ConvertorScreenModel? = null,
     onSelected: (ConvertorUnit) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -54,6 +56,7 @@ fun UnitSelect(
     UnitAlert(
         expanded = expanded,
         unitList = unitList,
+        convertorScreenModel = convertorScreenModel,
         oldSelected = currentUnit,
         onDismissRequest = {
             expanded = false

@@ -59,7 +59,7 @@ fun SharedTransitionScope.ConvertorHomeScreen(
     val filterUnavailableButtons =
         DynamicSettingsManager.getValue("unavailable_convertor_buttons").toBoolean()
 
-    val buttons by convertorScreenModel.convertorButtons.collectAsState()
+    val buttons by convertorScreenModel.convertors.collectAsState()
 
     if (buttons.isEmpty()) {
         Box(
