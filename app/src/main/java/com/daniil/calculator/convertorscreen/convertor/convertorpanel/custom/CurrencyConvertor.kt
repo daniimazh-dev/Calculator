@@ -71,8 +71,6 @@ class CurrencyConvertorImplementation(
     var serverError = mutableStateOf(false)
     val currencyApi = DaniilServerAPI()
     val coroutine = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-
     override fun onCreate() {
         super.onCreate()
         setContent {

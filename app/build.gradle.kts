@@ -16,8 +16,8 @@ configure<ApplicationExtension> {
         applicationId = "com.daniil.calculator"
         minSdk = 26
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.0.2"
+        versionCode = 6
+        versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,4 +78,5 @@ dependencies {
     implementation(libs.androidx.compose.animation.core)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("com.daniil:csb-release@aar")
 }

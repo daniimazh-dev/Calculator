@@ -26,6 +26,7 @@ import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
 import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.ui.theme.CalculatorTheme
 import com.daniil.calculator.ui.theme.getThemeMode
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -35,7 +36,7 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 
 val openScreen = mutableIntStateOf(0)
-const val currentVersionCode = 5
+const val currentVersionCode = 6
 var firstOpenApp = true
 var globalVersion: VersionRequest? = null
 
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         val sharedPref = this@MainActivity
             .getSharedPreferences("save", MODE_PRIVATE)
         firstOpenApp = sharedPref.getBoolean("firstOpenApp", false)
