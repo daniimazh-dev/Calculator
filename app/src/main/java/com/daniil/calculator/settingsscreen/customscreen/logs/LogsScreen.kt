@@ -1,6 +1,5 @@
 package com.daniil.calculator.settingsscreen.customscreen.logs
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,22 +39,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daniil.calculator.R
-import com.daniil.calculator.convertorscreen.ConvertorScreenModel
-import com.daniil.calculator.settingsscreen.SettingsScreenModel
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSetting
+import com.daniil.csb.screens.CustomScreen.CustomScreenScope
+import com.daniil.csb.screens.CustomScreen
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
 import com.daniil.calculator.universal.simpleVerticalScrollbar
+import com.daniil.csb.SettingsNavigationModel
+
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 @Composable
-fun LogsScreen(
-    setting: DynamicSetting,
-    settingsScreenModel: SettingsScreenModel,
-) {
-
-
+fun CustomScreen.CustomScreenScope.LogsScreen(navigationModel: SettingsNavigationModel, ) {
     var filter by remember { mutableStateOf<ConvertorLogType?>(null) }
 
     val logs = LogManager.filterType(filter)
@@ -83,28 +78,7 @@ fun LogsScreen(
     Column(
         modifier = Modifier
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                IconButton(onClick = {
-                    settingsScreenModel.backStack()
-                }) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Go back"
-                    )
-                }
-                Text(
-                    text = "Logs",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
-
+        ScreenTopBar(navigationModel = navigationModel) {
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -134,8 +108,6 @@ fun LogsScreen(
                     )
                 }
             }
-
-
 
         }
         val lazyListState = rememberLazyListState()
@@ -271,10 +243,11 @@ private fun LogItem(
 
         }
     } else {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .height(36.dp)
-            .background(Color.DarkGray),
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(36.dp)
+                .background(Color.DarkGray),
 //            verticalAlignment = Alignment.CenterVertically,
 //            horizontalArrangement = Arrangement.Center
             contentAlignment = Alignment.CenterEnd

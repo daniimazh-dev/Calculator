@@ -201,7 +201,7 @@ class CurrencyConvertorImplementation(
     }
 
     private suspend fun loadCurrency(time: LocalDate? = null) {
-        val token = UserDataManager.token ?: return
+        val token = UserDataManager.token.value ?: return
         isLoading.value = true
         val today = LocalDate.now()
         val parameters = convertorScreenModel.currentParameters.value

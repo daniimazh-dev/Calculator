@@ -25,9 +25,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 
 @Composable
 fun DropdownUnit(
@@ -66,7 +66,7 @@ fun DropdownUnit(
 
     val context = LocalContext.current
 
-    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+    val vibrationEnabled by SettingsProvider.getValue<Boolean>("button_vibration_enable").collectAsState()
     val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val vibratorManager =
             context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager

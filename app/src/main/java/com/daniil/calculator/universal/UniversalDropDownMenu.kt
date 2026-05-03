@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,8 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.daniil.calculator.R
-import com.daniil.calculator.convertorscreen.convertor.convertorpanel.convertorComposable.layout.ConvertorLayoutScope
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -52,7 +52,7 @@ fun UniversalDropDownMenu(
 ) {
     val context = LocalContext.current
 
-    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+    val vibrationEnabled by SettingsProvider.getValue<Boolean>("button_vibration_enable").collectAsState()
     val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val vibratorManager =
             context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager

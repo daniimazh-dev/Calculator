@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,12 +31,12 @@ import androidx.core.net.toUri
 import com.daniil.calculator.core.DaniilServerAPI
 import com.daniil.calculator.core.RetrofitDaniilServerInstance
 import com.daniil.calculator.core.VersionRequest
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 
 
 @Composable
 fun UpdateVersionAlert() {
-    val skipVersionRequest = DynamicSettingsManager.getValue("version_request").toBoolean()
+    val skipVersionRequest by SettingsProvider.getValue<Boolean>("version_request").collectAsState()
     if (skipVersionRequest) return
 
     val context = LocalContext.current
@@ -43,14 +44,14 @@ fun UpdateVersionAlert() {
     var showAlert by remember { mutableStateOf(false) }
 
     val currentVersion = getCurrentVersion(context)
-    val simulateVersion = DynamicSettingsManager.getValue("imitate_version")?.toIntOrNull()
+    val simulateVersion by SettingsProvider.getValue<String>("imitate_version").collectAsState()
     var globalVersion by remember { mutableStateOf<VersionRequest?>(null) }
 
     val currentVersionCode = remember {
-        simulateVersion?.let {
-            val label = "Version imitation is used: simulate: $it, current: $currentVersionCode"
+        simulateVersion.toIntOrNull()?.let { version ->
+            val label = "Version imitation is used: simulate: $version, current: $currentVersionCode"
             Toast.makeText(context, label, Toast.LENGTH_SHORT).show()
-            simulateVersion
+            version
         } ?: currentVersionCode
     }
 
@@ -69,12 +70,13 @@ fun UpdateVersionAlert() {
     }
     val _globalVersion = globalVersion ?: return
     if (_globalVersion.versionCode > currentVersionCode && showAlert) {
+        var selectedDontShow by remember { mutableStateOf(false) }
         AlertDialog(
             title = {
                 Text(stringResource(R.string.new_version) + " " +  _globalVersion.versionName)
             },
             text = {
-                var selectedDontShow by remember { mutableStateOf(false) }
+
                 Column() {
                     Text(_globalVersion.whatsNew)
                     Spacer(modifier = Modifier.height(12.dp))
@@ -87,7 +89,6 @@ fun UpdateVersionAlert() {
                             checked = selectedDontShow,
                             onCheckedChange = {
                                 selectedDontShow = !selectedDontShow
-                                DynamicSettingsManager.setValue("version_request", selectedDontShow)
                             }
                         )
                         Text(stringResource(R.string.dontShowAgain))
@@ -100,6 +101,7 @@ fun UpdateVersionAlert() {
             },
             dismissButton = {
                 TextButton(onClick = {
+                    SettingsProvider.setValue("version_request", selectedDontShow)
                     showAlert = false
                 }) {
                     Text(stringResource(R.string.cancel))
@@ -107,7 +109,8 @@ fun UpdateVersionAlert() {
             },
             confirmButton = {
                 TextButton(onClick = {
-                    val useTestServer = DynamicSettingsManager.getValue("use_test_server").toBoolean()
+                    SettingsProvider.setValue("version_request", selectedDontShow)
+                    val useTestServer = SettingsProvider.getValue<Boolean>("use_test_server").value
                     val url = when {
                         useTestServer -> RetrofitDaniilServerInstance.TEST_URL
                         else -> RetrofitDaniilServerInstance.BASE_URL

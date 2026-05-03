@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val appLogoBackground = Color(0xA9C7EFFF)
 val appLogoBackground2 = Color(0xA9B0ACFA)
+val appLogoBackgroundBeta = Color(0xA99CFCB7)
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)

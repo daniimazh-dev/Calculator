@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,24 +19,20 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
@@ -52,33 +47,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.daniil.calculator.R
 import com.daniil.calculator.core.DaniilServerAPI
 import com.daniil.calculator.currentVersionCode
-import com.daniil.calculator.settingsscreen.SettingsScreenModel
-import com.daniil.calculator.settingsscreen.screen.DefaultAppBar
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSetting
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
-import com.daniil.calculator.universal.simpleVerticalScrollbar
-import com.daniil.calculator.utilites.customOverscroll
-import kotlinx.coroutines.Dispatchers
+import com.daniil.csb.SettingsNavigationModel
+import com.daniil.csb.SettingsProvider
+import com.daniil.csb.screens.CustomScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import kotlin.math.roundToInt
 
 
 @Composable
-fun ChangeLogScreen(
-    setting: DynamicSetting,
-    settingsScreenModel: SettingsScreenModel,
+fun CustomScreen.CustomScreenScope.ChangeLogScreen(
+    navigationScreenModel: SettingsNavigationModel
 ) {
     var currentLogIndex by remember { mutableStateOf<Int?>(null) }
-    val simulateVersion = DynamicSettingsManager.getValue("imitate_version")?.toIntOrNull()
+    val simulateVersion by SettingsProvider.getValue<String>("imitate_version").collectAsState()
 
-    val currentVersionCode = remember { simulateVersion ?: currentVersionCode }
+    val currentVersionCode = remember { simulateVersion.toIntOrNull() ?: currentVersionCode }
     val changeLogs by produceState<List<ChangeLogData>?>(emptyList()) {
         value = try {
             val list = DaniilServerAPI().getChangeLog().body()?.changeLogList ?: emptyList()
@@ -112,61 +100,52 @@ fun ChangeLogScreen(
         }
 
     }
-    var animatedOverscrollAmount by remember { mutableFloatStateOf(0f) }
-
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomEnd
     ) {
-        Box(
+
+
+        Column(
             modifier = Modifier
-                .simpleVerticalScrollbar(lazyListState)
-                .customOverscroll(
-                    lazyListState,
-                    onNewOverscrollAmount = { animatedOverscrollAmount = it }
-                )
-                .offset { IntOffset(0, animatedOverscrollAmount.roundToInt()) }
+                .fillMaxSize()
+                .padding(8.dp),
         ) {
-            DefaultAppBar(
-                modifier = Modifier,
-                title = setting.title,
-                onBackStack = { settingsScreenModel.backStack() }
-            ) {
-                if (changeLogs == null) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(62.dp),
-                                imageVector = ImageVector.vectorResource(R.drawable.wifi_lost_icon),
-                                contentDescription = "Internet lost"
-                            )
-                            Text(stringResource(R.string.no_conection_server))
-                        }
-                    }
-                } else if (changeLogs?.isEmpty() == true) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
-                } else {
-                    LazyColumn(
-                        state = lazyListState,
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+
+            ScreenTopBar(navigationModel = navigationScreenModel)
+
+            if (changeLogs == null) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        itemsIndexed(
-                            items = changeLogs!!,
-                            key = { _, item -> item.version }) { index, item ->
-                            ChangeLogItem(changeLogData = item, current = currentLogIndex == index)
-                        }
+                        Icon(
+                            modifier = Modifier.size(62.dp),
+                            imageVector = ImageVector.vectorResource(R.drawable.wifi_lost_icon),
+                            contentDescription = "Internet lost"
+                        )
+                        Text(stringResource(R.string.no_conection_server))
                     }
                 }
-
+            } else if (changeLogs?.isEmpty() == true) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                LazyColumn(
+                    state = lazyListState,
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    itemsIndexed(
+                        items = changeLogs!!,
+                        key = { _, item -> item.version }) { index, item ->
+                        ChangeLogItem(changeLogData = item, current = currentLogIndex == index)
+                    }
+                }
             }
+
         }
 
         val coroutine = rememberCoroutineScope()
@@ -192,11 +171,10 @@ fun ChangeLogScreen(
                 )
             }
         }
-
-
     }
 
 }
+
 
 @Serializable
 @Immutable

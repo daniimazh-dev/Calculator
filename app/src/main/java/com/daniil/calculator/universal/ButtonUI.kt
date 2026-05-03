@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,7 +40,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.daniil.calculator.convertorscreen.convertor.convertorpanel.default_.ButtonUi
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -102,7 +103,7 @@ fun ButtonUI(
     val effect = VibrationEffect.createOneShot(18, VibrationEffect.DEFAULT_AMPLITUDE)
 
 
-    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+    val vibrationEnabled by SettingsProvider.getValue<Boolean>("button_vibration_enable").collectAsState()
     Box(
         modifier = modifier
             .clip(MaterialTheme.shapes.medium)

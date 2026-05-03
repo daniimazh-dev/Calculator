@@ -39,7 +39,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.daniil.calculator.R
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSetting
 
 
 private data class PanelShape(
@@ -57,9 +56,7 @@ private data class Padding(
 )
 
 @Composable
-fun EsterEgg(
-    setting: DynamicSetting
-) {
+fun EsterEgg() {
 
     val totalSize = 240
     val panelSizeK = 2.1
@@ -348,12 +345,5 @@ private fun Panel(
 @Preview
 @Composable
 private fun EsterEggPreview() {
-    EsterEgg(
-        DynamicSetting(
-            id = "ester_egg",
-            title = "Ester egg",
-            description = "V 1.0.0",
-            type = "Ester Egg"
-        )
-    )
+    EsterEgg()
 }

@@ -2,7 +2,7 @@ package com.daniil.calculator.settingsscreen.customscreen.logs
 
 import android.content.Context
 import androidx.compose.runtime.Immutable
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -31,7 +31,7 @@ object LogManager {
         return logList.filter { it.name == name }
     }
     suspend fun loadLogs(context: Context) = withContext(Dispatchers.IO) {
-        if (!DynamicSettingsManager.getValue("save_logs").toBoolean()) return@withContext
+        if (!SettingsProvider.getValue<Boolean>("save_logs").value) return@withContext
         val file = File(context.filesDir, SAVE_LOG_FILE)
         if (!file.exists()) {
             file.createNewFile()
@@ -48,7 +48,7 @@ object LogManager {
 
     }
     suspend fun saveLogs(context: Context) = withContext(Dispatchers.IO) {
-        if (!DynamicSettingsManager.getValue("save_logs").toBoolean()) return@withContext
+        if (!SettingsProvider.getValue<Boolean>("save_logs").value) return@withContext
         val file = File(context.filesDir, SAVE_LOG_FILE)
         if (!file.exists()) {
             file.createNewFile()
@@ -68,7 +68,8 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+
         logList.add(
             ConvertorLogData(
                 codeId = codeId,
@@ -86,7 +87,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
 
         logList.add(
             ConvertorLogData(
@@ -105,7 +106,8 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+
         logList.add(
             ConvertorLogData(
                 codeId = codeId,
@@ -123,7 +125,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
 
         logList.add(
             ConvertorLogData(
@@ -142,7 +144,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
 
         logList.add(
             ConvertorLogData(
@@ -161,7 +163,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
 
         logList.add(
             ConvertorLogData(
@@ -180,7 +182,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!DynamicSettingsManager.getValue("collect_logs").toBoolean()) return
+        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
 
         logList.add(
             ConvertorLogData(

@@ -17,8 +17,8 @@ import com.daniil.calculator.calculatorscreen.history.HistoryManager
 import com.daniil.calculator.convertorscreen.convertor.convertorpanel.default_.ButtonUi
 import com.daniil.calculator.core.CalculatorCore
 import com.daniil.calculator.core.UserDataManager
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.ButtonData
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -456,7 +456,7 @@ class CalculatorScreenModel(application: Application) : AndroidViewModel(applica
             if (predictiveCalckBlock.value == "67" && calckBlock.value == "67") {
                 waveEffect.value = !waveEffect.value
             } else {
-                if (DynamicSettingsManager.getValue("save_history").toBoolean()) {
+                if (SettingsProvider.getValue<Boolean>("save_history").value) {
                     calckHistory.addHistory(_calckBlock.value, result)
                 }
             }

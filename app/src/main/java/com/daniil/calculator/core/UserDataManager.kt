@@ -6,6 +6,7 @@ import android.os.Build
 import android.widget.Toast
 import com.daniil.calculator.currentVersionCode
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -19,7 +20,7 @@ data class UserToken(
 )
 
 object UserDataManager {
-    var token: String? = null
+    var token = MutableStateFlow<String?>(null)
     const val USER_DATA_FILE = "user_data_locale.json"
     private val server = DaniilServerAPI()
 
@@ -59,7 +60,7 @@ object UserDataManager {
     private suspend fun singUp(context: Context) = withContext(Dispatchers.IO) {
         try {
             val logData = getAppData(context)
-            val response = server.signUp(SignUpUser(token = token!!, version = logData.version, versionCode = currentVersionCode))
+            val response = server.signUp(SignUpUser(token = token.value!!, version = logData.version, versionCode = currentVersionCode))
             when(response.code()) {
                 200 -> {}
 
@@ -69,9 +70,9 @@ object UserDataManager {
                     }
                 }
                 else -> {
-                    token = logIn(context)
+                    token.value = logIn(context)
                     val file = File(context.filesDir, USER_DATA_FILE)
-                    token?.let {
+                    token.value?.let {
                         file.writeText(Json.encodeToString(UserToken(it)))
                     }
                 }
@@ -94,7 +95,7 @@ object UserDataManager {
 
     suspend fun sessionOut() = withContext(Dispatchers.IO) {
         try {
-            server.sessionOut(UserToken(token ?: return@withContext))
+            server.sessionOut(UserToken(token.value ?: return@withContext))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -102,14 +103,14 @@ object UserDataManager {
 
     suspend fun unactive() = withContext(Dispatchers.IO) {
         try {
-            server.unactive(UserToken(token ?: return@withContext))
+            server.unactive(UserToken(token.value ?: return@withContext))
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
     suspend fun active() = withContext(Dispatchers.IO) {
         try {
-            server.active(UserToken(token ?: return@withContext))
+            server.active(UserToken(token.value ?: return@withContext))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -119,8 +120,8 @@ object UserDataManager {
         try {
             val file = File(context.filesDir, USER_DATA_FILE)
             if (!file.exists()) {
-                token = logIn(context)
-                token?.let {
+                token.value = logIn(context)
+                token.value?.let {
                     file.createNewFile()
                     file.writeText(Json.encodeToString(UserToken(it)))
                 }
@@ -128,14 +129,14 @@ object UserDataManager {
             }
 
             val json = file.bufferedReader().use { it.readText() }
-            token = Json.decodeFromString<UserToken>(json).token
+            token.value = Json.decodeFromString<UserToken>(json).token
             singUp(context)
 
         } catch (e: Exception) {
             e.printStackTrace()
-            token = logIn(context)
+            token.value = logIn(context)
             val file = File(context.filesDir, USER_DATA_FILE)
-            token?.let {
+            token.value?.let {
                 file.writeText(Json.encodeToString(UserToken(it)))
             }
         }
@@ -143,7 +144,7 @@ object UserDataManager {
 
     fun dropToken(context: Context) {
         File(context.filesDir, USER_DATA_FILE).delete()
-        token = null
+        token.value = null
     }
 
 }

@@ -4,7 +4,7 @@ import com.daniil.calculator.convertorscreen.convertor.convertorpanel.custom.Ava
 import com.daniil.calculator.convertorscreen.convertor.convertorpanel.custom.ExchangeResponse
 import com.daniil.calculator.convertorscreen.report.ReportRequest
 import com.daniil.calculator.settingsscreen.customscreen.ChangeLogData
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.csb.SettingsProvider
 import kotlinx.serialization.Serializable
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -16,7 +16,7 @@ import retrofit2.http.Path
 
 object RetrofitDaniilServerInstance {
     const val BASE_URL = "http://31.134.109.18:70"
-    const val TEST_URL = "http://31.134.109.18:60"
+    const val TEST_URL = "http://31.134.109.18:7070"
 
     // Base server
     val api: DaniilServerAPIInterface by lazy {
@@ -78,9 +78,9 @@ data class SignUpUser(
 class DaniilServerAPI() : DaniilServerAPIInterface {
     var currentInterface = RetrofitDaniilServerInstance.api
     private fun checkLocale() {
-        if (DynamicSettingsManager.getValue("locale_mode").toBoolean()) error("LocaleModeEnable")
+        if (SettingsProvider.getValue<Boolean>("locale_mode").value) error("LocaleModeEnable")
 
-        val useTestServer = DynamicSettingsManager.getValue("use_test_server").toBoolean()
+        val useTestServer = SettingsProvider.getValue<Boolean>("use_test_server").value
         currentInterface = when {
             useTestServer -> RetrofitDaniilServerInstance.devApi
             else -> RetrofitDaniilServerInstance.api

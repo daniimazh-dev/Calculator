@@ -8,15 +8,14 @@ import com.daniil.calculator.convertorscreen.convertor.unit.ConvertorUnitJson.Co
 import com.daniil.calculator.convertorscreen.homescreen.dataclass.ConvertorData
 import com.daniil.calculator.convertorscreen.homescreen.dataclass.ConvertorReleseState
 import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 
 class ConvertorCore(
     val model: ConvertorScreenModel,
@@ -47,8 +46,8 @@ class ConvertorCore(
         LogManager.i("ConvertorCore started", content = "ConvertorCore fun \"loadUnitData\" is started")
         loadUnitData(context)
         LogManager.c("ConvertorCore all complete", content = "Load ALL data COMPLETE.\nLoad COMPLETE -> RETURN: COMPLETE")
-        val localMode = DynamicSettingsManager.getValue("locale_mode").toBoolean()
-        val useTestServer = DynamicSettingsManager.getValue("use_test_server").toBoolean()
+        val localMode = SettingsProvider.getValue<Boolean>("locale_mode").value
+        val useTestServer = SettingsProvider.getValue<Boolean>("use_test_server").value
         LogManager.d("Local mode", content = localMode.toString())
         LogManager.d("Use test server", content = useTestServer.toString())
     }

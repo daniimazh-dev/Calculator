@@ -245,7 +245,7 @@ fun ReportSheetContent(
 //                    logs = convertorScreenModel.log.getLogData().filterNot { it.type == ConvertorLogType.Info },
                     logs = listOf(),
                     packageName = packageName,
-                    token = UserDataManager.token
+                    token = UserDataManager.token.value
                 )
 
             },

@@ -38,10 +38,11 @@ import com.daniil.calculator.R
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
 import com.daniil.calculator.convertorscreen.homescreen.dataclass.ConvertorData
 import com.daniil.calculator.convertorscreen.homescreen.dataclass.ConvertorReleseState
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.SearchTopBar
 import com.daniil.calculator.universal.simpleVerticalScrollbar
 import com.daniil.calculator.utilites.customOverscroll
+import com.daniil.csb.SettingsProvider
+import com.daniil.csb.classes.Select
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -54,10 +55,10 @@ fun SharedTransitionScope.ConvertorHomeScreen(
     val configuration = LocalConfiguration.current
     val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
-    val filterExperimentalButtons =
-        DynamicSettingsManager.getValue("experimental_convertor_buttons").toBoolean()
-    val filterUnavailableButtons =
-        DynamicSettingsManager.getValue("unavailable_convertor_buttons").toBoolean()
+    val filterExperimentalButtons by
+        SettingsProvider.getValue<Boolean>("experimental_convertor_buttons").collectAsState()
+    val filterUnavailableButtons by
+        SettingsProvider.getValue<Boolean>("unavailable_convertor_buttons").collectAsState()
 
     val buttons by convertorScreenModel.convertors.collectAsState()
 
@@ -229,9 +230,9 @@ private fun SharedTransitionScope.CategorySection(
     row: Int,
     animatedVisibilityScope: AnimatedVisibilityScope,
 ) {
-    val viewMode = DynamicSettingsManager.getValue("convertor_list_view")
+    val viewMode by SettingsProvider.getValue<Select.Option>("convertor_list_view").collectAsState()
 
-    if (viewMode == "Column") {
+    if (viewMode.id == "column") {
         Column(
             modifier = Modifier
                 .clip(MaterialTheme.shapes.medium),

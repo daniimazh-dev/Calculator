@@ -2,7 +2,6 @@ package com.daniil.calculator
 
 import android.app.Application
 import android.app.LocaleManager
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.LocaleList
@@ -12,6 +11,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.core.content.edit
 import androidx.core.os.LocaleListCompat
@@ -21,29 +22,29 @@ import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
 import com.daniil.calculator.core.UserDataManager
 import com.daniil.calculator.core.VersionRequest
-import com.daniil.calculator.settingsscreen.SettingsScreenModel
 import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
+import com.daniil.calculator.settingsscreen.settingsInit
 import com.daniil.calculator.ui.theme.CalculatorTheme
 import com.daniil.calculator.ui.theme.getThemeMode
+import com.daniil.csb.SettingsNavigationModel
 import com.daniil.csb.SettingsProvider
+import com.daniil.csb.classes.Select
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
 val openScreen = mutableIntStateOf(0)
-const val currentVersionCode = 6
-var firstOpenApp = true
+const val currentVersionCode = 7
+
 var globalVersion: VersionRequest? = null
 
 class MainActivity : AppCompatActivity() {
     private val calculatorScreenModel: CalculatorScreenModel by viewModels()
     val convertorScreenModel: ConvertorScreenModel by viewModels()
-    private val settingsScreenModel: SettingsScreenModel by viewModels()
+    private val settingsNavigationModel: SettingsNavigationModel by viewModels()
 
 
 
@@ -51,29 +52,25 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val sharedPref = this@MainActivity
-            .getSharedPreferences("save", MODE_PRIVATE)
-        firstOpenApp = sharedPref.getBoolean("firstOpenApp", false)
 
         if (savedInstanceState == null) {
             lifecycleScope.launch(Dispatchers.IO) {
-                delay(200)
                 UserDataManager.loadUserData(this@MainActivity)
             }
+            settingsInit(settingsNavigationModel, this@MainActivity, lifecycleScope)
         }
 
         setContent {
             val themeMode = getThemeMode()
-            val languageSetting = DynamicSettingsManager.getValueState("language").value
-            LaunchedEffect(languageSetting) {
-                setLanguage()
-            }
+            val language by SettingsProvider.getValue<Select.Option>("language").collectAsState()
+            LaunchedEffect(language) { setLanguage() }
+
             CalculatorTheme(darkTheme = themeMode.value) {
                 calculatorScreenModel.loadButtons(themeMode.value)
                 MainNavHost(
                     calculatorScreenModel = calculatorScreenModel,
                     convertorScreenModel = convertorScreenModel,
-                    settingsScreenModel = settingsScreenModel,
+                    settingsNavigationModel = settingsNavigationModel,
                 )
             }
 
@@ -88,13 +85,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun getLanguage(): String {
         val systemLanguageCode = getSystemWideLocaleUniversal().language
+        val languageSetting: Select = SettingsProvider.findById("language") as Select
 
-        val languageSetting = DynamicSettingsManager.getSetting("language")
-        if (languageSetting?.value == "System") {
-            val languageIsExist = languageSetting.parameters?.any { it.id == systemLanguageCode } ?: false
+        if (languageSetting.value.value.id == "System") {
+            val languageIsExist = languageSetting.options.any { it.id == systemLanguageCode }
             return if (languageIsExist) systemLanguageCode else "en"
         }
-        return languageSetting?.value ?: systemLanguageCode
+        return languageSetting.value.value.id
 
     }
 
@@ -125,10 +122,6 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             val context = this@MainActivity
 
-            DynamicSettingsManager.loadSettings(context, mapOf(
-                    "Version" to getCurrentVersion(context) // settings value {Version}
-                )
-            )
             launch(Dispatchers.IO) {
                 UserDataManager.active()
             }
@@ -160,9 +153,7 @@ class MainActivity : AppCompatActivity() {
             LogManager.k("MainActivity save complete", "MainActivity fun \"save\" is COMPLETE")
             LogManager.saveLogs(context)
         }
-        DynamicSettingsManager.saveSettings()
-
-
+        SettingsProvider.saveData(this@MainActivity)
     }
 
     override fun onPause() {
@@ -181,12 +172,8 @@ class MainActivity : AppCompatActivity() {
             }
             save()
         }
-        if (firstOpenApp) {
-            val sharedPref = this@MainActivity
-                .getSharedPreferences("save", MODE_PRIVATE)
-            sharedPref.edit(commit = true) {
-                putBoolean("firstOpenApp", true)
-            }
+        if (SettingsProvider.getValue<Boolean>("first_open_app").value) {
+            SettingsProvider.setValue("first_open_app", false)
         }
         super.onStop()
     }
@@ -198,7 +185,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-// for sendRquestSessionOut()
+// for sendRequestSessionOut()
 class MyApplication : Application() {
     val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 }

@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,7 +44,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -70,13 +68,11 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.edit
 import com.daniil.calculator.R
 import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
-import com.daniil.calculator.firstOpenApp
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.collections.forEach
 
 
 @Composable
@@ -217,19 +213,15 @@ fun HistoryTimeHeader(
             }
         }
         Spacer(modifier = Modifier.height(4.dp))
-        val sharedPref = context
-            .getSharedPreferences("save", MODE_PRIVATE)
-        val show = remember { sharedPref.getBoolean("showHistoryItemMenu", true) }
+
 
         LaunchedEffect(timeSorted.values.size) {
-            if (show) {
+            if (SettingsProvider.getValue<Boolean>("first_add_history").value) {
                 delay(100)
                 selectedMenuOpen.value = 0
                 delay(700)
                 selectedMenuOpen.value = null
-                sharedPref.edit(commit = true) {
-                    putBoolean("showHistoryItemMenu", false)
-                }
+                SettingsProvider.setValue<Boolean>("first_add_history", false)
             }
         }
         LaunchedEffect(closeAll.value) {
@@ -341,7 +333,7 @@ private fun RowScope.ActionButton(
         context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     }
     val effect = VibrationEffect.createOneShot(18, VibrationEffect.DEFAULT_AMPLITUDE)
-    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+    val vibrationEnabled by SettingsProvider.getValue<Boolean>("button_vibration_enable").collectAsState()
 
     Box(
         modifier = modifier

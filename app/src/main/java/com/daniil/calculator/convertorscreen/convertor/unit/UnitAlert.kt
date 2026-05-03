@@ -5,9 +5,6 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
-import android.util.Log
-import androidx.activity.compose.LocalActivity
-import androidx.appcompat.widget.DialogTitle
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.scaleIn
@@ -31,18 +28,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -57,16 +51,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.daniil.calculator.MainActivity
 import com.daniil.calculator.R
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
-import com.daniil.calculator.core.ConvertorCore
 import com.daniil.calculator.universal.SearchTopBar
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
 import com.daniil.calculator.universal.simpleVerticalScrollbar
 import com.daniil.calculator.utilites.CustomOverscrollEffect
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 
 @Composable
@@ -86,7 +78,7 @@ fun UnitAlert(
     val unitList = remember { unitList.toMutableStateList() }
     val context = LocalContext.current
 
-    val vibrationEnabled = DynamicSettingsManager.getValue("button_vibration_enable").toBoolean()
+    val vibrationEnabled by SettingsProvider.getValue<Boolean>("button_vibration_enable").collectAsState()
     val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val vibratorManager =
             context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager

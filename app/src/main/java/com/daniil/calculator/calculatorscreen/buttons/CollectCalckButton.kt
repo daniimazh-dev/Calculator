@@ -1,9 +1,11 @@
 package com.daniil.calculator.calculatorscreen.buttons
 
+import androidx.compose.runtime.collectAsState
 import com.daniil.calculator.R
 import com.daniil.calculator.convertorscreen.convertor.convertorpanel.default_.ButtonUi
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.ButtonData
+import com.daniil.csb.SettingsProvider
+import com.daniil.csb.classes.Select
 
 
 fun collectCalckButton(darkMode: Boolean): List<ButtonData> {
@@ -53,8 +55,8 @@ fun collectCalckButton(darkMode: Boolean): List<ButtonData> {
         add(ButtonData(content = "3", type = ButtonUi.Default))
         add(ButtonData(content = "+", type = ButtonUi.Second))
 
-        val themeMode = DynamicSettingsManager.getValue("theme_mode")
-        val animationJson = when (themeMode) {
+        val themeMode = SettingsProvider.getValue<Select.Option>("theme_mode").value
+        val animationJson = when (themeMode.id) {
             "Dark" -> "lottie_animation/more_animation_light.json"
             "Light" -> "lottie_animation/more_animation_dark.json"
             else -> {

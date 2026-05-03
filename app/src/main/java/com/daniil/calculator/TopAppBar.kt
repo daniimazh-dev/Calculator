@@ -38,9 +38,9 @@ import androidx.compose.ui.unit.sp
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
 import com.daniil.calculator.convertorscreen.ConvertorScreens
 import com.daniil.calculator.convertorscreen.homescreen.dataclass.getIcon
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.universal.UniversalDropDownItem
 import com.daniil.calculator.universal.UniversalDropDownMenu
+import com.daniil.csb.SettingsProvider
 import kotlinx.coroutines.delay
 
 @Composable
@@ -113,8 +113,8 @@ fun CustomTopAppBar(
 
 @Composable
 private fun Indication() {
-    val localeMode = DynamicSettingsManager.getValueState("locale_mode").value.toBoolean()
-    val useTestServer = DynamicSettingsManager.getValueState("use_test_server").value.toBoolean()
+    val localeMode by SettingsProvider.getValue<Boolean>("locale_mode").collectAsState()
+    val useTestServer by SettingsProvider.getValue<Boolean>("use_test_server").collectAsState()
     var dropdownMenuExpanded by remember { mutableStateOf(false) }
     when {
         localeMode -> {
@@ -144,7 +144,7 @@ private fun Indication() {
                         },
                         autoClose = true,
                         onClick = {
-                            DynamicSettingsManager.setValue("locale_mode", false)
+                            SettingsProvider.setValue("locale_mode", false)
 
                         }
                     )),
@@ -181,7 +181,7 @@ private fun Indication() {
                         },
                         autoClose = true,
                         onClick = {
-                            DynamicSettingsManager.setValue("use_test_server", false)
+                            SettingsProvider.setValue("use_test_server", false)
 
                         }
                     )),

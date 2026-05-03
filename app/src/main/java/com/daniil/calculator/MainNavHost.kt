@@ -1,57 +1,59 @@
 package com.daniil.calculator
 
-import SettingsScreenController
 import android.app.Activity
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.view.WindowInsetsController
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.animation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.VerticalDivider
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import com.daniil.calculator.calculatorscreen.CalculatorScreenController
 import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
 import com.daniil.calculator.convertorscreen.ConvertorScreenController
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
-import com.daniil.calculator.settingsscreen.SettingsScreenModel
-import com.daniil.calculator.settingsscreen.settings.manager.DynamicSettingsManager
 import com.daniil.calculator.utilites.generatePatternBitmap
 import com.daniil.calculator.utilites.imageList
+import com.daniil.csb.SettingsNavigationModel
+import com.daniil.csb.SettingsProvider
+import com.daniil.csb.SettingsScreen
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -64,20 +66,16 @@ import java.io.File
 fun MainNavHost(
     calculatorScreenModel: CalculatorScreenModel,
     convertorScreenModel: ConvertorScreenModel,
-    settingsScreenModel: SettingsScreenModel,
+    settingsNavigationModel: SettingsNavigationModel
 ) {
     val context = LocalContext.current
-
-    var dragAmountX by remember { mutableFloatStateOf(0f) }
-    var dragAmountY by remember { mutableFloatStateOf(0f) }
 
     val configuration = LocalConfiguration.current
     val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
     val window = (context as? Activity)?.window
-
+    BetaVersionAlert()
     UpdateVersionAlert()
-
 
     LaunchedEffect(isPortrait) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -116,7 +114,7 @@ fun MainNavHost(
         }
     }
 
-    val enableImage = DynamicSettingsManager.getValueState("background_image").value.toBoolean()
+    val enableImage by SettingsProvider.getValue<Boolean>("background_image_enable").collectAsState()
 
     var backgroundImage by remember(enableImage) { mutableStateOf<ImageBitmap?>(null) }
     LaunchedEffect(enableImage) {
@@ -208,7 +206,12 @@ fun MainNavHost(
                         }
 
                         2 -> {
-                            SettingsScreenController(settingsScreenModel = settingsScreenModel)
+                            SettingsScreen(
+                                modifier = Modifier.padding(8.dp),
+                                paddingValues = PaddingValues.Zero,
+                                navigationModel = settingsNavigationModel
+                            )
+//                            SettingsScreenController(settingsScreenModel = settingsScreenModel)
                         }
                     }
                 }
