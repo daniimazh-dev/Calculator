@@ -1,5 +1,7 @@
 package com.daniil.calculator.convertorscreen.convertor.convertorpanel.convertorComposable.ui
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -75,15 +78,21 @@ fun ConvertorLayoutScope.BigInputWithUnit(
                         .padding(vertical = 12.dp, horizontal = 8.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    BasicText(
+                    val scale by animateFloatAsState(if (selected) 1.15f else 1f)
+                    Text(
+                        modifier = Modifier.graphicsLayer {
+                            scaleX = scale
+                            scaleY = scale
+                        },
                         text = content.toString(),
                         style = MaterialTheme.typography.titleLarge.copy(
                             color =
-                                if (!selected) MaterialTheme.colorScheme.onSurfaceVariant
-                                else MaterialTheme.colorScheme.primary
+                                if (selected) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.onSurfaceVariant,
 
                         ),
-                        autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 24.sp),
+
+                        autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 20.sp),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1
                     )

@@ -285,7 +285,7 @@ class ConvertorCore(
 
             } else {
                 val mutList = it.toMutableList()
-                mutList[index] = unit
+                mutList[index] = unit.copy(pinned = it[index].pinned)
                 units[group] = mutList
                 LogManager.i("ConvertorCore call perform", content = "Unit is replace")
             }

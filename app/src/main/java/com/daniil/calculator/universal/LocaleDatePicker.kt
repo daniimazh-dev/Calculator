@@ -45,7 +45,8 @@ import kotlin.math.abs
 fun LocaleDataPickerDialog(
     input: LocalDate,
     onDismiss: (LocalDate) -> Unit,
-    yearsRange: IntRange = 1920..2130,
+    dateStart: LocalDate,
+    dateLast: LocalDate = LocalDate.now(),
     onConfirm: (localeDate: LocalDate) -> Unit,
 ) {
     var localeDate by remember { mutableStateOf<LocalDate>(input) }
@@ -66,7 +67,8 @@ fun LocaleDataPickerDialog(
         },
         text = {
             LocalDatePicker(
-                yearsRange = yearsRange,
+                dateStart = dateStart,
+                dateLast = dateLast,
                 localDate = localeDate,
                 onDateSelected = { date ->
                     localeDate = date
@@ -78,7 +80,8 @@ fun LocaleDataPickerDialog(
 
 @Composable
 fun LocalDatePicker(
-    yearsRange: IntRange = 1920..2130,
+    dateStart: LocalDate,
+    dateLast: LocalDate = LocalDate.now(),
     localDate: LocalDate,
     onDateSelected: (LocalDate) -> Unit,
 ) {
@@ -87,11 +90,19 @@ fun LocalDatePicker(
     val currentMonth = localDate.month // Month
     val currentYear = localDate.year
 
-    val yearsRange = remember { yearsRange.toList() }
-    val months = remember { (1..12).toList() }
+    val yearsRange = remember { (dateStart.year..dateLast.year).toList() }
+    val months = remember(currentYear) {
+        when (currentYear) {
+            yearsRange.first() -> 1..dateStart.month.value
+            yearsRange.last() -> 1..dateLast.month.value
+            else -> 1..12
+        }.toList()
+    }
 
     val daysInMonth = remember(currentMonth, currentYear) {
-        YearMonth.of(currentYear, currentMonth).lengthOfMonth()
+        if (dateStart.month == currentMonth && dateStart.year == currentYear) dateStart.dayOfMonth
+        else if (dateLast.month == currentMonth && dateLast.year == currentYear) dateLast.dayOfMonth
+        else YearMonth.of(currentYear, currentMonth).lengthOfMonth()
     }
     val days = remember(daysInMonth) { (1..daysInMonth).toList() }
     Column() {
@@ -156,7 +167,6 @@ private fun ScrollPickerList(
     val visibleCount = 5
     val midIndex = visibleCount / 2
 
-    // ─── фантоми ───
     val phantom = ""
     val displayItems = remember(items) {
         List(midIndex) { phantom } + items + List(midIndex+1) { phantom }
@@ -168,7 +178,6 @@ private fun ScrollPickerList(
 
     val coroutineScope = rememberCoroutineScope()
 
-    // ─── скрол → індекс ───
     LaunchedEffect(listState.isScrollInProgress) {
         if (!listState.isScrollInProgress) {
             val center = listState.firstVisibleItemIndex + midIndex
@@ -179,7 +188,6 @@ private fun ScrollPickerList(
         }
     }
 
-    // ─── індекс → скрол ───
     LaunchedEffect(selectedIndex) {
         coroutineScope.launch {
             listState.animateScrollToItem(
@@ -188,7 +196,6 @@ private fun ScrollPickerList(
         }
     }
 
-    // ─── UI ───
     Box(
         modifier = modifier.height(180.dp),
         contentAlignment = Alignment.Center

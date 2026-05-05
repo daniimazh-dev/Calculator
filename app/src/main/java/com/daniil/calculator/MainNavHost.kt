@@ -31,7 +31,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -48,6 +47,7 @@ import com.daniil.calculator.calculatorscreen.CalculatorScreenController
 import com.daniil.calculator.calculatorscreen.CalculatorScreenModel
 import com.daniil.calculator.convertorscreen.ConvertorScreenController
 import com.daniil.calculator.convertorscreen.ConvertorScreenModel
+import com.daniil.calculator.settingsscreen.SettingsTriggers
 import com.daniil.calculator.utilites.generatePatternBitmap
 import com.daniil.calculator.utilites.imageList
 import com.daniil.csb.SettingsNavigationModel
@@ -76,6 +76,7 @@ fun MainNavHost(
     val window = (context as? Activity)?.window
     BetaVersionAlert()
     UpdateVersionAlert()
+    SettingsTriggers()
 
     LaunchedEffect(isPortrait) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -96,21 +97,22 @@ fun MainNavHost(
         initialPage = 0,
         pageCount = { 3 }
     )
+    val openScreenState by openScreen.collectAsState()
 
-    BackHandler(openScreen.intValue != 0) {
-        openScreen.intValue -= 1
+    BackHandler(openScreenState != 0) {
+        openScreen.value -= 1
     }
 
-    LaunchedEffect(openScreen.intValue) {
+    LaunchedEffect(openScreenState) {
         pagerState.animateScrollToPage(
-            page = openScreen.intValue,
+            page = openScreenState,
             animationSpec = tween(400)
         )
     }
     LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
         convertorScreenModel.onHideScreen()
         if (!pagerState.isScrollInProgress) {
-            openScreen.intValue = pagerState.currentPage
+            openScreen.value = pagerState.currentPage
         }
     }
 

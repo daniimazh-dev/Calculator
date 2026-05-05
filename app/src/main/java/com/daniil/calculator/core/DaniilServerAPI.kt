@@ -78,7 +78,7 @@ data class SignUpUser(
 class DaniilServerAPI() : DaniilServerAPIInterface {
     var currentInterface = RetrofitDaniilServerInstance.api
     private fun checkLocale() {
-        if (SettingsProvider.getValue<Boolean>("locale_mode").value) error("LocaleModeEnable")
+        if (SettingsProvider.tryGetValue<Boolean>("locale_mode")?.value == true) error("LocaleModeEnable")
 
         val useTestServer = SettingsProvider.getValue<Boolean>("use_test_server").value
         currentInterface = when {
@@ -91,6 +91,11 @@ class DaniilServerAPI() : DaniilServerAPIInterface {
     override suspend fun getLastVersion(): Response<VersionRequest> {
         checkLocale()
         return currentInterface.getLastVersion()
+    }
+
+    override suspend fun health(): Response<Unit> {
+        checkLocale()
+        return currentInterface.health()
     }
 
     override suspend fun logIn(userData: LogInUser): Response<UserToken?> {
@@ -178,6 +183,9 @@ interface DaniilServerAPIInterface {
 
     @GET("/convertors")
     suspend fun getConvertorsStatus(): Response<ConvertorsStatus>
+
+    @GET("/health")
+    suspend fun health(): Response<Unit>
 
     @POST("/convertors/currency/get-available")
     suspend fun getAvailableExchange(@Body token: UserToken): Response<AvailableExchange>

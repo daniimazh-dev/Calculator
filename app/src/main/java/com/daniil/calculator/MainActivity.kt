@@ -32,12 +32,14 @@ import com.daniil.csb.classes.Select
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
-val openScreen = mutableIntStateOf(0)
-const val currentVersionCode = 7
+val openScreen = MutableStateFlow(0)
+const val currentVersionCode = 8
 
 var globalVersion: VersionRequest? = null
 
@@ -55,9 +57,10 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             lifecycleScope.launch(Dispatchers.IO) {
+                delay(100)
                 UserDataManager.loadUserData(this@MainActivity)
             }
-            settingsInit(settingsNavigationModel, this@MainActivity, lifecycleScope)
+
         }
 
         setContent {
@@ -80,8 +83,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        lifecycleScope.launch { load(null) }
-        LogManager.k("OnResume started", "MainActivity fun \"load\" is started")
+        lifecycleScope.launch {
+            load(null)
+            LogManager.k("OnResume started", "MainActivity fun \"load\" is started")
+        }
+
     }
     private fun getLanguage(): String {
         val systemLanguageCode = getSystemWideLocaleUniversal().language
@@ -121,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     private suspend fun load(savedInstanceState: Bundle?) = withContext(Dispatchers.IO) {
         if (savedInstanceState == null) {
             val context = this@MainActivity
-
+            settingsInit(settingsNavigationModel, this@MainActivity, lifecycleScope)
             launch(Dispatchers.IO) {
                 UserDataManager.active()
             }
@@ -138,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                     "MainActivity fun \"load\" is COMPLETE"
                 )
             }
+
         }
     }
 
@@ -153,27 +160,25 @@ class MainActivity : AppCompatActivity() {
             LogManager.k("MainActivity save complete", "MainActivity fun \"save\" is COMPLETE")
             LogManager.saveLogs(context)
         }
+        launch(Dispatchers.IO) {
+            if (SettingsProvider.getValue<Boolean>("first_open_app").value) {
+                SettingsProvider.setValue("first_open_app", false)
+            }
+        }
         SettingsProvider.saveData(this@MainActivity)
     }
 
     override fun onPause() {
         LogManager.k("OnPause started", "MainActivity fun \"save\" is started")
-        lifecycleScope.launch {
-            save()
-        }
+        lifecycleScope.launch { save() }
         super.onPause()
     }
 
     override fun onStop() {
         LogManager.k("OnStop started", "MainActivity fun \"save\" is started")
         lifecycleScope.launch {
-            launch(Dispatchers.IO) {
-                UserDataManager.unactive()
-            }
+            launch(Dispatchers.IO) { UserDataManager.unactive() }
             save()
-        }
-        if (SettingsProvider.getValue<Boolean>("first_open_app").value) {
-            SettingsProvider.setValue("first_open_app", false)
         }
         super.onStop()
     }

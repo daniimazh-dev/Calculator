@@ -64,12 +64,12 @@ class AreaConvertorImplementation(
                     expandedContent()
                 }
             }
-            mode( id ="List",  name = stringResource(R.string.diminished), painterId =  R.drawable.view1_icon) {
-                content = {
-                    diminishedContent()
-                }
-
-            }
+//            mode( id ="List",  name = stringResource(R.string.diminished), painterId =  R.drawable.view1_icon) {
+//                content = {
+//                    diminishedContent()
+//                }
+//
+//            }
 
         }
     }

@@ -16,8 +16,8 @@ configure<ApplicationExtension> {
         applicationId = "com.daniil.calculator"
         minSdk = 26
         targetSdk = 36
-        versionCode = 7
-        versionName = "1.0.4-Beta 0.1"
+        versionCode = 8
+        versionName = "1.0.4-Beta 0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

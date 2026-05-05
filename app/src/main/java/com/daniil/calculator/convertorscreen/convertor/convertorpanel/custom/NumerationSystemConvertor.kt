@@ -48,12 +48,12 @@ class NumerationSystemConvertorImplementation(
                 buttonMap(registerNumerationSystemButtons())
                 showClackPanel.value = false
             }
-            mode( id = "List", name = stringResource(R.string.diminished), painterId =  R.drawable.view1_icon) {
-                content = {
-                    diminishedContent()
-                }
-                buttonMap(registerNumerationSystemButtons())
-            }
+//            mode( id = "List", name = stringResource(R.string.diminished), painterId =  R.drawable.view1_icon) {
+//                content = {
+//                    diminishedContent()
+//                }
+//                buttonMap(registerNumerationSystemButtons())
+//            }
         }
 
 
@@ -81,7 +81,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
     )
 
     // Ternary (TRI)
-    put(units[1], ButtonsStack(
+    put(units.find { it.id == "Ternary" }!!, ButtonsStack(
         column = 4,
         buttons = listOf(
             Buttons.Default.B_0,
@@ -97,7 +97,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
     )
 
     // Quaternary (QUA)
-    put(units[2], ButtonsStack(
+    put(units.find { it.id == "Quaternary" }!!, ButtonsStack(
         column = 4,
         buttons =  listOf(
             Buttons.Default.B_1,
@@ -111,7 +111,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
         )
     ))
     // Quinary (QUIN)
-    put(units[3], ButtonsStack(
+    put(units.find { it.id == "Quinary" }!!, ButtonsStack(
         column = 4,
         buttons = listOf(
             Buttons.Default.B_1,
@@ -128,7 +128,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
 
 
     // Octal (OCT)
-    put(units[4], ButtonsStack(
+    put(units.find { it.id == "Octal" }!!, ButtonsStack(
         column = 4,
         buttons = listOf(
             Buttons.Default.B_1,
@@ -147,7 +147,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
         )
     )
     // Decimal (DEC) default
-    put(units[5], ButtonsStack(
+    put(units.find { it.id == "Decimal" }!!, ButtonsStack(
             column = 4,
             buttons = listOf(
                 Buttons.Default.B_7,
@@ -172,7 +172,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
 
     // Duodecimal (DUO)
 
-    put(units[6], ButtonsStack(
+    put(units.find { it.id == "Duodecimal" }!!, ButtonsStack(
             column = 4,
             buttons = listOf(
                 Buttons.Default.B_7,
@@ -196,7 +196,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
     )
 
     // Hexadecimal (Hex)
-    put(units[7], ButtonsStack(
+    put(units.find { it.id == "Hexadecimal" }!!, ButtonsStack(
             column = 4,
             buttons = listOf(
                 Buttons.Laters.B_A,
@@ -227,7 +227,7 @@ fun NumerationSystemConvertorImplementation.registerNumerationSystemButtons(): M
 
 
     // Vigesimal (VIG)
-    put(units[8], ButtonsStack(
+    put(units.find { it.id == "Vigesimal" }!!, ButtonsStack(
         column = 5,
         buttons = listOf(
             Buttons.Laters.B_A,

@@ -110,7 +110,7 @@ fun CalckBlockPanel(
                     buttonId = activeScreen!!.id,
                     customCalckBlock = result
                 )
-                openScreen.intValue = 1
+                openScreen.value = 1
 
             }) {
                 val icon = activeScreen?.getIcon()?.let { ImageVector.vectorResource(it) }

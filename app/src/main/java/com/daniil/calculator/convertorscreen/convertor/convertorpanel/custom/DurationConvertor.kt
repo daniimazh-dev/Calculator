@@ -191,7 +191,8 @@ private fun DurationConvertorImplementation.CalendarScreen(
                             input = if (startDate == null) LocalDate.now() else LocalDate.parse(
                                 startDate
                             ),
-                            yearsRange = 1920..2030,
+                            dateStart = LocalDate.of(1920, 1, 1),
+                            dateLast = LocalDate.of( 2029, 12, 31),
                             onDismiss = {
                                 startLocalDataPickerShow = false
                                 scrollTo(it)
@@ -217,7 +218,8 @@ private fun DurationConvertorImplementation.CalendarScreen(
                     )
                     if (endLocalDataPickerShow) {
                         LocaleDataPickerDialog(
-                            yearsRange = 1920..2030,
+                            dateStart = LocalDate.of(1920, 1, 1),
+                            dateLast = LocalDate.of( 2029, 12, 31),
                             input = if (endDate == null) LocalDate.now() else LocalDate.parse(
                                 endDate
                             ),
@@ -327,7 +329,8 @@ private fun DurationConvertorImplementation.CalendarScreen(
                         if (startLocalDataPickerShow) {
                             LocaleDataPickerDialog(
                                 input = if (startDate == null) LocalDate.now() else LocalDate.parse(startDate),
-                                yearsRange = 1920..2030,
+                                dateStart = LocalDate.of(1920, 1, 1),
+                                dateLast = LocalDate.of( 2029, 12, 31),
                                 onDismiss = {
                                     startLocalDataPickerShow = false
                                     scrollTo(it)
@@ -354,7 +357,8 @@ private fun DurationConvertorImplementation.CalendarScreen(
                         if (endLocalDataPickerShow) {
 
                             LocaleDataPickerDialog(
-                                yearsRange = 1920..2030,
+                                dateStart = LocalDate.of(1920, 1, 1),
+                                dateLast = LocalDate.of( 2029, 12, 31),
                                 input = if (endDate == null) LocalDate.now() else LocalDate.parse(
                                     endDate
                                 ),

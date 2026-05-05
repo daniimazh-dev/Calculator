@@ -31,7 +31,7 @@ object LogManager {
         return logList.filter { it.name == name }
     }
     suspend fun loadLogs(context: Context) = withContext(Dispatchers.IO) {
-        if (!SettingsProvider.getValue<Boolean>("save_logs").value) return@withContext
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return@withContext
         val file = File(context.filesDir, SAVE_LOG_FILE)
         if (!file.exists()) {
             file.createNewFile()
@@ -68,7 +68,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -87,7 +87,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -106,7 +106,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -125,7 +125,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -144,7 +144,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -163,7 +163,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(
@@ -182,7 +182,7 @@ object LogManager {
         codeId: String? = null,
         decorator: LogDecorator? = localDefaultLogDecorator
     ) {
-        if (!SettingsProvider.getValue<Boolean>("collect_logs").value) return
+        if (SettingsProvider.tryGetValue<Boolean>("collect_logs")?.value == false) return
 
         logList.add(
             ConvertorLogData(

@@ -53,14 +53,15 @@ fun CustomTopAppBar(
 
     val currentConvertor by convertorScreenModel.currentConvertor.collectAsState()
     val screenMode by convertorScreenModel.currentScreen.collectAsState()
+    val currentScreen by openScreen.collectAsState()
 
     val items: @Composable () -> Unit = {
         AppBarItem(
             icon = R.drawable.calculator_icon,
             contentDescription = "calculator",
-            isActive = openScreen.intValue == 0,
+            isActive = currentScreen == 0,
             onClick = {
-                openScreen.intValue = 0
+                openScreen.value = 0
             }
         )
 
@@ -73,18 +74,18 @@ fun CustomTopAppBar(
 
             },
             contentDescription = "convertor",
-            isActive = openScreen.intValue == 1,
+            isActive = currentScreen == 1,
             onClick = {
-                openScreen.intValue = 1
+                openScreen.value = 1
             }
         )
 
         AppBarItem(
             icon = R.drawable.settings_icon,
             contentDescription = "settings",
-            isActive = openScreen.intValue == 2,
+            isActive = currentScreen == 2,
             onClick = {
-                openScreen.intValue = 2
+                openScreen.value = 2
             }
         )
         Indication()

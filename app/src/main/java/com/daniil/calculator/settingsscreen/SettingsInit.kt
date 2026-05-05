@@ -6,7 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Icon
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import com.daniil.calculator.R
+import com.daniil.calculator.core.DaniilServerAPI
 import com.daniil.calculator.core.RetrofitDaniilServerInstance
 import com.daniil.calculator.core.UserDataManager
 import com.daniil.calculator.currentVersionCode
@@ -49,6 +52,7 @@ import com.daniil.calculator.getCurrentVersion
 import com.daniil.calculator.globalVersion
 import com.daniil.calculator.settingsscreen.customscreen.AboutAppScreen
 import com.daniil.calculator.settingsscreen.customscreen.ChangeLogScreen
+import com.daniil.calculator.settingsscreen.customscreen.logs.LogManager
 import com.daniil.calculator.settingsscreen.customscreen.logs.LogsScreen
 import com.daniil.calculator.settingsscreen.itemtype.customitem.AboutDeveloper
 import com.daniil.calculator.settingsscreen.itemtype.customitem.EsterEgg
@@ -70,6 +74,7 @@ import com.daniil.csb.screens.createScreen
 import com.daniil.csb.settingui.DefaultSettingUI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -86,8 +91,8 @@ fun settingsInit(
         newGroup(
             id = "General", name = "General",
             createSelect("convertor_list_view") {
-                title = "Convertor selection list view"
-                description = "Select the display type of the convector selection list"
+                title = "Convertor list view"
+                description = "Select the display type of the convector list"
                 val options = listOf(
                     Select.Option(id = "grid", title = "Grid"),
                     Select.Option(id = "column", title = "Column"),
@@ -205,9 +210,10 @@ fun settingsInit(
                                 val stream = ByteArrayOutputStream()
                                 bitmap?.compress(Bitmap.CompressFormat.JPEG, 40, stream)
                                 val compressedBytes = stream.toByteArray()
-
+                                SettingsProvider.setValue("background_image_enable", false)
                                 coroutineScope.launch(Dispatchers.IO) {
                                     if (saveImageFile(imageFile, compressedBytes)) {
+                                        delay(200)
                                         SettingsProvider.setValue("background_image_enable", true)
                                     }
                                 }
@@ -386,11 +392,37 @@ fun settingsInit(
                 description = "Switch connection to test server"
                 defaultValue = false
             },
-
-            createAction("current_token") {
-                title = "Token"
-                description = UserDataManager.token.value.orEmpty()
+            createAction("ping_test") {
+                val server = DaniilServerAPI()
+                title = "Ping test"
+                description = "Test connection to server"
                 action = {
+                    coroutineScope.launch(Dispatchers.IO) {
+                        try {
+                            val result = server.health()
+                            val massage = when (result.code()) {
+                                200 -> "Successful"
+                                404 -> "Not found 404"
+                                else -> "Unknown code: ${result.code()}"
+                            }
+                            launch(Dispatchers.Main) {
+                                Toast.makeText(context, massage, Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            launch(Dispatchers.Main) {
+                                Toast.makeText(context, "Error, more detail in log", Toast.LENGTH_SHORT).show()
+                            }
+                            LogManager.e("Ping test", "Error ping test:\n${e.stackTraceToString().take(200)}")
+                        }
+
+                    }
+
+                }
+            },
+            createCustomSetting<Unit>("current_token") {
+                defaultValue = Unit
+                title = "Token"
+                onClick = {
                     UserDataManager.token.value?.let {
                         coroutineScope.launch {
                             val clipboardManager =
@@ -399,6 +431,25 @@ fun settingsInit(
                             clipboardManager.setPrimaryClip(data)
                         }
                     }
+                }
+                content = {
+                    DefaultSettingUI(
+                        title = { Text(title) },
+                        description = { Text(UserDataManager.token.collectAsState().value.orEmpty()) },
+                        display = {
+                            FilledIconButton(
+                                colors = IconButtonDefaults.iconButtonColors()
+                                    .copy(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
+                                onClick = onClick
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.copy_standart),
+                                    contentDescription = "Copy"
+                                )
+                            }
+                        },
+                        onClick = onClick
+                    )
                 }
             },
             createAction("drop_token") {
@@ -470,15 +521,10 @@ fun settingsInit(
         logsScreen,
         abstractSettings
     )
+
     coroutineScope.launch(Dispatchers.IO) {
         SettingsProvider.loadData(context)
     }
 
 }
-
-
-
-
-
-
 
